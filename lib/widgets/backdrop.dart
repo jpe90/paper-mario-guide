@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
+import 'package:logger/logger.dart';
+
+var logger = Logger(printer: PrettyPrinter());
 
 class Backdrop extends StatefulWidget {
   @override
@@ -24,6 +27,7 @@ class _BackdropState extends State<Backdrop> {
   Widget build(BuildContext context) {
     var appBar = AppBar(title: Text('Paper Mario'));
 
+    logger.d('hmm');
     return Scaffold(
       appBar: appBar,
       body: LayoutBuilder(builder: _buildStack),
