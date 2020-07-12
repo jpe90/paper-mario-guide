@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:paper_mario_guide/views/collectibles_view.dart';
 import 'widgets/backdrop.dart';
-import 'pages/collectibles_page.dart';
+import 'views/collectibles_view.dart';
 import 'models/collectibles_repository.dart';
+import 'views/error_page.dart';
+import 'package:logger/logger.dart';
+
+var logger = Logger(printer: PrettyPrinter());
 
 void main() {
   runApp(MyApp());
@@ -26,7 +31,20 @@ class _MyAppState extends State<MyApp> {
     widget.repository.loadCollectiblesFromJson().then((collectibles) {
       CollectiblesRepository.collectibles = collectibles;
       setState(() => status = LoadStatus.completed);
-    }).catchError((err) => setState(() => status = LoadStatus.error));
+    }).catchError((err) {
+      logger.e(err.toString());
+      setState(() => status = LoadStatus.error);
+    });
+  }
+
+  Widget getFrontLayerForLoadStatus(LoadStatus status) {
+    if (status == LoadStatus.loading) {
+      return Text('loading');
+    } else if (status == LoadStatus.completed) {
+      return CollectiblesView(
+          collectibles: CollectiblesRepository.collectibles);
+    } else
+      return ErrorPage(errorInfo: "shrug");
   }
 
   // This widget is the root of your application.
@@ -39,8 +57,8 @@ class _MyAppState extends State<MyApp> {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: Backdrop(
-        frontLayer:
-            status == LoadStatus.loading ? Text('loading') : CollectiblesPage(),
+        frontLayer: getFrontLayerForLoadStatus(status),
+        //status == LoadStatus.loading ? Text('loading') : CollectiblesPage(),
         backLayer: Container(color: Colors.blue),
       ),
     );

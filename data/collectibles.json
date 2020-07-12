@@ -1,7 +1,113 @@
 [
     {
+        "id": 0,
+        "level": "whisperingWoods",
+        "category": "hole"
+    },
+    {
         "id": 1,
-        "level":"whisperingWoods",
-        "category":"hole"
+        "level": "whisperingWoods",
+        "category": "hole"
+    },
+    {
+        "id": 2,
+        "level": "whisperingWoods",
+        "category": "hole"
+    },
+    {
+        "id": 3,
+        "level": "whisperingWoods",
+        "category": "hole"
+    },
+    {
+        "id": 4,
+        "level": "whisperingWoods",
+        "category": "hole"
+    },
+    {
+        "id": 5,
+        "level": "whisperingWoods",
+        "category": "box"
+    },
+    {
+        "id": 6,
+        "level": "whisperingWoods",
+        "category": "hole"
+    },
+    {
+        "id": 7,
+        "level": "whisperingWoods",
+        "category": "collect",
+        "notes": "Use the star from the matching game to walk over the spikes blocking the chest."
+    },
+    {
+        "id": 8,
+        "level": "whisperingWoods",
+        "category": "hole"
+    },
+    {
+        "id": 9,
+        "level": "whisperingWoods",
+        "category": "hole"
+    },
+    {
+        "id": 10,
+        "level": "whisperingWoods",
+        "category": "hole"
+    },
+    {
+        "id": 11,
+        "level": "whisperingWoods",
+        "category": "hole"
+    },
+    {
+        "id": 12,
+        "level": "whisperingWoods",
+        "category": "box"
+    },
+    {
+        "id": 13,
+        "level": "whisperingWoods",
+        "category": "hole"
+    },
+    {
+        "id": 14,
+        "level": "whisperingWoods",
+        "category": "hole"
+    },
+    {
+        "id": 15,
+        "level": "whisperingWoods",
+        "category": "hole"
+    },
+    {
+        "id": 16,
+        "level": "whisperingWoods",
+        "category": "hole"
+    },
+    {
+        "id": 17,
+        "level": "whisperingWoods",
+        "category": "hole"
+    },
+    {
+        "id": 18,
+        "level": "whisperingWoods",
+        "category": "hole"
+    },
+    {
+        "id": 19,
+        "level": "whisperingWoods",
+        "category": "hole"
+    },
+    {
+        "id": 20,
+        "level": "whisperingWoods",
+        "category": "hole"
+    },
+    {
+        "id": 21,
+        "level": "whisperingWoods",
+        "category": "collect"
     }
 ]

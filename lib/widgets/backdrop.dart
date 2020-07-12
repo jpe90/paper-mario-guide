@@ -27,7 +27,6 @@ class _BackdropState extends State<Backdrop> {
   Widget build(BuildContext context) {
     var appBar = AppBar(title: Text('Paper Mario'));
 
-    logger.d('hmm');
     return Scaffold(
       appBar: appBar,
       body: LayoutBuilder(builder: _buildStack),
