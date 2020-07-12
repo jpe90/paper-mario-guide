@@ -9,16 +9,29 @@ class CollectiblesView extends StatelessWidget {
 
   CollectiblesView({this.collectibles});
 
-  //List<
+  GridView _buildGridCards(BuildContext context) {
+    return GridView.count(
+      crossAxisCount: 2,
+      padding: EdgeInsets.all(16.0),
+      childAspectRatio: 8.0 / 9.0,
+      children:
+          collectibles.map((collectible) => _gridElement(collectible)).toList(),
+    );
+  }
+
   Card _gridElement(Collectible collectible) {
     return Card(
       child: Column(
         children: [
           AspectRatio(
             aspectRatio: 18 / 11,
-            child: Image.asset(
-              collectible.assetName,
-              package: collectible.thumbnailAssetPackage,
+            //child: Image.asset(
+            //  collectible.thumbnailAssetName,
+            //  fit: BoxFit.fitWidth,
+            //),
+            child: Image(
+              image: AssetImage(collectible.thumbnailAssetName),
+              //image: AssetImage('assets/warb.png'),
               fit: BoxFit.fitWidth,
             ),
           ),
@@ -37,6 +50,6 @@ class CollectiblesView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //return GridView.builder();
-    return _gridElement(collectibles[0]);
+    return _buildGridCards(context);
   }
 }

@@ -10,6 +10,8 @@ class CollectiblesRepository {
   //GridModelService() : _logger = Logger(printer: PrettyPrinter());
   //var _logger;
   static const jsonDataFile = 'data/collectibles.json';
+  CollectiblesRepository() : collectibles = [];
+  List<Collectible> collectibles;
 
   Future<String> readJsonData() async {
     try {
@@ -19,7 +21,7 @@ class CollectiblesRepository {
     }
   }
 
-  Future<List<Collectible>> getAllCollectibles() async {
+  Future<List<Collectible>> loadCollectiblesFromJson() async {
     try {
       String jsonString = await readJsonData();
       Iterable dynamicJsonList = jsonDecode(jsonString);

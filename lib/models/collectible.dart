@@ -21,9 +21,9 @@ class Collectible {
     return Collectible(
         id: json["id"], level: json["level"], category: json["category"]);
   }
-  String get thumbnailAssetPackage => 'assets/thumbnails';
-  String get fullAssetPackage => 'assets/full';
-  String get assetName => '$id.jpg';
+  String get thumbnailAssetName => 'assets/thumbnails/$id.jpg';
+  String get fullAssetName => 'assets/full/$id.jpg';
+  // String get assetName => '$id.jpg';
 
   String toString() => 'id: $id, level: $level, category: $category';
 }
