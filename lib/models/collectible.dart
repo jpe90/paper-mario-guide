@@ -1,8 +1,8 @@
 import 'package:flutter/foundation.dart';
 
-enum Level { one, two, three, four, five, six, seven }
+enum Level { whisperingWoods }
 
-enum Category { toad, coin }
+enum Category { toad, box, hole, collect }
 
 class Collectible {
   Collectible({
