@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../models/collectible.dart';
+import '../models/collectibles_repository.dart';
 import '../views/collectibles_view.dart';
 
 class CollectiblesPage extends StatelessWidget {
@@ -10,9 +11,6 @@ class CollectiblesPage extends StatelessWidget {
   Widget build(BuildContext context) {
     // TODO: Return an AsymmetricView (104)
     // TODO: Pass Category variable to AsymmetricView (104)
-    return CollectiblesView(collectibles: <Collectible>[
-      Collectible(id: 1, level: Level.one, category: Category.toad),
-      Collectible(id: 2, level: Level.one, category: Category.toad)
-    ]);
+    return CollectiblesView(collectibles: CollectiblesRepository.collectibles);
   }
 }

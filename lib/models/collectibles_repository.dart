@@ -10,8 +10,8 @@ class CollectiblesRepository {
   //GridModelService() : _logger = Logger(printer: PrettyPrinter());
   //var _logger;
   static const jsonDataFile = 'data/collectibles.json';
-  CollectiblesRepository() : collectibles = [];
-  List<Collectible> collectibles;
+  CollectiblesRepository();
+  static List<Collectible> collectibles = [];
 
   Future<String> readJsonData() async {
     try {

@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 
-enum Level { whisperingWoods }
+enum Level { whisperingWoods, toadTown }
 
 enum Category { toad, box, hole, collect }
 

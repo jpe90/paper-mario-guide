@@ -30,7 +30,7 @@ class CollectiblesView extends StatelessWidget {
             //  fit: BoxFit.fitWidth,
             //),
             child: Image(
-              image: AssetImage(collectible.thumbnailAssetName),
+              image: AssetImage(collectible.fullAssetName),
               //image: AssetImage('assets/warb.png'),
               fit: BoxFit.fitWidth,
             ),

@@ -24,7 +24,7 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
     widget.repository.loadCollectiblesFromJson().then((collectibles) {
-      widget.repository.collectibles = collectibles;
+      CollectiblesRepository.collectibles = collectibles;
       setState(() => status = LoadStatus.completed);
     }).catchError((err) => setState(() => status = LoadStatus.error));
   }
