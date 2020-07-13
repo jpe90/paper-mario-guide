@@ -21,22 +21,19 @@ class CollectiblesView extends StatelessWidget {
 
   Widget _gridElement(Collectible collectible) {
     return Card(
-      child: Container(
-        child: Column(
-          children: [
-            Image(
-                image: AssetImage(collectible.fullAssetName),
-                //image: AssetImage('assets/warb.png'),
-                fit: BoxFit.fitWidth),
-            CardBottom(
-              id: collectible.id,
-              padding: const EdgeInsets.symmetric(horizontal: 0),
-              value: false,
-              onChanged: (__) {},
-            ),
-          ],
-          crossAxisAlignment: CrossAxisAlignment.start,
-        ),
+      child: Column(
+        children: [
+          Image(
+              image: AssetImage(collectible.fullAssetName),
+              fit: BoxFit.fitWidth),
+          CardBottom(
+            id: collectible.id,
+            padding: const EdgeInsets.symmetric(horizontal: 0),
+            value: false,
+            onChanged: (__) {},
+          ),
+        ],
+        crossAxisAlignment: CrossAxisAlignment.start,
       ),
     );
   }
