@@ -53,9 +53,9 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
+          primarySwatch: Colors.blue,
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+          fontFamily: 'mario'),
       home: Backdrop(
         frontLayer: getFrontLayerForLoadStatus(status),
         //status == LoadStatus.loading ? Text('loading') : CollectiblesPage(),
