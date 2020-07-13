@@ -47,7 +47,7 @@ class _MyAppState extends State<MyApp> {
       return ErrorPage(errorInfo: "shrug");
   }
 
-  // This widget is the root of your application.
+  // This widget is the root of your application.p
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
