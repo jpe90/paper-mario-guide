@@ -23,6 +23,7 @@ class CollectiblesView extends StatelessWidget {
 
   Widget _gridElement(Collectible collectible) {
     return Card(
+      elevation: 8.0,
       child: Column(
         children: [
           Image(
