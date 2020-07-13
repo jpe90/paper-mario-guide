@@ -4,6 +4,21 @@ import 'package:logger/logger.dart';
 
 var logger = Logger(printer: PrettyPrinter());
 
+class _FrontLayer extends StatelessWidget {
+  final Widget child;
+  final VoidCallback onTap;
+
+  const _FrontLayer({this.child, this.onTap});
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return Material(
+      elevation: 16,
+      child: child,
+    );
+  }
+}
+
 class Backdrop extends StatefulWidget {
   @override
   createState() => _BackdropState();
@@ -20,7 +35,10 @@ class Backdrop extends StatefulWidget {
 
 class _BackdropState extends State<Backdrop> {
   Widget _buildStack(BuildContext context, BoxConstraints constraints) {
-    return Stack(children: <Widget>[widget.backLayer, widget.frontLayer]);
+    return Stack(children: <Widget>[
+      widget.backLayer,
+      _FrontLayer(child: widget.frontLayer)
+    ]);
   }
 
   @override
