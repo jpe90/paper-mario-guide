@@ -12,8 +12,10 @@ class CollectiblesView extends StatelessWidget {
   GridView _buildGridCards(BuildContext context) {
     return GridView.count(
       crossAxisCount: 2,
+      mainAxisSpacing: 10,
+      crossAxisSpacing: 10,
       padding: EdgeInsets.all(16.0),
-      childAspectRatio: 8.0 / 9.0,
+      childAspectRatio: 2.0 / 1.8,
       children:
           collectibles.map((collectible) => _gridElement(collectible)).toList(),
     );
