@@ -21,20 +21,23 @@ class CardBottom extends StatelessWidget {
       },
       child: Padding(
         padding: padding,
-        child: Row(
-          children: <Widget>[
-            Icon(
-              Icons.home,
-              color: Theme.of(context).primaryColor,
-            ),
-            Expanded(child: Text(id.toString())),
-            Checkbox(
-              value: value,
-              onChanged: (bool newValue) {
-                onChanged(newValue);
-              },
-            ),
-          ],
+        child: Container(
+          height: 50,
+          child: Row(
+            children: <Widget>[
+              Icon(
+                Icons.home,
+                color: Theme.of(context).primaryColor,
+              ),
+              Expanded(child: Text(id.toString())),
+              Checkbox(
+                value: value,
+                onChanged: (bool newValue) {
+                  onChanged(newValue);
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );

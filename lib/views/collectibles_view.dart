@@ -19,30 +19,24 @@ class CollectiblesView extends StatelessWidget {
     );
   }
 
-  Card _gridElement(Collectible collectible) {
+  Widget _gridElement(Collectible collectible) {
     return Card(
-      child: Column(
-        children: [
-          AspectRatio(
-            aspectRatio: 18 / 11,
-            //child: Image.asset(
-            //  collectible.thumbnailAssetName,
-            //  fit: BoxFit.fitWidth,
-            //),
-            child: Image(
-              image: AssetImage(collectible.fullAssetName),
-              //image: AssetImage('assets/warb.png'),
-              fit: BoxFit.fitWidth,
+      child: Container(
+        child: Column(
+          children: [
+            Image(
+                image: AssetImage(collectible.fullAssetName),
+                //image: AssetImage('assets/warb.png'),
+                fit: BoxFit.fitWidth),
+            CardBottom(
+              id: collectible.id,
+              padding: const EdgeInsets.symmetric(horizontal: 0),
+              value: false,
+              onChanged: (__) {},
             ),
-          ),
-          CardBottom(
-            id: collectible.id,
-            padding: const EdgeInsets.symmetric(horizontal: 0),
-            value: false,
-            onChanged: (__) {},
-          ),
-        ],
-        crossAxisAlignment: CrossAxisAlignment.start,
+          ],
+          crossAxisAlignment: CrossAxisAlignment.start,
+        ),
       ),
     );
   }

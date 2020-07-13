@@ -22,7 +22,6 @@ Category getCategoryFromString(String categoryAsString) {
       return Category.collect;
       break;
     default:
-      logger.d(categoryAsString);
       return null;
       break;
   }
@@ -37,7 +36,6 @@ Level getLevelFromString(String levelAsString) {
       return Level.whisperingWoods;
       break;
     default:
-      logger.d('well, fuck! levelAsString = $levelAsString');
       return null;
       break;
   }
@@ -49,6 +47,7 @@ class Collectible {
     @required this.level,
     @required this.category,
     this.notes,
+    this.description,
   })  : assert(id != null),
         assert(level != null),
         assert(category != null);
@@ -56,10 +55,11 @@ class Collectible {
   final int id;
   final Level level;
   final Category category;
+  final String description;
   final String notes;
 
   factory Collectible.fromJson(Map<String, dynamic> json) {
-    logger.d(json.toString());
+    //logger.d(json.toString());
     return Collectible(
         id: json["id"],
         level: getLevelFromString(json["level"]),
@@ -72,5 +72,5 @@ class Collectible {
   // String get assetName => '$id.jpg';
 
   String toString() =>
-      'id: $id, level: $level, category: $category, notes: $notes';
+      'id: $id, level: $level, category: $category, notes: $notes, description: $description';
 }
