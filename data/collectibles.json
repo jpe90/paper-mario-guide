@@ -37,7 +37,7 @@
     {
         "id": 7,
         "level": "whisperingWoods",
-        "category": "collect",
+        "category": "treasure",
         "notes": "Use the star from the matching game to walk over the spikes blocking the chest."
     },
     {
@@ -108,6 +108,6 @@
     {
         "id": 21,
         "level": "whisperingWoods",
-        "category": "collect"
+        "category": "treasure"
     }
 ]

@@ -30,7 +30,9 @@ class CollectiblesView extends StatelessWidget {
               fit: BoxFit.fitWidth),
           CardBottom(
             id: collectible.id,
-            padding: const EdgeInsets.symmetric(horizontal: 0),
+            categoryName:
+                Collectible.getDisplayNameForCategory(collectible.category),
+            padding: const EdgeInsets.symmetric(horizontal: 10),
             value: false,
             onChanged: (__) {},
           ),

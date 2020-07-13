@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import '../models/collectible.dart';
 
 class CardBottom extends StatelessWidget {
   const CardBottom({
     this.id,
+    this.categoryName,
     this.padding,
     this.value,
     this.onChanged,
   });
 
   final int id;
+  final String categoryName;
   final EdgeInsets padding;
   final bool value;
   final Function onChanged;
@@ -22,14 +25,12 @@ class CardBottom extends StatelessWidget {
       child: Padding(
         padding: padding,
         child: Container(
-          height: 50,
+          height: 55,
           child: Row(
             children: <Widget>[
-              Icon(
-                Icons.home,
-                color: Theme.of(context).primaryColor,
+              Expanded(
+                child: Text('$categoryName #$id'),
               ),
-              Expanded(child: Text(id.toString())),
               Checkbox(
                 value: value,
                 onChanged: (bool newValue) {
