@@ -6,9 +6,7 @@ import 'package:logger/logger.dart' as l;
 
 var logger = l.Logger(printer: l.PrettyPrinter());
 
-// TODO: create a row with three buttons
 typedef String NameGetter<T>(T t);
-//typedef NameGetter<T> = String Function(T t);
 
 class FilterPage extends StatelessWidget {
   final Level selectedLevel;
@@ -26,27 +24,29 @@ class FilterPage extends StatelessWidget {
         assert(selectedCompletionStatus != null),
         assert(selectedCategory != null);
 
-  //Widget _createFilterButtonRow(BuildContext context) {
-  //  return Row(
-  //      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-  //      children: <Widget>[
-  //        RaisedButton(onPressed: () {}, child: Text('Level')),
-  //        RaisedButton(onPressed: () {}, child: Text('Type')),
-  //        RaisedButton(onPressed: () {}, child: Text('Completion'))
-  //      ]);
-  //}
-
   Widget _buildGenericFilter<T>(
       List<T> ts, BuildContext context, NameGetter<T> getDisplayName) {
-    return Expanded(
-      child: Container(
-        //margin: EdgeInsets.all(20),
-        decoration: BoxDecoration(border: Border.all(width: 2)),
-        child: ListView(
-            children: ts
-                .map((t) => _buildGeneric<T>(t, getDisplayName, context))
-                .toList()),
-      ),
+    return Flexible(
+      fit: FlexFit.tight,
+      child: ListView(
+          children: ts
+              .map((t) => _buildGeneric<T>(t, getDisplayName, context))
+              .toList()),
+    );
+  }
+
+  Widget _buildColumnOfFlatButtons<T>(
+      List<T> ts, BuildContext cotext, NameGetter<T> getDisplayName) {
+    return Container(
+      height: 250,
+      decoration: BoxDecoration(border: Border.all(width: 2)),
+      child: Column(
+          children: ts
+              .map((t) => FlatButton(
+                    onPressed: () => {},
+                    child: Text(getDisplayName(t)),
+                  ))
+              .toList()),
     );
   }
 
@@ -82,6 +82,8 @@ class FilterPage extends StatelessWidget {
         child: Container(
             alignment: Alignment.topCenter,
             child: _buildRowOfFilters(context),
+            //child: _buildColumnOfFlatButtons<Category>(
+            //    _categories, context, Collectible.getDisplayNameForCategory),
             color: Colors.blue));
   }
 }
