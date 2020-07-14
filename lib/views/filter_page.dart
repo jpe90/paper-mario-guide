@@ -26,29 +26,34 @@ class FilterPage extends StatelessWidget {
         assert(selectedCompletionStatus != null),
         assert(selectedCategory != null);
 
-  Widget _createFilterButtonRow(BuildContext context) {
-    return Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: <Widget>[
-          RaisedButton(onPressed: () {}, child: Text('Level')),
-          RaisedButton(onPressed: () {}, child: Text('Type')),
-          RaisedButton(onPressed: () {}, child: Text('Completion'))
-        ]);
-  }
+  //Widget _createFilterButtonRow(BuildContext context) {
+  //  return Row(
+  //      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+  //      children: <Widget>[
+  //        RaisedButton(onPressed: () {}, child: Text('Level')),
+  //        RaisedButton(onPressed: () {}, child: Text('Type')),
+  //        RaisedButton(onPressed: () {}, child: Text('Completion'))
+  //      ]);
+  //}
 
   Widget _buildGenericFilter<T>(
       List<T> ts, BuildContext context, NameGetter<T> getDisplayName) {
-    return ListView(
-        children: ts
-            .map((t) => _buildGeneric<T>(t, getDisplayName, context))
-            .toList());
+    return Expanded(
+      child: ListView(
+          children: ts
+              .map((t) => _buildGeneric<T>(t, getDisplayName, context))
+              .toList()),
+    );
   }
 
   Widget _buildGeneric<T>(
       T t, NameGetter<T> getDisplayName, BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 16),
-      child: Text(getDisplayName(t)),
+      child: Text(
+        getDisplayName(t),
+        textAlign: TextAlign.center,
+      ),
     );
   }
 
@@ -58,36 +63,46 @@ class FilterPage extends StatelessWidget {
         children: <Widget>[
           _buildGenericFilter<Category>(
               _categories, context, Collectible.getDisplayNameForCategory),
-          _buildGenericFilter<Category>(
-              _categories, context, Collectible.getDisplayNameForCategory),
-          _buildGenericFilter<Category>(
-              _categories, context, Collectible.getDisplayNameForCategory)
+          _buildGenericFilter<Level>(
+              _levels, context, Collectible.getDisplayNameForLevel),
+          _buildGenericFilter<CompletionStatus>(_completionStatuses, context,
+              Collectible.getDisplayNameForCompletionStatus)
         ]);
   }
 
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return Column(
-      children: <Widget>[
-        Align(
-          alignment: Alignment.topCenter,
-          child: Container(
-              padding: EdgeInsets.fromLTRB(15, 40, 15, 0),
-              //child: _buildRow(context),
-              child: _createFilterButtonRow(context),
-              color: Colors.blue),
-        ),
-        Expanded(
-            child: Container(
-                //child: _buildCategoryFilter(context), color: Colors.blue)),
-                //child: _buildGenericFilter<Category>(_categories, context,
-                //    Collectible.getDisplayNameForCategory),
-                child: Align(
-                    child: _buildRowOfFilters(context),
-                    alignment: Alignment.topCenter),
-                color: Colors.blue)),
-      ],
-    );
+    return Align(
+        alignment: Alignment.topCenter,
+        child: Container(
+            alignment: Alignment.topCenter,
+            child: _buildRowOfFilters(context),
+            color: Colors.blue));
   }
 }
+//Widget build(BuildContext context) {
+//  // TODO: implement build
+//  return Column(
+//    crossAxisAlignment: CrossAxisAlignment.center,
+//    children: <Widget>[
+//      //Align(
+//      //  alignment: Alignment.topCenter,
+//      //  child: Container(
+//      //      padding: EdgeInsets.fromLTRB(15, 40, 15, 0),
+//      //      //child: _buildRow(context),
+//      //      child: _createFilterButtonRow(context),
+//      //      color: Colors.blue),
+//      //),
+//      Expanded(
+//          child: Container(
+//              //child: _buildCategoryFilter(context), color: Colors.blue)),
+//              //child: _buildGenericFilter<Category>(_categories, context,
+//              //    Collectible.getDisplayNameForCategory),
+//              child: Align(
+//                  child: _buildRowOfFilters(context),
+//                  alignment: Alignment.topCenter),
+//              color: Colors.blue)),
+//    ],
+//  );
+//}

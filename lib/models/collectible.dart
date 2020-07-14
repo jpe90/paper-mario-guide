@@ -3,9 +3,13 @@ import 'package:flutter/foundation.dart';
 import 'package:logger/logger.dart';
 
 final logger = Logger(printer: PrettyPrinter());
-enum Level { whisperingWoods, toadTown, all }
-enum Category { toad, box, hole, treasure, all }
-enum CompletionStatus { completed, notCompleted, all }
+enum Level {
+  all,
+  whisperingWoods,
+  toadTown,
+}
+enum Category { all, toad, box, hole, treasure }
+enum CompletionStatus { all, completed, notCompleted }
 
 class Collectible {
   const Collectible({
