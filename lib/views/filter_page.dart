@@ -39,10 +39,14 @@ class FilterPage extends StatelessWidget {
   Widget _buildGenericFilter<T>(
       List<T> ts, BuildContext context, NameGetter<T> getDisplayName) {
     return Expanded(
-      child: ListView(
-          children: ts
-              .map((t) => _buildGeneric<T>(t, getDisplayName, context))
-              .toList()),
+      child: Container(
+        //margin: EdgeInsets.all(20),
+        decoration: BoxDecoration(border: Border.all(width: 2)),
+        child: ListView(
+            children: ts
+                .map((t) => _buildGeneric<T>(t, getDisplayName, context))
+                .toList()),
+      ),
     );
   }
 
