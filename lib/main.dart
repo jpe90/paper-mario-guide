@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:paper_mario_guide/views/collectibles_view.dart';
 import 'widgets/backdrop.dart';
+import 'models/collectible.dart' as cb;
 import 'views/collectibles_view.dart';
 import 'models/collectibles_repository.dart';
 import 'views/error_page.dart';
 import 'package:logger/logger.dart';
+import 'views/filter_page.dart';
 
 var logger = Logger(printer: PrettyPrinter());
 
@@ -60,7 +62,10 @@ class _MyAppState extends State<MyApp> {
       home: Backdrop(
         frontLayer: getFrontLayerForLoadStatus(status),
         //status == LoadStatus.loading ? Text('loading') : CollectiblesPage(),
-        backLayer: Container(color: Colors.blue),
+        backLayer: FilterPage(
+            selectedLevel: cb.Level.all,
+            selectedCategory: cb.Category.all,
+            selectedCompletionStatus: cb.CompletionStatus.all),
       ),
     );
   }

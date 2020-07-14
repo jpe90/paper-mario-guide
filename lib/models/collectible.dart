@@ -64,7 +64,8 @@ class Collectible {
       Category.toad: "Toad",
       Category.box: "? Box",
       Category.hole: "Hole",
-      Category.treasure: "Treasure"
+      Category.treasure: "Treasure",
+      Category.all: "All"
     };
   }
 
