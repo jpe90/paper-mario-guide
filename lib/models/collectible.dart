@@ -23,10 +23,6 @@ class Collectible {
   final Category category;
   final String description;
   final String notes;
-  static final Map<Level, String> _levelDisplayNameMap =
-      _buildLevelDisplayNameMap();
-  static final Map<Category, String> _categoryDisplayNameMap =
-      _buildCategoryDisplayNameMap();
 
   factory Collectible.fromJson(Map<String, dynamic> json) {
     return Collectible(
@@ -44,29 +40,53 @@ class Collectible {
       'id: $id, level: $level, category: $category, notes: $notes, description: $description';
 
   //overly verbose horseshit
+
   static String getDisplayNameForLevel(Level level) {
-    return _levelDisplayNameMap[level];
+    switch (level) {
+      case Level.whisperingWoods:
+        return "Whispering Woods";
+        break;
+      case Level.toadTown:
+        return "Toad Town";
+        break;
+      default:
+        return "All";
+        break;
+    }
   }
 
   static String getDisplayNameForCategory(Category category) {
-    return _categoryDisplayNameMap[category];
+    switch (category) {
+      case Category.box:
+        return "? Box";
+        break;
+      case Category.toad:
+        return "Toad";
+        break;
+      case Category.hole:
+        return "Hole";
+        break;
+      case Category.treasure:
+        return "Treasure";
+        break;
+      default:
+        return "All";
+        break;
+    }
   }
 
-  static Map<Level, String> _buildLevelDisplayNameMap() {
-    return {
-      Level.toadTown: "Toad Town",
-      Level.whisperingWoods: "WhisperingWoods"
-    };
-  }
-
-  static Map<Category, String> _buildCategoryDisplayNameMap() {
-    return {
-      Category.toad: "Toad",
-      Category.box: "? Box",
-      Category.hole: "Hole",
-      Category.treasure: "Treasure",
-      Category.all: "All"
-    };
+  static String getDisplayNameForCompletionStatus(CompletionStatus status) {
+    switch (status) {
+      case CompletionStatus.completed:
+        return "Completed";
+        break;
+      case CompletionStatus.notCompleted:
+        return "Incomplete";
+        break;
+      default:
+        return "All";
+        break;
+    }
   }
 
   static Level getLevelFromString(String levelAsString) {
