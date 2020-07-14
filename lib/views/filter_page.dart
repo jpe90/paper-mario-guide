@@ -7,6 +7,8 @@ import 'package:logger/logger.dart' as l;
 var logger = l.Logger(printer: l.PrettyPrinter());
 
 // TODO: create a row with three buttons
+typedef String NameGetter<T>(T t);
+//typedef NameGetter<T> = String Function(T t);
 
 class FilterPage extends StatelessWidget {
   final Level selectedLevel;
@@ -24,47 +26,52 @@ class FilterPage extends StatelessWidget {
         assert(selectedCompletionStatus != null),
         assert(selectedCategory != null);
 
-  Widget _buildRow(BuildContext context) {
-    return Row(children: <Widget>[_buildCategoryFilter(context)]);
-  }
-
-  Widget _buildCategoryFilter(BuildContext context) {
-    return ListView(
-        children: _categories
-            .map((category) => _buildCategory(category, context))
-            .toList());
-    //.map((category) => Text(category.toString()))
-    //.toList());
-  }
-
-  Widget _buildCategory(Category category, BuildContext context) {
-    logger.d('Category sent to buildCategory: $category');
-    return Padding(
-      padding: EdgeInsets.symmetric(vertical: 16),
-      child: Text(Collectible.getDisplayNameForCategory(category)),
-    );
-  }
-
   Widget _createFilterButtonRow(BuildContext context) {
     return Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
-          RaisedButton(onPressed: () {}, child: Text('Test')),
-          RaisedButton(onPressed: () {}, child: Text('Test')),
-          RaisedButton(onPressed: () {}, child: Text('Test'))
+          RaisedButton(onPressed: () {}, child: Text('Level')),
+          RaisedButton(onPressed: () {}, child: Text('Type')),
+          RaisedButton(onPressed: () {}, child: Text('Completion'))
         ]);
+  }
+
+  Widget _buildGenericFilter<T>(
+      List<T> ts, BuildContext context, NameGetter<T> getDisplayName) {
+    return ListView(
+        children: ts
+            .map((t) => _buildGeneric<T>(t, getDisplayName, context))
+            .toList());
+  }
+
+  Widget _buildGeneric<T>(
+      T t, NameGetter<T> getDisplayName, BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical: 16),
+      child: Text(getDisplayName(t)),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return Align(
-      alignment: Alignment.topCenter,
-      child: Container(
-          padding: EdgeInsets.fromLTRB(15, 40, 15, 0),
-          //child: _buildRow(context),
-          child: _createFilterButtonRow(context),
-          color: Colors.blue),
+    return Column(
+      children: <Widget>[
+        Align(
+          alignment: Alignment.topCenter,
+          child: Container(
+              padding: EdgeInsets.fromLTRB(15, 40, 15, 0),
+              //child: _buildRow(context),
+              child: _createFilterButtonRow(context),
+              color: Colors.blue),
+        ),
+        Expanded(
+            child: Container(
+                //child: _buildCategoryFilter(context), color: Colors.blue)),
+                child: _buildGenericFilter<Category>(_categories, context,
+                    Collectible.getDisplayNameForCategory),
+                color: Colors.blue)),
+      ],
     );
   }
 }
