@@ -7,7 +7,7 @@ import '../models/collectible.dart';
 class CollectiblesView extends StatelessWidget {
   final List<Collectible> collectibles;
 
-  CollectiblesView({this.collectibles});
+  const CollectiblesView({this.collectibles});
 
   GridView _buildGridCards(BuildContext context) {
     return GridView.count(

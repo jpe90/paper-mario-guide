@@ -47,6 +47,7 @@ class _BackdropState extends State<Backdrop>
           0.0, layerTop, 0.0, layerTop - layerSize.height),
       end: RelativeRect.fromLTRB(0.0, 0.0, 0.0, 0.0),
     ).animate(_controller.view);
+
     return Stack(children: <Widget>[
       widget.backLayer,
       PositionedTransition(
@@ -72,7 +73,7 @@ class _BackdropState extends State<Backdrop>
   void initState() {
     super.initState();
     _controller = AnimationController(
-      duration: Duration(milliseconds: 300),
+      duration: const Duration(milliseconds: 300),
       value: 1.0,
       vsync: this,
     );
@@ -89,14 +90,14 @@ class _BackdropState extends State<Backdrop>
     var appBar = AppBar(
       elevation: 0,
       leading: IconButton(
-          icon: Icon(Icons.menu),
+          icon: const Icon(Icons.menu),
           onPressed: () {
             _toggleBackdropLayerVisibility();
           }),
       title: Text('Paper Mario'),
       actions: <Widget>[
         IconButton(
-            icon: Icon(Icons.filter_list),
+            icon: const Icon(Icons.filter_list),
             onPressed: () {
               _toggleBackdropLayerVisibility();
             })

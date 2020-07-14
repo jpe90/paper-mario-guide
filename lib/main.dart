@@ -15,8 +15,7 @@ void main() {
 enum LoadStatus { loading, completed, error }
 
 class MyApp extends StatefulWidget {
-  MyApp() : repository = CollectiblesRepository();
-  final CollectiblesRepository repository;
+  const MyApp();
 
   @override
   createState() => _MyAppState();
@@ -24,11 +23,13 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   LoadStatus status = LoadStatus.loading;
+  CollectiblesRepository repository;
 
   @override
   void initState() {
     super.initState();
-    widget.repository.loadCollectiblesFromJson().then((collectibles) {
+    repository = CollectiblesRepository();
+    repository.loadCollectiblesFromJson().then((collectibles) {
       CollectiblesRepository.collectibles = collectibles;
       setState(() => status = LoadStatus.completed);
     }).catchError((err) {
