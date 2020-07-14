@@ -52,6 +52,19 @@ class FilterPage extends StatelessWidget {
     );
   }
 
+  Widget _buildRowOfFilters(BuildContext context) {
+    return Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: <Widget>[
+          _buildGenericFilter<Category>(
+              _categories, context, Collectible.getDisplayNameForCategory),
+          _buildGenericFilter<Category>(
+              _categories, context, Collectible.getDisplayNameForCategory),
+          _buildGenericFilter<Category>(
+              _categories, context, Collectible.getDisplayNameForCategory)
+        ]);
+  }
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -68,8 +81,11 @@ class FilterPage extends StatelessWidget {
         Expanded(
             child: Container(
                 //child: _buildCategoryFilter(context), color: Colors.blue)),
-                child: _buildGenericFilter<Category>(_categories, context,
-                    Collectible.getDisplayNameForCategory),
+                //child: _buildGenericFilter<Category>(_categories, context,
+                //    Collectible.getDisplayNameForCategory),
+                child: Align(
+                    child: _buildRowOfFilters(context),
+                    alignment: Alignment.topCenter),
                 color: Colors.blue)),
       ],
     );
