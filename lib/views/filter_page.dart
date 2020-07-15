@@ -8,32 +8,45 @@ var logger = l.Logger(printer: l.PrettyPrinter());
 
 typedef String NameGetter<T>(T t);
 
-class FilterPage extends StatelessWidget {
-  Category selectedCategory;
+class FilterPage extends StatefulWidget {
+  final Category initialCategory;
   final Level selectedLevel;
   final CompletionStatus selectedCompletionStatus;
   final ValueChanged<Category> onCategoryTap;
   final ValueChanged<Level> onLevelTap;
   final ValueChanged<CompletionStatus> onCompletionStatusTap;
-  final List<Category> _categories = Category.values;
-  final List<Level> _levels = Level.values;
-  final List<CompletionStatus> _completionStatuses = CompletionStatus.values;
 
   FilterPage({
-    @required this.selectedCategory,
+    @required this.initialCategory,
     @required this.selectedLevel,
     @required this.selectedCompletionStatus,
     @required this.onCategoryTap,
     @required this.onLevelTap,
     @required this.onCompletionStatusTap,
-  })  : assert(selectedCategory != null),
+  })  : assert(initialCategory != null),
         assert(selectedLevel != null),
         assert(selectedCompletionStatus != null),
         assert(onCategoryTap != null),
         assert(onLevelTap != null),
         assert(onCompletionStatusTap != null);
 
-  // ***************** FILTER COLUMNS ******************************
+  @override
+  _FilterPageState createState() => _FilterPageState();
+}
+
+class _FilterPageState extends State<FilterPage> {
+  final List<Category> _categories = Category.values;
+
+  final List<Level> _levels = Level.values;
+
+  final List<CompletionStatus> _completionStatuses = CompletionStatus.values;
+  Category selectedCategory;
+  @override
+  initState() {
+    super.initState();
+    selectedCategory = widget.initialCategory;
+  }
+
   Widget _buildGenericFilterColumn<T>(List<T> ts, BuildContext context,
       NameGetter<T> getDisplayName, ValueChanged vc) {
     List<Widget> children = [];
@@ -72,44 +85,6 @@ class FilterPage extends StatelessWidget {
     print('cmon dude');
   }
 
-  // Widget _buildLevelFilterColumn(List<Level> ts, BuildContext context,
-  //     ValueChanged<Level> vc) {
-  //   List<Widget> children = [];
-  //   children.add(Text('Title'));
-  //   children.add(SizedBox(
-  //     height: 40,
-  //   ));
-  //   children += ts
-  //       .map((t) => _buildGeneric<T>(t, context, vc))
-  //       .toList();
-  //   return Flexible(
-  //     fit: FlexFit.tight,
-  //     child: Column(
-  //         mainAxisSize: MainAxisSize.min,
-  //         children: children),
-  //   );
-  // }
-
-  // Widget _buildCompletionStatusFilterColumn(List<Category> ts, BuildContext context,
-  //     ValueChanged<Category> vc) {
-  //   List<Widget> children = [];
-  //   children.add(Text('Title'));
-  //   children.add(SizedBox(
-  //     height: 40,
-  //   ));
-  //   children += ts
-  //       .map((t) => _buildGeneric<T>(t, context, vc))
-  //       .toList();
-  //   return Flexible(
-  //     fit: FlexFit.tight,
-  //     child: Column(
-  //         mainAxisSize: MainAxisSize.min,
-  //         children: children),
-  //   );
-  // }
-
-  // ****************** INDIVIDUAL SELECTABLE ITEMS **************************
-  // TODO: impleement gesture detector and check if
   Widget _buildGeneric<T>(T t, NameGetter<T> getDisplayName,
       BuildContext context, ValueChanged vc) {
     return Padding(
@@ -124,7 +99,7 @@ class FilterPage extends StatelessWidget {
   Widget _buildSelectableCategory<T>(Category category, BuildContext context) {
     return GestureDetector(
       onTap: () {
-        onCategoryTap(category);
+        widget.onCategoryTap(category);
         muhCategoryTap(category);
       },
       child: Padding(

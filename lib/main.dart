@@ -75,7 +75,7 @@ class _MyAppState extends State<MyApp> {
             onCategoryTap: onCategoryTap,
             onLevelTap: onLevelTap,
             onCompletionStatusTap: onCompletionStatusTap,
-            selectedCategory: _currentCategory,
+            initialCategory: _currentCategory,
             selectedLevel: Level.all,
             selectedCompletionStatus: CompletionStatus.all),
       ),
