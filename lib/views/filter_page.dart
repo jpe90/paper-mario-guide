@@ -24,11 +24,12 @@ class FilterPage extends StatelessWidget {
         assert(selectedCompletionStatus != null),
         assert(selectedCategory != null);
 
-  Widget _buildGenericFilter<T>(
+  Widget _buildGenericFilterColumn<T>(
       List<T> ts, BuildContext context, NameGetter<T> getDisplayName) {
     return Flexible(
       fit: FlexFit.tight,
-      child: ListView(
+      child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: ts
               .map((t) => _buildGeneric<T>(t, getDisplayName, context))
               .toList()),
@@ -62,15 +63,23 @@ class FilterPage extends StatelessWidget {
   }
 
   Widget _buildRowOfFilters(BuildContext context) {
-    return Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    return Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        //crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          _buildGenericFilter<Category>(
+          _buildGenericFilterColumn<Category>(
               _categories, context, Collectible.getDisplayNameForCategory),
-          _buildGenericFilter<Level>(
+          VerticalDivider(
+            width: 5,
+            thickness: 5,
+          ),
+          _buildGenericFilterColumn<Level>(
               _levels, context, Collectible.getDisplayNameForLevel),
-          _buildGenericFilter<CompletionStatus>(_completionStatuses, context,
-              Collectible.getDisplayNameForCompletionStatus)
+          VerticalDivider(
+            width: 5,
+            thickness: 5,
+          ),
+          _buildGenericFilterColumn<CompletionStatus>(_completionStatuses,
+              context, Collectible.getDisplayNameForCompletionStatus)
         ]);
   }
 
@@ -81,6 +90,7 @@ class FilterPage extends StatelessWidget {
         alignment: Alignment.topCenter,
         child: Container(
             alignment: Alignment.topCenter,
+            //child: _buildRowOfFilters(context),
             child: _buildRowOfFilters(context),
             //child: _buildColumnOfFlatButtons<Category>(
             //    _categories, context, Collectible.getDisplayNameForCategory),
