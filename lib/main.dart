@@ -27,6 +27,8 @@ class _MyAppState extends State<MyApp> {
   LoadStatus status = LoadStatus.loading;
   CollectiblesRepository repository;
   Category _currentCategory = Category.all;
+  Level _currentLevel = Level.all;
+  CompletionStatus _currentCompletionStatus = CompletionStatus.all;
 
   @override
   void initState() {
@@ -53,11 +55,15 @@ class _MyAppState extends State<MyApp> {
 
   void onCategoryTap(Category category) {
     _currentCategory = category;
-    logger.d('tapped dat');
   }
 
-  void onLevelTap(Level level) {}
-  void onCompletionStatusTap(CompletionStatus status) {}
+  void onLevelTap(Level level) {
+    _currentLevel = level;
+  }
+
+  void onCompletionStatusTap(CompletionStatus status) {
+    _currentCompletionStatus = status;
+  }
 
   // This widget is the root of your application.p
   @override
@@ -70,14 +76,13 @@ class _MyAppState extends State<MyApp> {
           fontFamily: 'mario'),
       home: Backdrop(
         frontLayer: getFrontLayerForLoadStatus(status),
-        //status == LoadStatus.loading ? Text('loading') : CollectiblesPage(),
         backLayer: FilterPage(
             onCategoryTap: onCategoryTap,
             onLevelTap: onLevelTap,
             onCompletionStatusTap: onCompletionStatusTap,
             initialCategory: _currentCategory,
-            selectedLevel: Level.all,
-            selectedCompletionStatus: CompletionStatus.all),
+            initialLevel: _currentLevel,
+            initialCompletionStatus: _currentCompletionStatus),
       ),
     );
   }

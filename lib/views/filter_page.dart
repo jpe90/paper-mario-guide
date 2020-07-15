@@ -10,22 +10,22 @@ typedef String NameGetter<T>(T t);
 
 class FilterPage extends StatefulWidget {
   final Category initialCategory;
-  final Level selectedLevel;
-  final CompletionStatus selectedCompletionStatus;
+  final Level initialLevel;
+  final CompletionStatus initialCompletionStatus;
   final ValueChanged<Category> onCategoryTap;
   final ValueChanged<Level> onLevelTap;
   final ValueChanged<CompletionStatus> onCompletionStatusTap;
 
   FilterPage({
     @required this.initialCategory,
-    @required this.selectedLevel,
-    @required this.selectedCompletionStatus,
+    @required this.initialLevel,
+    @required this.initialCompletionStatus,
     @required this.onCategoryTap,
     @required this.onLevelTap,
     @required this.onCompletionStatusTap,
   })  : assert(initialCategory != null),
-        assert(selectedLevel != null),
-        assert(selectedCompletionStatus != null),
+        assert(initialLevel != null),
+        assert(initialCompletionStatus != null),
         assert(onCategoryTap != null),
         assert(onLevelTap != null),
         assert(onCompletionStatusTap != null);
@@ -41,26 +41,14 @@ class _FilterPageState extends State<FilterPage> {
 
   final List<CompletionStatus> _completionStatuses = CompletionStatus.values;
   Category selectedCategory;
+  Level selectedLevel;
+  CompletionStatus selectedCompletionStatus;
   @override
   initState() {
     super.initState();
     selectedCategory = widget.initialCategory;
-  }
-
-  Widget _buildGenericFilterColumn<T>(List<T> ts, BuildContext context,
-      NameGetter<T> getDisplayName, ValueChanged vc) {
-    List<Widget> children = [];
-    children.add(Text('Title'));
-    children.add(SizedBox(
-      height: 40,
-    ));
-    children += ts
-        .map((t) => _buildGeneric<T>(t, getDisplayName, context, vc))
-        .toList();
-    return Flexible(
-      fit: FlexFit.tight,
-      child: Column(mainAxisSize: MainAxisSize.min, children: children),
-    );
+    selectedLevel = widget.initialLevel;
+    selectedCompletionStatus = widget.initialCompletionStatus;
   }
 
   Widget _buildCategoryFilterColumn(
@@ -80,10 +68,39 @@ class _FilterPageState extends State<FilterPage> {
     );
   }
 
-  void muhCategoryTap(Category category) {
-    selectedCategory = category;
-    print('cmon dude');
+  Widget _buildLevelFilterColumn(BuildContext context) {
+    List<Widget> children = [];
+    children.add(Text('Title'));
+    children.add(SizedBox(
+      height: 40,
+    ));
+    children +=
+        _levels.map((level) => _buildSelectableLevel(level, context)).toList();
+    return Flexible(
+      fit: FlexFit.tight,
+      child: Column(mainAxisSize: MainAxisSize.min, children: children),
+    );
   }
+
+  Widget _buildCompletionStatusFilterColumn(BuildContext context) {
+    List<Widget> children = [];
+    children.add(Text('Title'));
+    children.add(SizedBox(
+      height: 40,
+    ));
+    children += _completionStatuses
+        .map((status) => _buildSelectableCompletionStatus(status, context))
+        .toList();
+    return Flexible(
+      fit: FlexFit.tight,
+      child: Column(mainAxisSize: MainAxisSize.min, children: children),
+    );
+  }
+
+  void muhCategoryTap(Category category) => selectedCategory = category;
+  void muhLevelTap(Level level) => selectedLevel = level;
+  void muhCompletionStatusTap(CompletionStatus status) =>
+      selectedCompletionStatus = status;
 
   Widget _buildGeneric<T>(T t, NameGetter<T> getDisplayName,
       BuildContext context, ValueChanged vc) {
@@ -96,11 +113,13 @@ class _FilterPageState extends State<FilterPage> {
     );
   }
 
-  Widget _buildSelectableCategory<T>(Category category, BuildContext context) {
+  Widget _buildSelectableCategory(Category category, BuildContext context) {
     return GestureDetector(
       onTap: () {
         widget.onCategoryTap(category);
-        muhCategoryTap(category);
+        setState(() {
+          muhCategoryTap(category);
+        });
       },
       child: Padding(
         padding: EdgeInsets.symmetric(vertical: 16),
@@ -114,26 +133,62 @@ class _FilterPageState extends State<FilterPage> {
     );
   }
 
+  Widget _buildSelectableLevel(Level level, BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        widget.onLevelTap(level);
+        setState(() {
+          muhLevelTap(level);
+        });
+      },
+      child: Padding(
+        padding: EdgeInsets.symmetric(vertical: 16),
+        child: level == selectedLevel
+            ? Text('this is selected!!', textAlign: TextAlign.center)
+            : Text(
+                Collectible.getDisplayNameForLevel(level),
+                textAlign: TextAlign.center,
+              ),
+      ),
+    );
+  }
+
+  Widget _buildSelectableCompletionStatus(
+      CompletionStatus status, BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        widget.onCompletionStatusTap(status);
+        setState(() {
+          muhCompletionStatusTap(status);
+        });
+      },
+      child: Padding(
+        padding: EdgeInsets.symmetric(vertical: 16),
+        child: status == selectedCompletionStatus
+            ? Text('this is selected!!', textAlign: TextAlign.center)
+            : Text(
+                Collectible.getDisplayNameForCompletionStatus(status),
+                textAlign: TextAlign.center,
+              ),
+      ),
+    );
+  }
+
   Widget _buildRowOfFilters(BuildContext context) {
     return Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
           _buildCategoryFilterColumn(context),
-          // VerticalDivider(
-          // width: 5,
-          // thickness: 5,
-          // ),
-          // _buildGenericFilterColumn<Level>(_levels, context,
-          // Collectible.getDisplayNameForLevel, onCategoryTap),
-          // VerticalDivider(
-          // width: 5,
-          // thickness: 5,
-          // ),
-          // _buildGenericFilterColumn<CompletionStatus>(
-          // _completionStatuses,
-          // context,
-          // Collectible.getDisplayNameForCompletionStatus,
-          // onCategoryTap)
+          VerticalDivider(
+            width: 5,
+            thickness: 5,
+          ),
+          _buildLevelFilterColumn(context),
+          VerticalDivider(
+            width: 5,
+            thickness: 5,
+          ),
+          _buildCompletionStatusFilterColumn(context)
         ]);
   }
 
