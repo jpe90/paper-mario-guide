@@ -9,46 +9,109 @@ var logger = l.Logger(printer: l.PrettyPrinter());
 typedef String NameGetter<T>(T t);
 
 class FilterPage extends StatelessWidget {
+  Category selectedCategory;
   final Level selectedLevel;
-  final Category selectedCategory;
   final CompletionStatus selectedCompletionStatus;
-  final ValueChanged onTap;
-  final List<Level> _levels = Level.values;
+  final ValueChanged<Category> onCategoryTap;
+  final ValueChanged<Level> onLevelTap;
+  final ValueChanged<CompletionStatus> onCompletionStatusTap;
   final List<Category> _categories = Category.values;
+  final List<Level> _levels = Level.values;
   final List<CompletionStatus> _completionStatuses = CompletionStatus.values;
 
-  const FilterPage({
-    @required this.selectedLevel,
+  FilterPage({
     @required this.selectedCategory,
+    @required this.selectedLevel,
     @required this.selectedCompletionStatus,
-    @required this.onTap,
-  })  : assert(selectedLevel != null),
+    @required this.onCategoryTap,
+    @required this.onLevelTap,
+    @required this.onCompletionStatusTap,
+  })  : assert(selectedCategory != null),
+        assert(selectedLevel != null),
         assert(selectedCompletionStatus != null),
-        assert(selectedCategory != null),
-        assert(onTap != null);
+        assert(onCategoryTap != null),
+        assert(onLevelTap != null),
+        assert(onCompletionStatusTap != null);
 
-  Widget _buildGenericFilterColumn<T>(
-      List<T> ts, BuildContext context, NameGetter<T> getDisplayName) {
+  // ***************** FILTER COLUMNS ******************************
+  Widget _buildGenericFilterColumn<T>(List<T> ts, BuildContext context,
+      NameGetter<T> getDisplayName, ValueChanged vc) {
     List<Widget> children = [];
     children.add(Text('Title'));
     children.add(SizedBox(
       height: 40,
     ));
-    children +=
-        ts.map((t) => _buildGeneric<T>(t, getDisplayName, context)).toList();
-    var list =
-        ts.map((t) => _buildGeneric<T>(t, getDisplayName, context)).toList();
+    children += ts
+        .map((t) => _buildGeneric<T>(t, getDisplayName, context, vc))
+        .toList();
     return Flexible(
       fit: FlexFit.tight,
-      child: Column(
-          mainAxisSize: MainAxisSize.min,
-          //mainAxisAlignment: MainAxisAlignment.center,
-          children: children),
+      child: Column(mainAxisSize: MainAxisSize.min, children: children),
     );
   }
 
-  Widget _buildGeneric<T>(
-      T t, NameGetter<T> getDisplayName, BuildContext context) {
+  Widget _buildCategoryFilterColumn(
+    BuildContext context,
+  ) {
+    List<Widget> children = [];
+    children.add(Text('Title'));
+    children.add(SizedBox(
+      height: 40,
+    ));
+    children += _categories
+        .map((category) => _buildSelectableCategory(category, context))
+        .toList();
+    return Flexible(
+      fit: FlexFit.tight,
+      child: Column(mainAxisSize: MainAxisSize.min, children: children),
+    );
+  }
+
+  void muhCategoryTap(Category category) {
+    selectedCategory = category;
+    print('cmon dude');
+  }
+
+  // Widget _buildLevelFilterColumn(List<Level> ts, BuildContext context,
+  //     ValueChanged<Level> vc) {
+  //   List<Widget> children = [];
+  //   children.add(Text('Title'));
+  //   children.add(SizedBox(
+  //     height: 40,
+  //   ));
+  //   children += ts
+  //       .map((t) => _buildGeneric<T>(t, context, vc))
+  //       .toList();
+  //   return Flexible(
+  //     fit: FlexFit.tight,
+  //     child: Column(
+  //         mainAxisSize: MainAxisSize.min,
+  //         children: children),
+  //   );
+  // }
+
+  // Widget _buildCompletionStatusFilterColumn(List<Category> ts, BuildContext context,
+  //     ValueChanged<Category> vc) {
+  //   List<Widget> children = [];
+  //   children.add(Text('Title'));
+  //   children.add(SizedBox(
+  //     height: 40,
+  //   ));
+  //   children += ts
+  //       .map((t) => _buildGeneric<T>(t, context, vc))
+  //       .toList();
+  //   return Flexible(
+  //     fit: FlexFit.tight,
+  //     child: Column(
+  //         mainAxisSize: MainAxisSize.min,
+  //         children: children),
+  //   );
+  // }
+
+  // ****************** INDIVIDUAL SELECTABLE ITEMS **************************
+  // TODO: impleement gesture detector and check if
+  Widget _buildGeneric<T>(T t, NameGetter<T> getDisplayName,
+      BuildContext context, ValueChanged vc) {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 16),
       child: Text(
@@ -58,24 +121,44 @@ class FilterPage extends StatelessWidget {
     );
   }
 
+  Widget _buildSelectableCategory<T>(Category category, BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        onCategoryTap(category);
+        muhCategoryTap(category);
+      },
+      child: Padding(
+        padding: EdgeInsets.symmetric(vertical: 16),
+        child: category == selectedCategory
+            ? Text('this is selected!!', textAlign: TextAlign.center)
+            : Text(
+                Collectible.getDisplayNameForCategory(category),
+                textAlign: TextAlign.center,
+              ),
+      ),
+    );
+  }
+
   Widget _buildRowOfFilters(BuildContext context) {
     return Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
-          _buildGenericFilterColumn<Category>(
-              _categories, context, Collectible.getDisplayNameForCategory),
-          VerticalDivider(
-            width: 5,
-            thickness: 5,
-          ),
-          _buildGenericFilterColumn<Level>(
-              _levels, context, Collectible.getDisplayNameForLevel),
-          VerticalDivider(
-            width: 5,
-            thickness: 5,
-          ),
-          _buildGenericFilterColumn<CompletionStatus>(_completionStatuses,
-              context, Collectible.getDisplayNameForCompletionStatus)
+          _buildCategoryFilterColumn(context),
+          // VerticalDivider(
+          // width: 5,
+          // thickness: 5,
+          // ),
+          // _buildGenericFilterColumn<Level>(_levels, context,
+          // Collectible.getDisplayNameForLevel, onCategoryTap),
+          // VerticalDivider(
+          // width: 5,
+          // thickness: 5,
+          // ),
+          // _buildGenericFilterColumn<CompletionStatus>(
+          // _completionStatuses,
+          // context,
+          // Collectible.getDisplayNameForCompletionStatus,
+          // onCategoryTap)
         ]);
   }
 
@@ -83,36 +166,8 @@ class FilterPage extends StatelessWidget {
   Widget build(BuildContext context) {
     // TODO: implement build
     return Container(
-        alignment: Alignment.topCenter,
-        //child: _buildRowOfFilters(context),
-        child: _buildRowOfFilters(context),
-        //child: _buildColumnOfFlatButtons<Category>(
-        //    _categories, context, Collectible.getDisplayNameForCategory),
-        color: Colors.blue);
+      alignment: Alignment.topCenter,
+      child: _buildRowOfFilters(context),
+    );
   }
 }
-//Widget build(BuildContext context) {
-//  // TODO: implement build
-//  return Column(
-//    crossAxisAlignment: CrossAxisAlignment.center,
-//    children: <Widget>[
-//      //Align(
-//      //  alignment: Alignment.topCenter,
-//      //  child: Container(
-//      //      padding: EdgeInsets.fromLTRB(15, 40, 15, 0),
-//      //      //child: _buildRow(context),
-//      //      child: _createFilterButtonRow(context),
-//      //      color: Colors.blue),
-//      //),
-//      Expanded(
-//          child: Container(
-//              //child: _buildCategoryFilter(context), color: Colors.blue)),
-//              //child: _buildGenericFilter<Category>(_categories, context,
-//              //    Collectible.getDisplayNameForCategory),
-//              child: Align(
-//                  child: _buildRowOfFilters(context),
-//                  alignment: Alignment.topCenter),
-//              color: Colors.blue)),
-//    ],
-//  );
-//}

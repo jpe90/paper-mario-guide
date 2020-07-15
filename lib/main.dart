@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:paper_mario_guide/views/collectibles_view.dart';
 import 'widgets/backdrop.dart';
-import 'models/collectible.dart' as cb;
+import 'models/collectible.dart';
 import 'views/collectibles_view.dart';
 import 'models/collectibles_repository.dart';
 import 'views/error_page.dart';
-import 'package:logger/logger.dart';
+import 'package:logger/logger.dart' as l;
 import 'views/filter_page.dart';
 
-var logger = Logger(printer: PrettyPrinter());
+var logger = l.Logger(printer: l.PrettyPrinter());
 
 void main() {
   runApp(MyApp());
@@ -26,6 +26,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   LoadStatus status = LoadStatus.loading;
   CollectiblesRepository repository;
+  Category _currentCategory = Category.all;
 
   @override
   void initState() {
@@ -50,7 +51,13 @@ class _MyAppState extends State<MyApp> {
       return ErrorPage(errorInfo: "shrug");
   }
 
-  //void onTap(dynamic d) {}
+  void onCategoryTap(Category category) {
+    _currentCategory = category;
+    logger.d('tapped dat');
+  }
+
+  void onLevelTap(Level level) {}
+  void onCompletionStatusTap(CompletionStatus status) {}
 
   // This widget is the root of your application.p
   @override
@@ -65,9 +72,12 @@ class _MyAppState extends State<MyApp> {
         frontLayer: getFrontLayerForLoadStatus(status),
         //status == LoadStatus.loading ? Text('loading') : CollectiblesPage(),
         backLayer: FilterPage(
-            selectedLevel: cb.Level.all,
-            selectedCategory: cb.Category.all,
-            selectedCompletionStatus: cb.CompletionStatus.all),
+            onCategoryTap: onCategoryTap,
+            onLevelTap: onLevelTap,
+            onCompletionStatusTap: onCompletionStatusTap,
+            selectedCategory: _currentCategory,
+            selectedLevel: Level.all,
+            selectedCompletionStatus: CompletionStatus.all),
       ),
     );
   }

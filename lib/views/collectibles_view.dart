@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../widgets/card_bottom.dart';
-import '../models/collectibles_repository.dart';
 import '../models/collectible.dart';
 
 class CollectiblesView extends StatelessWidget {
