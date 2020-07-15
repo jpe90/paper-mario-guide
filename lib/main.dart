@@ -50,6 +50,8 @@ class _MyAppState extends State<MyApp> {
       return ErrorPage(errorInfo: "shrug");
   }
 
+  //void onTap(dynamic d) {}
+
   // This widget is the root of your application.p
   @override
   Widget build(BuildContext context) {

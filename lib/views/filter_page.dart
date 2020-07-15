@@ -12,17 +12,20 @@ class FilterPage extends StatelessWidget {
   final Level selectedLevel;
   final Category selectedCategory;
   final CompletionStatus selectedCompletionStatus;
+  final ValueChanged onTap;
   final List<Level> _levels = Level.values;
   final List<Category> _categories = Category.values;
   final List<CompletionStatus> _completionStatuses = CompletionStatus.values;
 
-  const FilterPage(
-      {@required this.selectedLevel,
-      @required this.selectedCategory,
-      @required this.selectedCompletionStatus})
-      : assert(selectedLevel != null),
+  const FilterPage({
+    @required this.selectedLevel,
+    @required this.selectedCategory,
+    @required this.selectedCompletionStatus,
+    @required this.onTap,
+  })  : assert(selectedLevel != null),
         assert(selectedCompletionStatus != null),
-        assert(selectedCategory != null);
+        assert(selectedCategory != null),
+        assert(onTap != null);
 
   Widget _buildGenericFilterColumn<T>(
       List<T> ts, BuildContext context, NameGetter<T> getDisplayName) {
@@ -38,6 +41,7 @@ class FilterPage extends StatelessWidget {
     return Flexible(
       fit: FlexFit.tight,
       child: Column(
+          mainAxisSize: MainAxisSize.min,
           //mainAxisAlignment: MainAxisAlignment.center,
           children: children),
     );
