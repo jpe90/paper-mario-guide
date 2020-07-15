@@ -26,28 +26,20 @@ class FilterPage extends StatelessWidget {
 
   Widget _buildGenericFilterColumn<T>(
       List<T> ts, BuildContext context, NameGetter<T> getDisplayName) {
+    List<Widget> children = [];
+    children.add(Text('Title'));
+    children.add(SizedBox(
+      height: 40,
+    ));
+    children +=
+        ts.map((t) => _buildGeneric<T>(t, getDisplayName, context)).toList();
+    var list =
+        ts.map((t) => _buildGeneric<T>(t, getDisplayName, context)).toList();
     return Flexible(
       fit: FlexFit.tight,
       child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: ts
-              .map((t) => _buildGeneric<T>(t, getDisplayName, context))
-              .toList()),
-    );
-  }
-
-  Widget _buildColumnOfFlatButtons<T>(
-      List<T> ts, BuildContext cotext, NameGetter<T> getDisplayName) {
-    return Container(
-      height: 250,
-      decoration: BoxDecoration(border: Border.all(width: 2)),
-      child: Column(
-          children: ts
-              .map((t) => FlatButton(
-                    onPressed: () => {},
-                    child: Text(getDisplayName(t)),
-                  ))
-              .toList()),
+          //mainAxisAlignment: MainAxisAlignment.center,
+          children: children),
     );
   }
 
@@ -63,8 +55,8 @@ class FilterPage extends StatelessWidget {
   }
 
   Widget _buildRowOfFilters(BuildContext context) {
-    return Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        //crossAxisAlignment: CrossAxisAlignment.center,
+    return Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
           _buildGenericFilterColumn<Category>(
               _categories, context, Collectible.getDisplayNameForCategory),
@@ -86,15 +78,13 @@ class FilterPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return Align(
+    return Container(
         alignment: Alignment.topCenter,
-        child: Container(
-            alignment: Alignment.topCenter,
-            //child: _buildRowOfFilters(context),
-            child: _buildRowOfFilters(context),
-            //child: _buildColumnOfFlatButtons<Category>(
-            //    _categories, context, Collectible.getDisplayNameForCategory),
-            color: Colors.blue));
+        //child: _buildRowOfFilters(context),
+        child: _buildRowOfFilters(context),
+        //child: _buildColumnOfFlatButtons<Category>(
+        //    _categories, context, Collectible.getDisplayNameForCategory),
+        color: Colors.blue);
   }
 }
 //Widget build(BuildContext context) {
