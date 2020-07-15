@@ -51,6 +51,20 @@ class _FilterPageState extends State<FilterPage> {
     selectedCompletionStatus = widget.initialCompletionStatus;
   }
 
+  Widget _buildFilterColumn(
+      BuildContext context, List<Widget> selectionList, String title) {
+    List<Widget> children = [];
+    children.add(Text(title));
+    children.add(SizedBox(
+      height: 40,
+    ));
+    children += selectionList;
+    return Flexible(
+      fit: FlexFit.tight,
+      child: Column(mainAxisSize: MainAxisSize.min, children: children),
+    );
+  }
+
   Widget _buildCategoryFilterColumn(
     BuildContext context,
   ) {
@@ -101,17 +115,6 @@ class _FilterPageState extends State<FilterPage> {
   void muhLevelTap(Level level) => selectedLevel = level;
   void muhCompletionStatusTap(CompletionStatus status) =>
       selectedCompletionStatus = status;
-
-  Widget _buildGeneric<T>(T t, NameGetter<T> getDisplayName,
-      BuildContext context, ValueChanged vc) {
-    return Padding(
-      padding: EdgeInsets.symmetric(vertical: 16),
-      child: Text(
-        getDisplayName(t),
-        textAlign: TextAlign.center,
-      ),
-    );
-  }
 
   Widget _buildSelectableCategory(Category category, BuildContext context) {
     return GestureDetector(
@@ -175,20 +178,28 @@ class _FilterPageState extends State<FilterPage> {
   }
 
   Widget _buildRowOfFilters(BuildContext context) {
+    List<Widget> selectableCategories = _categories
+        .map((category) => _buildSelectableCategory(category, context))
+        .toList();
+    List<Widget> selectableLevels =
+        _levels.map((level) => _buildSelectableLevel(level, context)).toList();
+    List<Widget> selectableCompletionStatuses = _completionStatuses
+        .map((status) => _buildSelectableCompletionStatus(status, context))
+        .toList();
     return Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
-          _buildCategoryFilterColumn(context),
+          _buildFilterColumn(context, selectableCategories, 'Test'),
           VerticalDivider(
             width: 5,
             thickness: 5,
           ),
-          _buildLevelFilterColumn(context),
+          _buildFilterColumn(context, selectableLevels, 'Test'),
           VerticalDivider(
             width: 5,
             thickness: 5,
           ),
-          _buildCompletionStatusFilterColumn(context)
+          _buildFilterColumn(context, selectableCompletionStatuses, 'Test'),
         ]);
   }
 
