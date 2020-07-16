@@ -82,10 +82,10 @@ class Collectible {
   static String getDisplayNameForCompletionStatus(CompletionStatus status) {
     switch (status) {
       case CompletionStatus.completed:
-        return "Completed";
+        return "Only Completed";
         break;
       case CompletionStatus.notCompleted:
-        return "Incomplete";
+        return "Not Completed";
         break;
       default:
         return "All";

@@ -54,14 +54,18 @@ class _FilterPageState extends State<FilterPage> {
   Widget _buildFilterColumn(
       BuildContext context, List<Widget> selectionList, String title) {
     List<Widget> children = [];
-    children.add(Text(title));
+    children.add(SizedBox(
+      height: 20,
+    ));
+    children.add(Text(title,
+        style: TextStyle(fontWeight: FontWeight.w800, fontSize: 16)));
     children.add(SizedBox(
       height: 40,
     ));
     children += selectionList;
     return Flexible(
-      fit: FlexFit.tight,
-      child: Column(mainAxisSize: MainAxisSize.min, children: children),
+      fit: FlexFit.loose,
+      child: Column(mainAxisSize: MainAxisSize.max, children: children),
     );
   }
 
@@ -83,6 +87,7 @@ class _FilterPageState extends State<FilterPage> {
         child: category == selectedCategory
             ? RaisedButton(
                 onPressed: () => {},
+                color: Colors.cyan,
                 child: Text(
                   Collectible.getDisplayNameForCategory(category),
                   textAlign: TextAlign.center,
@@ -106,7 +111,13 @@ class _FilterPageState extends State<FilterPage> {
       child: Padding(
         padding: EdgeInsets.symmetric(vertical: 16),
         child: level == selectedLevel
-            ? Text('this is selected!!', textAlign: TextAlign.center)
+            ? RaisedButton(
+                onPressed: () => {},
+                color: Colors.cyan,
+                child: Text(
+                  Collectible.getDisplayNameForLevel(level),
+                  textAlign: TextAlign.center,
+                ))
             : Text(
                 Collectible.getDisplayNameForLevel(level),
                 textAlign: TextAlign.center,
@@ -127,7 +138,13 @@ class _FilterPageState extends State<FilterPage> {
       child: Padding(
         padding: EdgeInsets.symmetric(vertical: 16),
         child: status == selectedCompletionStatus
-            ? Text('this is selected!!', textAlign: TextAlign.center)
+            ? RaisedButton(
+                onPressed: () => {},
+                color: Colors.cyan,
+                child: Text(
+                  Collectible.getDisplayNameForCompletionStatus(status),
+                  textAlign: TextAlign.center,
+                ))
             : Text(
                 Collectible.getDisplayNameForCompletionStatus(status),
                 textAlign: TextAlign.center,
@@ -148,17 +165,18 @@ class _FilterPageState extends State<FilterPage> {
     return Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
-          _buildFilterColumn(context, selectableCategories, 'Test'),
+          _buildFilterColumn(context, selectableCategories, 'CATEGORIES'),
+          VerticalDivider(
+            width: 2,
+            thickness: 2,
+          ),
+          _buildFilterColumn(context, selectableLevels, 'LEVELS'),
           VerticalDivider(
             width: 5,
-            thickness: 5,
+            thickness: 2,
           ),
-          _buildFilterColumn(context, selectableLevels, 'Test'),
-          VerticalDivider(
-            width: 5,
-            thickness: 5,
-          ),
-          _buildFilterColumn(context, selectableCompletionStatuses, 'Test'),
+          _buildFilterColumn(
+              context, selectableCompletionStatuses, 'COMPLETION'),
         ]);
   }
 
@@ -166,8 +184,8 @@ class _FilterPageState extends State<FilterPage> {
   Widget build(BuildContext context) {
     // TODO: implement build
     return Container(
-      alignment: Alignment.topCenter,
-      child: _buildRowOfFilters(context),
-    );
+        alignment: Alignment.topCenter,
+        child: _buildRowOfFilters(context),
+        color: Colors.grey[200]);
   }
 }
