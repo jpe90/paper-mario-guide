@@ -11,13 +11,13 @@ import 'views/filter_page.dart';
 var logger = l.Logger(printer: l.PrettyPrinter());
 
 void main() {
-  runApp(MyApp());
+  runApp(MyApp(key: UniqueKey()));
 }
 
 enum LoadStatus { loading, completed, error }
 
 class MyApp extends StatefulWidget {
-  const MyApp();
+  const MyApp({Key key}) : super(key: key);
 
   @override
   createState() => _MyAppState();
@@ -48,26 +48,23 @@ class _MyAppState extends State<MyApp> {
       return Text('loading');
     } else if (status == LoadStatus.completed) {
       return CollectiblesView(
-          collectibles: CollectiblesRepository.collectibles);
+          collectibles: repository.getFilteredCollectibles(
+              _currentCategory, _currentLevel, _currentCompletionStatus));
     } else
       return ErrorPage(errorInfo: "shrug");
   }
 
-  void onCategoryTap(Category category) {
-    _currentCategory = category;
-  }
+  void onCategoryTap(Category category) =>
+      setState(() => _currentCategory = category);
 
-  void onLevelTap(Level level) {
-    _currentLevel = level;
-  }
+  void onLevelTap(Level level) => setState(() => _currentLevel = level);
 
-  void onCompletionStatusTap(CompletionStatus status) {
-    _currentCompletionStatus = status;
-  }
+  void onCompletionStatusTap(CompletionStatus status) =>
+      setState(() => _currentCompletionStatus = status);
 
-  // This widget is the root of your application.p
   @override
   Widget build(BuildContext context) {
+    Widget frontLayer = getFrontLayerForLoadStatus(status);
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
@@ -75,7 +72,7 @@ class _MyAppState extends State<MyApp> {
           visualDensity: VisualDensity.adaptivePlatformDensity,
           fontFamily: 'mario'),
       home: Backdrop(
-        frontLayer: getFrontLayerForLoadStatus(status),
+        frontLayer: frontLayer,
         backLayer: FilterPage(
             onCategoryTap: onCategoryTap,
             onLevelTap: onLevelTap,

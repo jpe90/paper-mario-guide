@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/services.dart' show rootBundle;
-//import 'package:logger/logger.dart';
+import 'package:logger/logger.dart' as l;
 
 import '../models/collectible.dart';
 
@@ -31,5 +31,15 @@ class CollectiblesRepository {
     } catch (e) {
       throw Exception('Exception in getAllCollectibles : $e');
     }
+  }
+
+  List<Collectible> getFilteredCollectibles(
+      Category category, Level level, CompletionStatus status) {
+    return collectibles.where((element) {
+      return (category == Category.all || category == element.category) &&
+          (level == Level.all || level == element.level) &&
+          (status == CompletionStatus.all ||
+              status == element.completionStatus);
+    }).toList();
   }
 }

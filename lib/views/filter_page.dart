@@ -36,19 +36,59 @@ class FilterPage extends StatefulWidget {
 
 class _FilterPageState extends State<FilterPage> {
   final List<Category> _categories = Category.values;
-
   final List<Level> _levels = Level.values;
-
   final List<CompletionStatus> _completionStatuses = CompletionStatus.values;
+
   Category selectedCategory;
   Level selectedLevel;
   CompletionStatus selectedCompletionStatus;
+
+  void muhCategoryTap(Category category) => selectedCategory = category;
+  void muhLevelTap(Level level) => selectedLevel = level;
+  void muhCompletionStatusTap(CompletionStatus status) =>
+      selectedCompletionStatus = status;
+
   @override
   initState() {
     super.initState();
     selectedCategory = widget.initialCategory;
     selectedLevel = widget.initialLevel;
     selectedCompletionStatus = widget.initialCompletionStatus;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        alignment: Alignment.topCenter,
+        child: _buildRowOfFilters(context),
+        color: Colors.grey[200]);
+  }
+
+  Widget _buildRowOfFilters(BuildContext context) {
+    List<Widget> selectableCategories = _categories
+        .map((category) => _buildSelectableCategory(category, context))
+        .toList();
+    List<Widget> selectableLevels =
+        _levels.map((level) => _buildSelectableLevel(level, context)).toList();
+    List<Widget> selectableCompletionStatuses = _completionStatuses
+        .map((status) => _buildSelectableCompletionStatus(status, context))
+        .toList();
+    return Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: <Widget>[
+          _buildFilterColumn(context, selectableCategories, 'CATEGORIES'),
+          VerticalDivider(
+            width: 2,
+            thickness: 2,
+          ),
+          _buildFilterColumn(context, selectableLevels, 'LEVELS'),
+          VerticalDivider(
+            width: 5,
+            thickness: 2,
+          ),
+          _buildFilterColumn(
+              context, selectableCompletionStatuses, 'COMPLETION'),
+        ]);
   }
 
   Widget _buildFilterColumn(
@@ -68,11 +108,6 @@ class _FilterPageState extends State<FilterPage> {
       child: Column(mainAxisSize: MainAxisSize.max, children: children),
     );
   }
-
-  void muhCategoryTap(Category category) => selectedCategory = category;
-  void muhLevelTap(Level level) => selectedLevel = level;
-  void muhCompletionStatusTap(CompletionStatus status) =>
-      selectedCompletionStatus = status;
 
   Widget _buildSelectableCategory(Category category, BuildContext context) {
     return GestureDetector(
@@ -151,41 +186,5 @@ class _FilterPageState extends State<FilterPage> {
               ),
       ),
     );
-  }
-
-  Widget _buildRowOfFilters(BuildContext context) {
-    List<Widget> selectableCategories = _categories
-        .map((category) => _buildSelectableCategory(category, context))
-        .toList();
-    List<Widget> selectableLevels =
-        _levels.map((level) => _buildSelectableLevel(level, context)).toList();
-    List<Widget> selectableCompletionStatuses = _completionStatuses
-        .map((status) => _buildSelectableCompletionStatus(status, context))
-        .toList();
-    return Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: <Widget>[
-          _buildFilterColumn(context, selectableCategories, 'CATEGORIES'),
-          VerticalDivider(
-            width: 2,
-            thickness: 2,
-          ),
-          _buildFilterColumn(context, selectableLevels, 'LEVELS'),
-          VerticalDivider(
-            width: 5,
-            thickness: 2,
-          ),
-          _buildFilterColumn(
-              context, selectableCompletionStatuses, 'COMPLETION'),
-        ]);
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    // TODO: implement build
-    return Container(
-        alignment: Alignment.topCenter,
-        child: _buildRowOfFilters(context),
-        color: Colors.grey[200]);
   }
 }

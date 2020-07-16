@@ -25,6 +25,7 @@ class Collectible {
   final int id;
   final Level level;
   final Category category;
+  final CompletionStatus completionStatus = CompletionStatus.notCompleted;
   final String description;
   final String notes;
 
