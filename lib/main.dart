@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:paper_mario_guide/views/collectibles_view.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'widgets/backdrop.dart';
 import 'models/collectible.dart';
 import 'views/collectibles_view.dart';
@@ -32,22 +33,34 @@ class _MyAppState extends State<MyApp> {
   List<Collectible> filteredCollectibles = [];
   Category _currentCategory = Category.all;
   Level _currentLevel = Level.all;
+  SharedPreferences prefs;
   CompletionStatus _currentCompletionStatus = CompletionStatus.all;
 
   @override
   void initState() {
     super.initState();
     repository = CollectiblesRepository();
-    repository.loadCollectiblesFromJson().then((deezCollectibles) {
+    loadCompletionFromSharedPrefs();
+    repository.loadCollectiblesFromJson().then((loadedCollectibles) {
       setState(() {
         status = LoadStatus.completed;
-        collectibles = deezCollectibles;
+        collectibles = loadedCollectibles;
+        collectibles.forEach((element) {
+          bool toSet = prefs.getBool(element.id.toString()) ?? false;
+          element.completionStatus = toSet
+              ? CompletionStatus.completed
+              : CompletionStatus.notCompleted;
+        });
         logger.d(collectibles.length);
       });
     }).catchError((err) {
       logger.e(err.toString());
       setState(() => status = LoadStatus.error);
     });
+  }
+
+  loadCompletionFromSharedPrefs() async {
+    prefs = await SharedPreferences.getInstance();
   }
 
   List<Collectible> getFilteredCollectibles(
@@ -76,6 +89,8 @@ class _MyAppState extends State<MyApp> {
   void onCheckboxChanged(Collectible collectible, CompletionStatus status) {
     setState(() {
       collectible.completionStatus = status;
+      bool toSet = status == CompletionStatus.completed ? true : false;
+      prefs.setBool(collectible.id.toString(), toSet);
     });
   }
 
