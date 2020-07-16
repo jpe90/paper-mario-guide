@@ -65,52 +65,6 @@ class _FilterPageState extends State<FilterPage> {
     );
   }
 
-  Widget _buildCategoryFilterColumn(
-    BuildContext context,
-  ) {
-    List<Widget> children = [];
-    children.add(Text('Title'));
-    children.add(SizedBox(
-      height: 40,
-    ));
-    children += _categories
-        .map((category) => _buildSelectableCategory(category, context))
-        .toList();
-    return Flexible(
-      fit: FlexFit.tight,
-      child: Column(mainAxisSize: MainAxisSize.min, children: children),
-    );
-  }
-
-  Widget _buildLevelFilterColumn(BuildContext context) {
-    List<Widget> children = [];
-    children.add(Text('Title'));
-    children.add(SizedBox(
-      height: 40,
-    ));
-    children +=
-        _levels.map((level) => _buildSelectableLevel(level, context)).toList();
-    return Flexible(
-      fit: FlexFit.tight,
-      child: Column(mainAxisSize: MainAxisSize.min, children: children),
-    );
-  }
-
-  Widget _buildCompletionStatusFilterColumn(BuildContext context) {
-    List<Widget> children = [];
-    children.add(Text('Title'));
-    children.add(SizedBox(
-      height: 40,
-    ));
-    children += _completionStatuses
-        .map((status) => _buildSelectableCompletionStatus(status, context))
-        .toList();
-    return Flexible(
-      fit: FlexFit.tight,
-      child: Column(mainAxisSize: MainAxisSize.min, children: children),
-    );
-  }
-
   void muhCategoryTap(Category category) => selectedCategory = category;
   void muhLevelTap(Level level) => selectedLevel = level;
   void muhCompletionStatusTap(CompletionStatus status) =>
@@ -127,7 +81,14 @@ class _FilterPageState extends State<FilterPage> {
       child: Padding(
         padding: EdgeInsets.symmetric(vertical: 16),
         child: category == selectedCategory
-            ? Text('this is selected!!', textAlign: TextAlign.center)
+            ? Column(children: <Widget>[
+                Text(
+                  Collectible.getDisplayNameForCategory(category),
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(height: 14),
+                Container(width: 70, height: 2, color: Colors.black),
+              ])
             : Text(
                 Collectible.getDisplayNameForCategory(category),
                 textAlign: TextAlign.center,
