@@ -23,9 +23,13 @@ class MyApp extends StatefulWidget {
   createState() => _MyAppState();
 }
 
+class CollectiblesCollection {}
+
 class _MyAppState extends State<MyApp> {
   LoadStatus status = LoadStatus.loading;
   CollectiblesRepository repository;
+  List<Collectible> collectibles = [];
+  List<Collectible> filteredCollectibles = [];
   Category _currentCategory = Category.all;
   Level _currentLevel = Level.all;
   CompletionStatus _currentCompletionStatus = CompletionStatus.all;
@@ -34,12 +38,44 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
     repository = CollectiblesRepository();
-    repository.loadCollectiblesFromJson().then((collectibles) {
-      CollectiblesRepository.collectibles = collectibles;
-      setState(() => status = LoadStatus.completed);
+    repository.loadCollectiblesFromJson().then((deezCollectibles) {
+      setState(() {
+        status = LoadStatus.completed;
+        collectibles = deezCollectibles;
+        logger.d(collectibles.length);
+      });
     }).catchError((err) {
       logger.e(err.toString());
       setState(() => status = LoadStatus.error);
+    });
+  }
+
+  List<Collectible> getFilteredCollectibles(
+      Category category, Level level, CompletionStatus completionStatus) {
+    List<Collectible> fuckinPieceOFShit = collectibles.where((element) {
+      return (category == Category.all || category == element.category) &&
+          (level == Level.all || level == element.level) &&
+          (completionStatus == CompletionStatus.all ||
+              completionStatus == element.completionStatus);
+    }).toList();
+    return fuckinPieceOFShit;
+  }
+
+  void setCompletionStatus(int id) {
+    var toSet = collectibles.singleWhere((element) => element.id == id);
+    logger.d('toSet at start: $toSet');
+    if (toSet != null) {
+      toSet.completionStatus =
+          toSet.completionStatus == CompletionStatus.completed
+              ? CompletionStatus.notCompleted
+              : CompletionStatus.completed;
+    }
+    logger.d('toSet at end: $toSet');
+  }
+
+  void onCheckboxChanged(Collectible collectible, CompletionStatus status) {
+    setState(() {
+      collectible.completionStatus = status;
     });
   }
 
@@ -47,15 +83,24 @@ class _MyAppState extends State<MyApp> {
     if (status == LoadStatus.loading) {
       return Text('loading');
     } else if (status == LoadStatus.completed) {
+      //logger.d('well its trying to draw something at least');
       return CollectiblesView(
-          collectibles: repository.getFilteredCollectibles(
+          onCheckboxChanged: onCheckboxChanged,
+          collectibles: getFilteredCollectibles(
               _currentCategory, _currentLevel, _currentCompletionStatus));
     } else
       return ErrorPage(errorInfo: "shrug");
   }
 
-  void onCategoryTap(Category category) =>
-      setState(() => _currentCategory = category);
+  // void onCategoryTap(Category category) =>
+  //     setState(() => _currentCategory = category);
+  void onCategoryTap(Category category) {
+    setState(() => _currentCategory = category);
+    var filteredCollectibles = getFilteredCollectibles(
+        _currentCategory, _currentLevel, _currentCompletionStatus);
+    logger.d('collectibles size: ${collectibles.length}');
+    logger.d('filtered size: ${filteredCollectibles.length}');
+  }
 
   void onLevelTap(Level level) => setState(() => _currentLevel = level);
 

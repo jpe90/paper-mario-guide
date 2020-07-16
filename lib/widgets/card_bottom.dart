@@ -15,6 +15,12 @@ class CardBottom extends StatelessWidget {
   final bool value;
   final Function onChanged;
 
+  void onCheckboxChanged(int id) {
+    // setState(() {
+    //   repository.setCompletionStatus(id);
+    // });
+  }
+
   @override
   Widget build(BuildContext context) {
     return InkWell(

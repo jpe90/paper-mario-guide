@@ -11,7 +11,6 @@ class CollectiblesRepository {
   //var _logger;
   static const jsonDataFile = 'data/collectibles.json';
   CollectiblesRepository();
-  static List<Collectible> collectibles = [];
 
   Future<String> readJsonData() async {
     try {
@@ -31,15 +30,5 @@ class CollectiblesRepository {
     } catch (e) {
       throw Exception('Exception in getAllCollectibles : $e');
     }
-  }
-
-  List<Collectible> getFilteredCollectibles(
-      Category category, Level level, CompletionStatus status) {
-    return collectibles.where((element) {
-      return (category == Category.all || category == element.category) &&
-          (level == Level.all || level == element.level) &&
-          (status == CompletionStatus.all ||
-              status == element.completionStatus);
-    }).toList();
   }
 }

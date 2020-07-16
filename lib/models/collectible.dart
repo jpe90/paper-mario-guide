@@ -12,7 +12,7 @@ enum Category { all, toad, box, hole, treasure }
 enum CompletionStatus { all, completed, notCompleted }
 
 class Collectible {
-  const Collectible({
+  Collectible({
     @required this.id,
     @required this.level,
     @required this.category,
@@ -25,7 +25,7 @@ class Collectible {
   final int id;
   final Level level;
   final Category category;
-  final CompletionStatus completionStatus = CompletionStatus.notCompleted;
+  CompletionStatus completionStatus = CompletionStatus.notCompleted;
   final String description;
   final String notes;
 
@@ -42,7 +42,7 @@ class Collectible {
   bool get hasNotes => notes != null;
 
   String toString() =>
-      'id: $id, level: $level, category: $category, notes: $notes, description: $description';
+      'id: $id, level: $level, category: $category, notes: $notes, description: $description completion status: $completionStatus';
 
   //overly verbose horseshit
 
@@ -78,6 +78,14 @@ class Collectible {
         return "All";
         break;
     }
+  }
+
+  static getStatusFromBool(bool muhBool) {
+    return muhBool ? CompletionStatus.completed : CompletionStatus.notCompleted;
+  }
+
+  static getBoolFromCompletionStatus(CompletionStatus status) {
+    return status == CompletionStatus.completed ? true : false;
   }
 
   static String getDisplayNameForCompletionStatus(CompletionStatus status) {

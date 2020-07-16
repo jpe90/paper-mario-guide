@@ -3,10 +3,16 @@ import 'package:flutter/material.dart';
 import '../widgets/card_bottom.dart';
 import '../models/collectible.dart';
 
+import 'package:logger/logger.dart' as l;
+
 class CollectiblesView extends StatelessWidget {
   final List<Collectible> collectibles;
+  final void Function(Collectible collectible, CompletionStatus status)
+      onCheckboxChanged;
 
-  const CollectiblesView({this.collectibles});
+  const CollectiblesView(
+      {@required this.collectibles, @required this.onCheckboxChanged})
+      : assert(onCheckboxChanged != null);
 
   GridView _buildGridCards(BuildContext context) {
     return GridView.count(
@@ -33,8 +39,12 @@ class CollectiblesView extends StatelessWidget {
             categoryName:
                 Collectible.getDisplayNameForCategory(collectible.category),
             padding: const EdgeInsets.symmetric(horizontal: 10),
-            value: false,
-            onChanged: (__) {},
+            value: Collectible.getBoolFromCompletionStatus(
+                collectible.completionStatus),
+            onChanged: (complete) {
+              onCheckboxChanged(
+                  collectible, Collectible.getStatusFromBool(complete));
+            },
           ),
         ],
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -45,6 +55,7 @@ class CollectiblesView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //return GridView.builder();
+    //logger.d('in collevtibles view, size = ${collectibles.length}');
     return _buildGridCards(context);
   }
 }
