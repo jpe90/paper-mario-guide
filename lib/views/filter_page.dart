@@ -81,14 +81,12 @@ class _FilterPageState extends State<FilterPage> {
       child: Padding(
         padding: EdgeInsets.symmetric(vertical: 16),
         child: category == selectedCategory
-            ? Column(children: <Widget>[
-                Text(
+            ? RaisedButton(
+                onPressed: () => {},
+                child: Text(
                   Collectible.getDisplayNameForCategory(category),
                   textAlign: TextAlign.center,
-                ),
-                SizedBox(height: 14),
-                Container(width: 70, height: 2, color: Colors.black),
-              ])
+                ))
             : Text(
                 Collectible.getDisplayNameForCategory(category),
                 textAlign: TextAlign.center,
