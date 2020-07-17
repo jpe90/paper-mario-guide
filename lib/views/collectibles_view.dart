@@ -21,19 +21,37 @@ class CollectiblesView extends StatelessWidget {
       crossAxisSpacing: 10,
       padding: EdgeInsets.all(16.0),
       childAspectRatio: 2.0 / 1.8,
-      children:
-          collectibles.map((collectible) => _gridElement(collectible)).toList(),
+      children: collectibles
+          .map((collectible) => _gridElement(collectible, context))
+          .toList(),
     );
   }
 
-  Widget _gridElement(Collectible collectible) {
+// on tap for lil' hero
+  Widget collectibleDetailsPage(Collectible collectible, BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(title: Text('Testing Hero')),
+        body: Container(
+            color: Colors.red,
+            child: CollectibleImageHero(
+              collectible: collectible,
+              onTap: () => Navigator.of(context).pop(),
+            )));
+  }
+
+  Widget _gridElement(Collectible collectible, BuildContext context) {
     return Card(
       elevation: 8.0,
       child: Column(
         children: [
-          Image(
-              image: AssetImage(collectible.fullAssetName),
-              fit: BoxFit.fitWidth),
+          CollectibleImageHero(
+            collectible: collectible,
+            onTap: () {
+              Navigator.of(context).push(MaterialPageRoute<void>(
+                  builder: (BuildContext context) =>
+                      collectibleDetailsPage(collectible, context)));
+            },
+          ),
           CardBottom(
             id: collectible.id,
             categoryName:
@@ -57,5 +75,31 @@ class CollectiblesView extends StatelessWidget {
     //return GridView.builder();
     //logger.d('in collevtibles view, size = ${collectibles.length}');
     return _buildGridCards(context);
+  }
+}
+
+class CollectibleImageHero extends StatelessWidget {
+  const CollectibleImageHero({
+    this.collectible,
+    this.onTap,
+    Key key,
+  }) : super(key: key);
+
+  final Collectible collectible;
+  final VoidCallback onTap;
+  @override
+  Widget build(BuildContext context) {
+    return Hero(
+      tag: collectible.id,
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          onTap: onTap,
+          child: Image(
+              image: AssetImage(collectible.fullAssetName),
+              fit: BoxFit.fitWidth),
+        ),
+      ),
+    );
   }
 }
