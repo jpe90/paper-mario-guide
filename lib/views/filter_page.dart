@@ -16,7 +16,7 @@ class FilterPage extends StatefulWidget {
   final ValueChanged<Level> onLevelTap;
   final ValueChanged<CompletionStatus> onCompletionStatusTap;
 
-  FilterPage({
+  const FilterPage({
     @required this.initialCategory,
     @required this.initialLevel,
     @required this.initialCompletionStatus,
@@ -43,9 +43,9 @@ class _FilterPageState extends State<FilterPage> {
   Level selectedLevel;
   CompletionStatus selectedCompletionStatus;
 
-  void muhCategoryTap(Category category) => selectedCategory = category;
-  void muhLevelTap(Level level) => selectedLevel = level;
-  void muhCompletionStatusTap(CompletionStatus status) =>
+  void onCategoryTap(Category category) => selectedCategory = category;
+  void onLevelTap(Level level) => selectedLevel = level;
+  void onCompletionStatusTap(CompletionStatus status) =>
       selectedCompletionStatus = status;
 
   @override
@@ -77,12 +77,12 @@ class _FilterPageState extends State<FilterPage> {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
           _buildFilterColumn(context, selectableCategories, 'CATEGORIES'),
-          VerticalDivider(
+          const VerticalDivider(
             width: 2,
             thickness: 2,
           ),
           _buildFilterColumn(context, selectableLevels, 'LEVELS'),
-          VerticalDivider(
+          const VerticalDivider(
             width: 5,
             thickness: 2,
           ),
@@ -114,7 +114,7 @@ class _FilterPageState extends State<FilterPage> {
       onTap: () {
         widget.onCategoryTap(category);
         setState(() {
-          muhCategoryTap(category);
+          onCategoryTap(category);
         });
       },
       child: Padding(
@@ -140,7 +140,7 @@ class _FilterPageState extends State<FilterPage> {
       onTap: () {
         widget.onLevelTap(level);
         setState(() {
-          muhLevelTap(level);
+          onLevelTap(level);
         });
       },
       child: Padding(
@@ -167,7 +167,7 @@ class _FilterPageState extends State<FilterPage> {
       onTap: () {
         widget.onCompletionStatusTap(status);
         setState(() {
-          muhCompletionStatusTap(status);
+          onCompletionStatusTap(status);
         });
       },
       child: Padding(

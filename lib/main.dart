@@ -27,18 +27,19 @@ class MyApp extends StatefulWidget {
 class CollectiblesCollection {}
 
 class _MyAppState extends State<MyApp> {
-  LoadStatus status = LoadStatus.loading;
+  LoadStatus status;
   CollectiblesRepository repository;
   List<Collectible> collectibles = [];
   List<Collectible> filteredCollectibles = [];
   Category _currentCategory = Category.all;
   Level _currentLevel = Level.all;
-  SharedPreferences prefs;
   CompletionStatus _currentCompletionStatus = CompletionStatus.all;
+  SharedPreferences prefs;
 
   @override
   void initState() {
     super.initState();
+    status = LoadStatus.loading;
     repository = CollectiblesRepository();
     loadCompletionFromSharedPrefs();
     repository.loadCollectiblesFromJson().then((loadedCollectibles) {
@@ -51,7 +52,6 @@ class _MyAppState extends State<MyApp> {
               ? CompletionStatus.completed
               : CompletionStatus.notCompleted;
         });
-        logger.d(collectibles.length);
       });
     }).catchError((err) {
       logger.e(err.toString());
@@ -59,31 +59,29 @@ class _MyAppState extends State<MyApp> {
     });
   }
 
+  // this needs to be in a separate method because initState can't be marked async
   loadCompletionFromSharedPrefs() async {
     prefs = await SharedPreferences.getInstance();
   }
 
   List<Collectible> getFilteredCollectibles(
       Category category, Level level, CompletionStatus completionStatus) {
-    List<Collectible> fuckinPieceOFShit = collectibles.where((element) {
+    return collectibles.where((element) {
       return (category == Category.all || category == element.category) &&
           (level == Level.all || level == element.level) &&
           (completionStatus == CompletionStatus.all ||
               completionStatus == element.completionStatus);
     }).toList();
-    return fuckinPieceOFShit;
   }
 
-  void setCompletionStatus(int id) {
+  void changeCompletionStatus(int id) {
     var toSet = collectibles.singleWhere((element) => element.id == id);
-    logger.d('toSet at start: $toSet');
     if (toSet != null) {
       toSet.completionStatus =
           toSet.completionStatus == CompletionStatus.completed
               ? CompletionStatus.notCompleted
               : CompletionStatus.completed;
     }
-    logger.d('toSet at end: $toSet');
   }
 
   void onCheckboxChanged(Collectible collectible, CompletionStatus status) {
@@ -104,21 +102,12 @@ class _MyAppState extends State<MyApp> {
           collectibles: getFilteredCollectibles(
               _currentCategory, _currentLevel, _currentCompletionStatus));
     } else
-      return ErrorPage(errorInfo: "shrug");
+      return ErrorPage(errorInfo: "An error has occured.");
   }
 
-  // void onCategoryTap(Category category) =>
-  //     setState(() => _currentCategory = category);
-  void onCategoryTap(Category category) {
-    setState(() => _currentCategory = category);
-    var filteredCollectibles = getFilteredCollectibles(
-        _currentCategory, _currentLevel, _currentCompletionStatus);
-    logger.d('collectibles size: ${collectibles.length}');
-    logger.d('filtered size: ${filteredCollectibles.length}');
-  }
-
+  void onCategoryTap(Category category) =>
+      setState(() => _currentCategory = category);
   void onLevelTap(Level level) => setState(() => _currentLevel = level);
-
   void onCompletionStatusTap(CompletionStatus status) =>
       setState(() => _currentCompletionStatus = status);
 
@@ -126,7 +115,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     Widget frontLayer = getFrontLayerForLoadStatus(status);
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Paper Mario: The Oragami King Collectible Guide',
       theme: ThemeData(
           primarySwatch: Colors.red,
           visualDensity: VisualDensity.adaptivePlatformDensity,
