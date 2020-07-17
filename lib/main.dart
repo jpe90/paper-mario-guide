@@ -35,13 +35,14 @@ class _MyAppState extends State<MyApp> {
   Level _currentLevel = Level.all;
   CompletionStatus _currentCompletionStatus = CompletionStatus.all;
   SharedPreferences prefs;
+  String ohGodWhy;
 
   @override
-  void initState() {
+  void initState() async {
     super.initState();
     status = LoadStatus.loading;
     repository = CollectiblesRepository();
-    loadCompletionFromSharedPrefs();
+    await loadCompletionFromSharedPrefs();
     repository.loadCollectiblesFromJson().then((loadedCollectibles) {
       setState(() {
         status = LoadStatus.completed;
@@ -55,6 +56,7 @@ class _MyAppState extends State<MyApp> {
       });
     }).catchError((err) {
       logger.e(err.toString());
+      ohGodWhy = err.toString();
       setState(() => status = LoadStatus.error);
     });
   }
@@ -62,6 +64,10 @@ class _MyAppState extends State<MyApp> {
   // this needs to be in a separate method because initState can't be marked async
   loadCompletionFromSharedPrefs() async {
     prefs = await SharedPreferences.getInstance();
+    if (prefs == null) {
+      status = LoadStatus.error;
+      ohGodWhy = "SHIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIT";
+    }
   }
 
   List<Collectible> getFilteredCollectibles(
@@ -102,7 +108,7 @@ class _MyAppState extends State<MyApp> {
           collectibles: getFilteredCollectibles(
               _currentCategory, _currentLevel, _currentCompletionStatus));
     } else
-      return ErrorPage(errorInfo: "An error has occured.");
+      return ErrorPage(errorInfo: ohGodWhy);
   }
 
   void onCategoryTap(Category category) =>

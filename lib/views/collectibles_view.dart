@@ -28,15 +28,47 @@ class CollectiblesView extends StatelessWidget {
   }
 
 // on tap for lil' hero
+  // Widget collectibleDetailsPage(Collectible collectible, BuildContext context) {
+  //   return Scaffold(
+  //       appBar: AppBar(title: Text('Testing Hero')),
+  //       body: Container(
+  //           color: Colors.red,
+  //           child: CollectibleImageHero(
+  //             collectible: collectible,
+  //             onTap: () => Navigator.of(context).pop(),
+  //           )));
+  // }
+// on tap for lil' hero
   Widget collectibleDetailsPage(Collectible collectible, BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text('Testing Hero')),
-        body: Container(
-            color: Colors.red,
-            child: CollectibleImageHero(
+      appBar: AppBar(title: Text('Testing Hero')),
+      body: Card(
+        elevation: 8.0,
+        child: ListView(
+          //child: Column(
+          children: [
+            CollectibleImageHero(
               collectible: collectible,
               onTap: () => Navigator.of(context).pop(),
-            )));
+              fit: BoxFit.fitHeight,
+            ),
+            CardBottom(
+              id: collectible.id,
+              categoryName:
+                  Collectible.getDisplayNameForCategory(collectible.category),
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              value: Collectible.getBoolFromCompletionStatus(
+                  collectible.completionStatus),
+              onChanged: (complete) {
+                onCheckboxChanged(
+                    collectible, Collectible.getStatusFromBool(complete));
+              },
+            ),
+          ],
+          //crossAxisAlignment: CrossAxisAlignment.start,
+        ),
+      ),
+    );
   }
 
   Widget _gridElement(Collectible collectible, BuildContext context) {
@@ -82,11 +114,14 @@ class CollectibleImageHero extends StatelessWidget {
   const CollectibleImageHero({
     this.collectible,
     this.onTap,
+    this.fit,
     Key key,
   }) : super(key: key);
 
   final Collectible collectible;
   final VoidCallback onTap;
+  final BoxFit fit;
+
   @override
   Widget build(BuildContext context) {
     return Hero(
@@ -97,7 +132,7 @@ class CollectibleImageHero extends StatelessWidget {
           onTap: onTap,
           child: Image(
               image: AssetImage(collectible.fullAssetName),
-              fit: BoxFit.fitWidth),
+              fit: fit ?? BoxFit.fitWidth),
         ),
       ),
     );

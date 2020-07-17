@@ -8,7 +8,7 @@ class ErrorPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text('An error occured: $errorInfo'),
+      child: Text('FUUU An error occured: $errorInfo'),
     );
   }
 }
