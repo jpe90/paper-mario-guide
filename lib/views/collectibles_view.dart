@@ -44,8 +44,8 @@ class CollectiblesView extends StatelessWidget {
       appBar: AppBar(title: Text('Testing Hero')),
       body: Card(
         elevation: 8.0,
-        child: ListView(
-          //child: Column(
+        // child: ListView(
+        child: Column(
           children: [
             CollectibleImageHero(
               collectible: collectible,
