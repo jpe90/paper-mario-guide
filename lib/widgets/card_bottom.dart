@@ -36,10 +36,11 @@ class CardBottom extends StatelessWidget {
           child: ListView(
             children: <Widget>[
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
-                  Expanded(
-                    child: Text('$categoryName #$id'),
-                  ),
+                  Text('$categoryName #$id'),
+                  if (descr != null)
+                    RaisedButton(onPressed: () {}, child: Text('Notes')),
                   Checkbox(
                     value: value,
                     onChanged: (bool newValue) {
@@ -48,7 +49,6 @@ class CardBottom extends StatelessWidget {
                   ),
                 ],
               ),
-              if (descr != null) Text(descr),
             ],
           ),
         ),

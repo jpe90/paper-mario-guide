@@ -34,6 +34,7 @@ class CollectiblesView extends StatelessWidget {
       body: Material(
         elevation: 8.0,
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Flexible(
               fit: FlexFit.loose,
