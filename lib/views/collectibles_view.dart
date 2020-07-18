@@ -31,7 +31,7 @@ class CollectiblesView extends StatelessWidget {
   Widget collectibleDetailsPage(Collectible collectible, BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('Testing Hero')),
-      body: Card(
+      body: Material(
         elevation: 8.0,
         child: Column(
           children: [
@@ -54,6 +54,7 @@ class CollectiblesView extends StatelessWidget {
                 onCheckboxChanged(
                     collectible, Collectible.getStatusFromBool(complete));
               },
+              descr: collectible.notes,
             ),
           ],
         ),

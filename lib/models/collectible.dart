@@ -16,8 +16,8 @@ class Collectible {
     @required this.id,
     @required this.level,
     @required this.category,
+    this.order,
     this.notes,
-    this.description,
   })  : assert(id != null),
         assert(level != null),
         assert(category != null);
@@ -26,8 +26,8 @@ class Collectible {
   final Level level;
   final Category category;
   CompletionStatus completionStatus = CompletionStatus.notCompleted;
-  final String description;
   final String notes;
+  final int order;
 
   factory Collectible.fromJson(Map<String, dynamic> json) {
     return Collectible(
@@ -42,7 +42,7 @@ class Collectible {
   bool get hasNotes => notes != null;
 
   String toString() =>
-      'id: $id, level: $level, category: $category, notes: $notes, description: $description completion status: $completionStatus';
+      'id: $id, level: $level, category: $category, notes: $notes, order: $order completion status: $completionStatus';
 
   //overly verbose horseshit
 

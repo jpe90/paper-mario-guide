@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 
 class CardBottom extends StatelessWidget {
   const CardBottom({
-    this.id,
-    this.categoryName,
-    this.padding,
-    this.value,
-    this.onChanged,
+    @required this.id,
+    @required this.categoryName,
+    @required this.padding,
+    @required this.value,
+    @required this.onChanged,
+    this.descr,
   });
 
   final int id;
@@ -14,6 +15,7 @@ class CardBottom extends StatelessWidget {
   final EdgeInsets padding;
   final bool value;
   final Function onChanged;
+  final String descr;
 
   void onCheckboxChanged(int id) {
     // setState(() {
@@ -31,17 +33,22 @@ class CardBottom extends StatelessWidget {
         padding: padding,
         child: Container(
           height: 55,
-          child: Row(
+          child: ListView(
             children: <Widget>[
-              Expanded(
-                child: Text('$categoryName #$id'),
+              Row(
+                children: <Widget>[
+                  Expanded(
+                    child: Text('$categoryName #$id'),
+                  ),
+                  Checkbox(
+                    value: value,
+                    onChanged: (bool newValue) {
+                      onChanged(newValue);
+                    },
+                  ),
+                ],
               ),
-              Checkbox(
-                value: value,
-                onChanged: (bool newValue) {
-                  onChanged(newValue);
-                },
-              ),
+              if (descr != null) Text(descr),
             ],
           ),
         ),

@@ -2,7 +2,8 @@
     {
         "id": 0,
         "level": "whisperingWoods",
-        "category": "hole"
+        "category": "hole",
+        "notes": "The Navigator will convert its Navigator.pages into a stack of Routes if it is provided. A change in Navigator.pages will trigger an update to the stack of Routes. The Navigator will update its routes to match the new configuration of its Navigator.pages. To use this API, one can use CustomBuilderPage or create a Page subclass and defines a list of Pages for Navigator.pages."
     },
     {
         "id": 1,
