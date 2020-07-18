@@ -38,6 +38,7 @@ class _FilterPageState extends State<FilterPage> {
   final List<Category> _categories = Category.values;
   final List<Level> _levels = Level.values;
   final List<CompletionStatus> _completionStatuses = CompletionStatus.values;
+  Color backgroundColor = Colors.grey[200];
 
   Category selectedCategory;
   Level selectedLevel;
@@ -61,7 +62,7 @@ class _FilterPageState extends State<FilterPage> {
     return Container(
         alignment: Alignment.topCenter,
         child: _buildRowOfFilters(context),
-        color: Colors.grey[200]);
+        color: backgroundColor);
   }
 
   Widget _buildRowOfFilters(BuildContext context) {
@@ -76,12 +77,12 @@ class _FilterPageState extends State<FilterPage> {
     return Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
-          _buildFilterColumn(context, selectableCategories, 'CATEGORIES'),
+          _buildFilterColumn(context, selectableCategories, 'COLLECTIBLES'),
           const VerticalDivider(
             width: 2,
             thickness: 2,
           ),
-          _buildFilterColumn(context, selectableLevels, 'LEVELS'),
+          _buildFilterColumn(context, selectableLevels, 'AREAS'),
           const VerticalDivider(
             width: 5,
             thickness: 2,
@@ -97,9 +98,13 @@ class _FilterPageState extends State<FilterPage> {
     children.add(SizedBox(
       height: 20,
     ));
-    children.add(Text(title,
-        textAlign: TextAlign.center,
-        style: TextStyle(fontWeight: FontWeight.w800, fontSize: 16)));
+    children.add(Container(
+      decoration:
+          const BoxDecoration(border: Border(bottom: BorderSide(width: 2))),
+      child: Text(title,
+          textAlign: TextAlign.center,
+          style: TextStyle(fontWeight: FontWeight.w800, fontSize: 16)),
+    ));
     children.add(SizedBox(
       height: 40,
     ));
@@ -111,6 +116,7 @@ class _FilterPageState extends State<FilterPage> {
   }
 
   Widget _buildSelectableCategory(Category category, BuildContext context) {
+    bool selected = category == selectedCategory;
     return GestureDetector(
       onTap: () {
         widget.onCategoryTap(category);
@@ -120,23 +126,24 @@ class _FilterPageState extends State<FilterPage> {
       },
       child: Padding(
         padding: EdgeInsets.symmetric(vertical: 16),
-        child: category == selectedCategory
-            ? RaisedButton(
-                onPressed: () => {},
-                color: Colors.cyan,
-                child: Text(
-                  Collectible.getDisplayNameForCategory(category),
-                  textAlign: TextAlign.center,
-                ))
-            : Text(
-                Collectible.getDisplayNameForCategory(category),
-                textAlign: TextAlign.center,
-              ),
+        child: AnimatedContainer(
+            curve: Curves.easeOut,
+            duration: Duration(milliseconds: 150),
+            margin: EdgeInsets.symmetric(horizontal: selected ? 10 : 15),
+            decoration: BoxDecoration(
+                color: selected ? Colors.cyan : backgroundColor,
+                border: Border.all(color: Colors.black, width: 3),
+                borderRadius: BorderRadius.circular(10)),
+            child: Text(
+              Collectible.getDisplayNameForCategory(category),
+              textAlign: TextAlign.center,
+            )),
       ),
     );
   }
 
   Widget _buildSelectableLevel(Level level, BuildContext context) {
+    bool selected = level == selectedLevel;
     return GestureDetector(
       onTap: () {
         widget.onLevelTap(level);
@@ -146,46 +153,99 @@ class _FilterPageState extends State<FilterPage> {
       },
       child: Padding(
         padding: EdgeInsets.symmetric(vertical: 16),
-        child: level == selectedLevel
-            ? RaisedButton(
-                onPressed: () => {},
-                color: Colors.cyan,
-                child: Text(
-                  Collectible.getDisplayNameForLevel(level),
-                  textAlign: TextAlign.center,
-                ))
-            : Text(
-                Collectible.getDisplayNameForLevel(level),
-                textAlign: TextAlign.center,
-              ),
+        child: AnimatedContainer(
+            curve: Curves.easeOut,
+            duration: Duration(milliseconds: 150),
+            margin: EdgeInsets.symmetric(horizontal: selected ? 10 : 15),
+            decoration: BoxDecoration(
+                color: selected ? Colors.cyan : backgroundColor,
+                border: Border.all(color: Colors.black, width: 3),
+                borderRadius: BorderRadius.circular(10)),
+            child: Text(
+              Collectible.getDisplayNameForLevel(level),
+              textAlign: TextAlign.center,
+            )),
       ),
     );
   }
 
   Widget _buildSelectableCompletionStatus(
-      CompletionStatus status, BuildContext context) {
+      CompletionStatus completionStatus, BuildContext context) {
+    bool selected = completionStatus == selectedCompletionStatus;
     return GestureDetector(
       onTap: () {
-        widget.onCompletionStatusTap(status);
+        widget.onCompletionStatusTap(completionStatus);
         setState(() {
-          onCompletionStatusTap(status);
+          onCompletionStatusTap(completionStatus);
         });
       },
       child: Padding(
         padding: EdgeInsets.symmetric(vertical: 16),
-        child: status == selectedCompletionStatus
-            ? RaisedButton(
-                onPressed: () => {},
-                color: Colors.cyan,
-                child: Text(
-                  Collectible.getDisplayNameForCompletionStatus(status),
-                  textAlign: TextAlign.center,
-                ))
-            : Text(
-                Collectible.getDisplayNameForCompletionStatus(status),
-                textAlign: TextAlign.center,
-              ),
+        child: AnimatedContainer(
+            curve: Curves.easeOut,
+            duration: Duration(milliseconds: 150),
+            margin: EdgeInsets.symmetric(horizontal: selected ? 10 : 15),
+            decoration: BoxDecoration(
+                color: selected ? Colors.cyan : backgroundColor,
+                border: Border.all(color: Colors.black, width: 3),
+                borderRadius: BorderRadius.circular(10)),
+            child: Text(
+              Collectible.getDisplayNameForCompletionStatus(completionStatus),
+              textAlign: TextAlign.center,
+            )),
       ),
     );
   }
+  // Widget _buildSelectableLevel(Level level, BuildContext context) {
+  //   return GestureDetector(
+  //     onTap: () {
+  //       widget.onLevelTap(level);
+  //       setState(() {
+  //         onLevelTap(level);
+  //       });
+  //     },
+  //     child: Padding(
+  //       padding: EdgeInsets.symmetric(vertical: 16),
+  //       child: level == selectedLevel
+  //           ? RaisedButton(
+  //               onPressed: () => {},
+  //               color: Colors.cyan,
+  //               child: Text(
+  //                 Collectible.getDisplayNameForLevel(level),
+  //                 textAlign: TextAlign.center,
+  //               ))
+  //           : Text(
+  //               Collectible.getDisplayNameForLevel(level),
+  //               textAlign: TextAlign.center,
+  //             ),
+  //     ),
+  //   );
+  // }
+
+  // Widget _buildSelectableCompletionStatus(
+  //     CompletionStatus status, BuildContext context) {
+  //   return GestureDetector(
+  //     onTap: () {
+  //       widget.onCompletionStatusTap(status);
+  //       setState(() {
+  //         onCompletionStatusTap(status);
+  //       });
+  //     },
+  //     child: Padding(
+  //       padding: EdgeInsets.symmetric(vertical: 16),
+  //       child: status == selectedCompletionStatus
+  //           ? RaisedButton(
+  //               onPressed: () => {},
+  //               color: Colors.cyan,
+  //               child: Text(
+  //                 Collectible.getDisplayNameForCompletionStatus(status),
+  //                 textAlign: TextAlign.center,
+  //               ))
+  //           : Text(
+  //               Collectible.getDisplayNameForCompletionStatus(status),
+  //               textAlign: TextAlign.center,
+  //             ),
+  //     ),
+  //   );
+  // }
 }

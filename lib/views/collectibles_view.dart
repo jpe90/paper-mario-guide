@@ -14,19 +14,6 @@ class CollectiblesView extends StatelessWidget {
       {@required this.collectibles, @required this.onCheckboxChanged})
       : assert(onCheckboxChanged != null);
 
-  GridView _buildGridCards(BuildContext context) {
-    return GridView.count(
-      crossAxisCount: 2,
-      mainAxisSpacing: 10,
-      crossAxisSpacing: 10,
-      padding: EdgeInsets.all(16.0),
-      childAspectRatio: 2.0 / 1.8,
-      children: collectibles
-          .map((collectible) => _gridElement(collectible, context))
-          .toList(),
-    );
-  }
-
 // on tap for lil' hero
   Widget collectibleDetailsPage(Collectible collectible, BuildContext context) {
     return Scaffold(
@@ -96,9 +83,16 @@ class CollectiblesView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //return GridView.builder();
-    //logger.d('in collevtibles view, size = ${collectibles.length}');
-    return _buildGridCards(context);
+    return GridView.count(
+      crossAxisCount: 2,
+      mainAxisSpacing: 10,
+      crossAxisSpacing: 10,
+      padding: EdgeInsets.all(16.0),
+      childAspectRatio: 2.0 / 1.8,
+      children: collectibles
+          .map((collectible) => _gridElement(collectible, context))
+          .toList(),
+    );
   }
 }
 
