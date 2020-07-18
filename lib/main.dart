@@ -38,27 +38,31 @@ class _MyAppState extends State<MyApp> {
   String ohGodWhy;
 
   @override
-  void initState() async {
+  void initState() {
     super.initState();
     status = LoadStatus.loading;
+    _doAsyncStuff();
     repository = CollectiblesRepository();
-    await loadCompletionFromSharedPrefs();
-    repository.loadCollectiblesFromJson().then((loadedCollectibles) {
+  }
+
+  Future<void> _doAsyncStuff() async {
+    try {
+      await loadCompletionFromSharedPrefs();
+      collectibles = await repository.loadCollectiblesFromJson();
       setState(() {
-        status = LoadStatus.completed;
-        collectibles = loadedCollectibles;
         collectibles.forEach((element) {
           bool toSet = prefs.getBool(element.id.toString()) ?? false;
           element.completionStatus = toSet
               ? CompletionStatus.completed
               : CompletionStatus.notCompleted;
         });
+        status = LoadStatus.completed;
       });
-    }).catchError((err) {
+    } catch (err) {
       logger.e(err.toString());
       ohGodWhy = err.toString();
       setState(() => status = LoadStatus.error);
-    });
+    }
   }
 
   // this needs to be in a separate method because initState can't be marked async
