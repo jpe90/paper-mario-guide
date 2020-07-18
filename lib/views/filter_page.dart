@@ -98,14 +98,15 @@ class _FilterPageState extends State<FilterPage> {
       height: 20,
     ));
     children.add(Text(title,
+        textAlign: TextAlign.center,
         style: TextStyle(fontWeight: FontWeight.w800, fontSize: 16)));
     children.add(SizedBox(
       height: 40,
     ));
     children += selectionList;
     return Flexible(
-      fit: FlexFit.loose,
-      child: Column(mainAxisSize: MainAxisSize.max, children: children),
+      fit: FlexFit.tight,
+      child: ListView(children: children),
     );
   }
 

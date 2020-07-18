@@ -28,23 +28,11 @@ class CollectiblesView extends StatelessWidget {
   }
 
 // on tap for lil' hero
-  // Widget collectibleDetailsPage(Collectible collectible, BuildContext context) {
-  //   return Scaffold(
-  //       appBar: AppBar(title: Text('Testing Hero')),
-  //       body: Container(
-  //           color: Colors.red,
-  //           child: CollectibleImageHero(
-  //             collectible: collectible,
-  //             onTap: () => Navigator.of(context).pop(),
-  //           )));
-  // }
-// on tap for lil' hero
   Widget collectibleDetailsPage(Collectible collectible, BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('Testing Hero')),
       body: Card(
         elevation: 8.0,
-        // child: ListView(
         child: Column(
           children: [
             Flexible(
@@ -68,7 +56,6 @@ class CollectiblesView extends StatelessWidget {
               },
             ),
           ],
-          //crossAxisAlignment: CrossAxisAlignment.start,
         ),
       ),
     );
