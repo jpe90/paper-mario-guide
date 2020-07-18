@@ -47,10 +47,13 @@ class CollectiblesView extends StatelessWidget {
         // child: ListView(
         child: Column(
           children: [
-            CollectibleImageHero(
-              collectible: collectible,
-              onTap: () => Navigator.of(context).pop(),
-              fit: BoxFit.fitHeight,
+            Flexible(
+              fit: FlexFit.loose,
+              child: CollectibleImageHero(
+                collectible: collectible,
+                onTap: () => Navigator.of(context).pop(),
+                fit: BoxFit.fitHeight,
+              ),
             ),
             CardBottom(
               id: collectible.id,
