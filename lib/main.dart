@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:paper_mario_guide/views/collectibles_view.dart';
+import 'package:origami_king_guide/views/collectibles_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'widgets/backdrop.dart';
 import 'models/collectible.dart';

@@ -1,4 +1,4 @@
-package com.example.paper_mario_guide
+package jpe.flutter.origami_king_guide
 
 import io.flutter.embedding.android.FlutterActivity
 

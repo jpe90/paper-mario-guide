@@ -88,8 +88,7 @@ class CollectiblesView extends StatelessWidget {
     );
   }
 
-  @override
-  Widget build(BuildContext context) {
+  Widget collectiblesGrid(BuildContext context) {
     return GridView.count(
       crossAxisCount: 2,
       mainAxisSpacing: 10,
@@ -100,6 +99,19 @@ class CollectiblesView extends StatelessWidget {
           .map((collectible) => _gridElement(collectible, context))
           .toList(),
     );
+  }
+
+  Widget emptyMessage(BuildContext context) {
+    return Center(
+      child: Text('No items match your selected filter criteria.'),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return collectibles.isEmpty
+        ? emptyMessage(context)
+        : collectiblesGrid(context);
   }
 }
 
