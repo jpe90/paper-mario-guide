@@ -16,12 +16,14 @@ class CollectiblesView extends StatelessWidget {
 
 // on tap for lil' hero
   Widget collectibleDetailsPage(Collectible collectible, BuildContext context) {
+    bool hasNotes = collectible.notes != null;
     return Scaffold(
       appBar: AppBar(title: Text('Testing Hero')),
       body: Material(
         elevation: 8.0,
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment:
+              hasNotes ? MainAxisAlignment.start : MainAxisAlignment.center,
           children: [
             Flexible(
               fit: FlexFit.loose,
@@ -31,18 +33,23 @@ class CollectiblesView extends StatelessWidget {
                 fit: BoxFit.fitHeight,
               ),
             ),
-            CardBottom(
-              id: collectible.id,
-              categoryName:
-                  Collectible.getDisplayNameForCategory(collectible.category),
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              value: Collectible.getBoolFromCompletionStatus(
-                  collectible.completionStatus),
-              onChanged: (complete) {
-                onCheckboxChanged(
-                    collectible, Collectible.getStatusFromBool(complete));
-              },
-              descr: collectible.notes,
+            Flexible(
+              flex: 1,
+              fit: hasNotes ? FlexFit.tight : FlexFit.loose,
+              child: CardBottom(
+                id: collectible.id,
+                categoryName:
+                    Collectible.getDisplayNameForCategory(collectible.category),
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                value: Collectible.getBoolFromCompletionStatus(
+                    collectible.completionStatus),
+                onChanged: (complete) {
+                  onCheckboxChanged(
+                      collectible, Collectible.getStatusFromBool(complete));
+                },
+                descr: collectible.notes,
+                height: 0,
+              ),
             ),
           ],
         ),

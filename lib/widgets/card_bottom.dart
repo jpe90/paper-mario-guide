@@ -8,6 +8,7 @@ class CardBottom extends StatelessWidget {
     @required this.value,
     @required this.onChanged,
     this.descr,
+    this.height = 55,
   });
 
   final int id;
@@ -16,6 +17,7 @@ class CardBottom extends StatelessWidget {
   final bool value;
   final Function onChanged;
   final String descr;
+  final int height;
 
   void onCheckboxChanged(int id) {
     // setState(() {
@@ -39,8 +41,6 @@ class CardBottom extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
                   Text('$categoryName #$id'),
-                  if (descr != null)
-                    RaisedButton(onPressed: () {}, child: Text('Notes')),
                   Checkbox(
                     value: value,
                     onChanged: (bool newValue) {
@@ -49,6 +49,7 @@ class CardBottom extends StatelessWidget {
                   ),
                 ],
               ),
+              if (descr != null) Text(descr)
             ],
           ),
         ),
