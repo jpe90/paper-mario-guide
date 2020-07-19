@@ -127,7 +127,14 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       title: 'Paper Mario: The Oragami King Collectible Guide',
       theme: ThemeData(
-          primarySwatch: Colors.red,
+          // primarySwatch: Colors.red,
+          primaryColor: Colors.red,
+          accentColor: Colors.cyanAccent[400],
+          dividerColor: Colors.black,
+          canvasColor: Colors.white,
+          splashColor: Colors.white,
+          // cardColor: Colors.cyan[50],
+          //brightness: Brightness.dark,
           visualDensity: VisualDensity.adaptivePlatformDensity,
           fontFamily: 'mario'),
       home: Backdrop(
