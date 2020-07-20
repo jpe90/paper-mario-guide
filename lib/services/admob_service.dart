@@ -16,7 +16,8 @@ class AdmobService {
       // TODO: return iOS string
       return null;
     } else if (Platform.isAndroid) {
-      return 'ca-app-pub-5741020440631678/3697116637';
+      //return 'ca-app-pub-5741020440631678/3697116637';
+      return 'ca-app-pub-3940256099942544/6300978111';
     }
     return null;
   }
