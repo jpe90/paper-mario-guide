@@ -1,4 +1,6 @@
+import 'package:admob_flutter/admob_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:origami_king_guide/services/admob_service.dart';
 
 import '../widgets/card_bottom.dart';
 import '../models/collectible.dart';
@@ -6,13 +8,17 @@ import '../models/collectible.dart';
 import 'package:logger/logger.dart' as l;
 
 class CollectiblesView extends StatelessWidget {
+  final AdmobService ams;
   final List<Collectible> collectibles;
   final void Function(Collectible collectible, CompletionStatus status)
       onCheckboxChanged;
 
   const CollectiblesView(
-      {@required this.collectibles, @required this.onCheckboxChanged})
-      : assert(onCheckboxChanged != null);
+      {@required this.collectibles,
+      @required this.onCheckboxChanged,
+      @required this.ams})
+      : assert(onCheckboxChanged != null),
+        assert(ams != null);
 
 // on tap for lil' hero
   Widget collectibleDetailsPage(Collectible collectible, BuildContext context) {
@@ -90,15 +96,14 @@ class CollectiblesView extends StatelessWidget {
 
   Widget collectiblesGrid(BuildContext context) {
     return GridView.count(
-      crossAxisCount: 2,
-      mainAxisSpacing: 10,
-      crossAxisSpacing: 10,
-      padding: EdgeInsets.all(16.0),
-      childAspectRatio: 2.0 / 1.8,
-      children: collectibles
-          .map((collectible) => _gridElement(collectible, context))
-          .toList(),
-    );
+        crossAxisCount: 2,
+        mainAxisSpacing: 10,
+        crossAxisSpacing: 10,
+        padding: EdgeInsets.all(16.0),
+        childAspectRatio: 2.0 / 1.8,
+        children: collectibles
+            .map((collectible) => _gridElement(collectible, context))
+            .toList());
   }
 
   Widget emptyMessage(BuildContext context) {
@@ -109,9 +114,9 @@ class CollectiblesView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return collectibles.isEmpty
-        ? emptyMessage(context)
-        : collectiblesGrid(context);
+    var admobBanner = AdmobBanner(
+        adUnitId: ams.getBannerAdId(), adSize: AdmobBannerSize.FULL_BANNER);
+    return collectibles.isEmpty ? admobBanner : collectiblesGrid(context);
   }
 }
 
