@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "872924523896",
+    "firebase_url": "https://paper-mario-guide.firebaseio.com",
+    "project_id": "paper-mario-guide",
+    "storage_bucket": "paper-mario-guide.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:872924523896:android:cc1eb7ca919de20c0a6c8d",
+        "android_client_info": {
+          "package_name": "jpe.flutter.origami_king_guide"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "872924523896-e09p7445qf6pc4vp6q3ea0c64a77a1ed.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBsoAbi8GmvILQRsoHQGXH9JbM9jLwHYJg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "872924523896-e09p7445qf6pc4vp6q3ea0c64a77a1ed.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
