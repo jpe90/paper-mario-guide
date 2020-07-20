@@ -14,6 +14,8 @@ import 'views/filter_page.dart';
 var logger = l.Logger(printer: l.PrettyPrinter());
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  Admob.initialize(AdmobService.getAdMobAppId());
   runApp(MyApp(key: UniqueKey()));
 }
 
@@ -38,7 +40,6 @@ class _MyAppState extends State<MyApp> {
   CompletionStatus _currentCompletionStatus = CompletionStatus.all;
   SharedPreferences prefs;
   String ohGodWhy;
-  final ams = AdmobService();
 
   @override
   void initState() {
@@ -46,7 +47,6 @@ class _MyAppState extends State<MyApp> {
     status = LoadStatus.loading;
     _doAsyncStuff();
     repository = CollectiblesRepository();
-    Admob.initialize(ams.getAdMobAppId());
   }
 
   Future<void> _doAsyncStuff() async {
@@ -106,13 +106,12 @@ class _MyAppState extends State<MyApp> {
     });
   }
 
-  Widget getFrontLayerForLoadStatus(LoadStatus status, AdmobService ams) {
+  Widget getFrontLayerForLoadStatus(LoadStatus status) {
     if (status == LoadStatus.loading) {
       return Text('loading');
     } else if (status == LoadStatus.completed) {
       //logger.d('well its trying to draw something at least');
       return CollectiblesView(
-          ams: ams,
           onCheckboxChanged: onCheckboxChanged,
           collectibles: getFilteredCollectibles(
               _currentCategory, _currentLevel, _currentCompletionStatus));
@@ -128,7 +127,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    Widget frontLayer = getFrontLayerForLoadStatus(status, ams);
+    Widget frontLayer = getFrontLayerForLoadStatus(status);
     return MaterialApp(
       title: 'Paper Mario: The Oragami King Collectible Guide',
       theme: ThemeData(

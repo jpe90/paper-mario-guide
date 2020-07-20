@@ -1,7 +1,7 @@
 import 'dart:io';
 
 class AdmobService {
-  String getAdMobAppId() {
+  static String getAdMobAppId() {
     if (Platform.isIOS) {
       // TODO: return iOS string
       return null;
@@ -11,7 +11,7 @@ class AdmobService {
     return null;
   }
 
-  String getBannerAdId() {
+  static String getBannerAdId() {
     if (Platform.isIOS) {
       // TODO: return iOS string
       return null;

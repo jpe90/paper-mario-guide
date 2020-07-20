@@ -33,7 +33,8 @@
             }
           ]
         }
-      }
+      },
+      "admob_app_id": "ca-app-pub-5741020440631678~6845475412"
     }
   ],
   "configuration_version": "1"

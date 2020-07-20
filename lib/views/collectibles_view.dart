@@ -8,17 +8,13 @@ import '../models/collectible.dart';
 import 'package:logger/logger.dart' as l;
 
 class CollectiblesView extends StatelessWidget {
-  final AdmobService ams;
   final List<Collectible> collectibles;
   final void Function(Collectible collectible, CompletionStatus status)
       onCheckboxChanged;
 
   const CollectiblesView(
-      {@required this.collectibles,
-      @required this.onCheckboxChanged,
-      @required this.ams})
-      : assert(onCheckboxChanged != null),
-        assert(ams != null);
+      {@required this.collectibles, @required this.onCheckboxChanged})
+      : assert(onCheckboxChanged != null);
 
 // on tap for lil' hero
   Widget collectibleDetailsPage(Collectible collectible, BuildContext context) {
@@ -115,8 +111,14 @@ class CollectiblesView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var admobBanner = AdmobBanner(
-        adUnitId: ams.getBannerAdId(), adSize: AdmobBannerSize.FULL_BANNER);
-    return collectibles.isEmpty ? admobBanner : collectiblesGrid(context);
+        adUnitId: AdmobService.getBannerAdId(),
+        adSize: AdmobBannerSize.FULL_BANNER);
+    return collectibles.isEmpty
+        ? Center(child: admobBanner)
+        : collectiblesGrid(context);
+    // return collectibles.isEmpty
+    //     ? emptyMessage(context)
+    //     : collectiblesGrid(context);
   }
 }
 

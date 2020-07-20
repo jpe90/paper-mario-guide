@@ -33,12 +33,17 @@
               android:name="io.flutter.embedding.android.SplashScreenDrawable"
               android:resource="@drawable/launch_background"
               />
-              <meta-data android:name="com.google.android.gms.ads.APPLICATION_ID" android:value="ca-app-pub-5741020440631678~6845475412" />
+              <!-- <meta-data android:name="com.google.android.gms.ads.APPLICATION_ID" android:value="ca-app-pub-3940256099942544~3347511713" /> -->
+              <!-- <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-5741020440631678~6845475412"/> -->
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+              <meta-data android:name="com.google.android.gms.ads.APPLICATION_ID" android:value="ca-app-pub-5741020440631678~6845475412" />
         <!-- Don't delete the meta-data below.
              This is used by the Flutter tool to generate GeneratedPluginRegistrant.java -->
         <meta-data
