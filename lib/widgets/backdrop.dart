@@ -49,25 +49,11 @@ class _BackdropState extends State<Backdrop>
       end: RelativeRect.fromLTRB(0.0, 0.0, 0.0, 0.0),
     ).animate(_controller.view);
 
-    return Column(
-      children: <Widget>[
-        Expanded(
-          child: Stack(children: <Widget>[
-            widget.backLayer,
-            PositionedTransition(
-                rect: layerAnimation,
-                child: _FrontLayer(child: widget.frontLayer))
-          ]),
-        ),
-        admobBanner(),
-      ],
-    );
-  }
-
-  Widget admobBanner() {
-    return AdmobBanner(
-        adUnitId: AdmobService.getBannerAdId(),
-        adSize: AdmobBannerSize.FULL_BANNER);
+    return Stack(children: <Widget>[
+      widget.backLayer,
+      PositionedTransition(
+          rect: layerAnimation, child: _FrontLayer(child: widget.frontLayer))
+    ]);
   }
 
   AnimationController _controller;

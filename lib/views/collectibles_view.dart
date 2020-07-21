@@ -113,9 +113,16 @@ class CollectiblesView extends StatelessWidget {
     var admobBanner = AdmobBanner(
         adUnitId: AdmobService.getBannerAdId(),
         adSize: AdmobBannerSize.FULL_BANNER);
-    return collectibles.isEmpty
-        ? Center(child: admobBanner)
-        : collectiblesGrid(context);
+    return Column(
+      children: <Widget>[
+        Expanded(
+          child: collectibles.isEmpty
+              ? Center(child: emptyMessage(context))
+              : collectiblesGrid(context),
+        ),
+        admobBanner
+      ],
+    );
     // return collectibles.isEmpty
     //     ? emptyMessage(context)
     //     : collectiblesGrid(context);
