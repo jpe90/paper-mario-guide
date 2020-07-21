@@ -1,3 +1,5 @@
+import 'package:admob_flutter/admob_flutter.dart';
+import 'package:origami_king_guide/services/admob_service.dart';
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 import 'package:logger/logger.dart';
@@ -47,11 +49,25 @@ class _BackdropState extends State<Backdrop>
       end: RelativeRect.fromLTRB(0.0, 0.0, 0.0, 0.0),
     ).animate(_controller.view);
 
-    return Stack(children: <Widget>[
-      widget.backLayer,
-      PositionedTransition(
-          rect: layerAnimation, child: _FrontLayer(child: widget.frontLayer))
-    ]);
+    return Column(
+      children: <Widget>[
+        Expanded(
+          child: Stack(children: <Widget>[
+            widget.backLayer,
+            PositionedTransition(
+                rect: layerAnimation,
+                child: _FrontLayer(child: widget.frontLayer))
+          ]),
+        ),
+        admobBanner(),
+      ],
+    );
+  }
+
+  Widget admobBanner() {
+    return AdmobBanner(
+        adUnitId: AdmobService.getBannerAdId(),
+        adSize: AdmobBannerSize.FULL_BANNER);
   }
 
   AnimationController _controller;
