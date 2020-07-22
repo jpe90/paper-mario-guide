@@ -7,6 +7,15 @@ enum Level {
   all,
   whisperingWoods,
   toadTown,
+  graffitiUnderground,
+  picnicRoad,
+  overlookMountain,
+  earthVellumental,
+  overlookTower,
+  autumnMountain,
+  chestnutValley,
+  waterVellumental,
+  eddyRiver
 }
 enum Category { all, toad, box, hole, treasure }
 enum CompletionStatus { all, completed, notCompleted }
@@ -53,6 +62,33 @@ class Collectible {
         break;
       case Level.toadTown:
         return "Toad Town";
+        break;
+      case Level.graffitiUnderground:
+        return "Graffiti Underground";
+        break;
+      case Level.picnicRoad:
+        return "Picnic Road";
+        break;
+      case Level.overlookMountain:
+        return "Overlook Mountain";
+        break;
+      case Level.earthVellumental:
+        return "Earth Ellumental Temple";
+        break;
+      case Level.overlookTower:
+        return "Overlook Tower";
+        break;
+      case Level.autumnMountain:
+        return "Autumn Mountain";
+        break;
+      case Level.chestnutValley:
+        return "Chestnut Valley";
+        break;
+      case Level.waterVellumental:
+        return "Water Vellumental Shrine";
+        break;
+      case Level.eddyRiver:
+        return "Eddy River";
         break;
       default:
         return "All";
@@ -109,6 +145,33 @@ class Collectible {
         break;
       case "whisperingWoods":
         return Level.whisperingWoods;
+        break;
+      case "graffitiUnderground":
+        return Level.graffitiUnderground;
+        break;
+      case "picnicRoad":
+        return Level.picnicRoad;
+        break;
+      case "overlookMountain":
+        return Level.overlookMountain;
+        break;
+      case "earthVellumental":
+        return Level.earthVellumental;
+        break;
+      case "overlookTower":
+        return Level.overlookTower;
+        break;
+      case "autumnMountain":
+        return Level.autumnMountain;
+        break;
+      case "chestnutValley":
+        return Level.chestnutValley;
+        break;
+      case "waterVellumental":
+        return Level.waterVellumental;
+        break;
+      case "eddyRiver":
+        return Level.eddyRiver;
         break;
       default:
         return null;
