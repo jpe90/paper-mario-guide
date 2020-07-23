@@ -113,23 +113,22 @@ class _FilterPageState extends State<FilterPage> {
 
   Widget _buildFilterColumn(
       BuildContext context, List<Widget> selectionList, String title) {
-    List<Widget> children = [];
-    children.add(SizedBox(
-      height: 20,
-    ));
-    children.add(Container(
-        decoration:
-            const BoxDecoration(border: Border(bottom: BorderSide(width: 2))),
-        child: Text(title,
-            textAlign: TextAlign.center,
-            style: TextStyle(fontWeight: FontWeight.w800, fontSize: 16))));
-    children.add(SizedBox(
-      height: 40,
-    ));
-    children += selectionList;
     return Flexible(
       fit: FlexFit.tight,
-      child: ListView(children: children),
+      //child: ListView(children: children),
+      child: CustomScrollView(slivers: [
+        SliverAppBar(
+          centerTitle: true,
+          title: Text(title,
+              style: TextStyle(
+                fontSize: 12,
+                color: Colors.black,
+              )),
+          pinned: true,
+          backgroundColor: Theme.of(context).splashColor,
+        ),
+        SliverList(delegate: SliverChildListDelegate(selectionList)),
+      ]),
     );
   }
 
@@ -152,6 +151,7 @@ class _FilterPageState extends State<FilterPage> {
             child: Text(
               titleText,
               textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 10),
             )),
       ),
     );
