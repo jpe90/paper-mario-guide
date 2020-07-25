@@ -4,10 +4,32 @@ import 'dart:io';
 import '../lib/models/collectible.dart';
 
 writeCollectiblesJsonToFile(String path) {
-  List<Collectible> muhCollectibles = [];
-  String json = jsonEncode(muhCollectibles);
+  //List<Collectible> muhCollectibles = [];
+  List<Collectible> muhCollectibles = createCollectiblesJson();
+  JsonEncoder encoder = JsonEncoder.withIndent('  ');
+  String json = encoder.convert(muhCollectibles);
   print(json);
   new File(path).writeAsString(json);
+}
+
+List<Collectible> createCollectiblesJson() {
+  List<Collectible> whisperingWoods = createCollectibleListForLevel(
+      level: Level.whisperingWoods,
+      startingId: 0,
+      numHoles: 25,
+      numToads: 12,
+      numBoxes: 10,
+      numTreasures: 3);
+
+  List<Collectible> toadTown = createCollectibleListForLevel(
+      level: Level.toadTown,
+      startingId: 50,
+      numHoles: 16,
+      numToads: 1,
+      numBoxes: 9,
+      numTreasures: 13);
+
+  return whisperingWoods + toadTown;
 }
 
 List<Collectible> createCollectibleListForLevel(
