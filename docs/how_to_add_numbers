@@ -1,0 +1,12 @@
+what's a shorthand to tell how many integers are encompassed by a range?
+
+0-1 is 2
+1-2 is 2
+1-10 is 10, even though 10-1 = 9
+omg
+2-1 + 1
+
+so if we're at 57
+and there's 1 more
+
+the next range ends at [last + size]
