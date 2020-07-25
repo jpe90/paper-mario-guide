@@ -9,7 +9,8 @@ import '../models/collectible.dart';
 class CollectiblesRepository {
   //GridModelService() : _logger = Logger(printer: PrettyPrinter());
   //var _logger;
-  static const jsonDataFile = 'data/collectibles.json';
+  //static const jsonDataFile = 'data/collectibles.json';
+  static const jsonDataFile = 'data/muhJson.json';
   CollectiblesRepository();
 
   Future<String> readJsonData() async {
@@ -30,5 +31,12 @@ class CollectiblesRepository {
     } catch (e) {
       throw Exception('Exception in getAllCollectibles : $e');
     }
+  }
+
+  writeCollectiblesJsonToFile(String path) {
+    Collectible testCollectible =
+        Collectible(id: 0, level: Level.toadTown, category: Category.toad);
+    String json = jsonEncode(testCollectible);
+    print(json);
   }
 }

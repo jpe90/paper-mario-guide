@@ -1,0 +1,4 @@
+name: seeder
+dependencies:
+  meta: ^1.2.2
+  logger: ^0.9.1

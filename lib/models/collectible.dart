@@ -1,4 +1,4 @@
-import 'package:flutter/foundation.dart';
+import 'package:meta/meta.dart';
 
 import 'package:logger/logger.dart';
 
@@ -43,8 +43,15 @@ class Collectible {
         id: json["id"],
         level: getLevelFromString(json["level"]),
         category: getCategoryFromString(json["category"]),
-        notes: json["notes"]);
+        notes: json["notes"],
+        order: json["order"]);
   }
+
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'level': getEncodingNameForLevel(level),
+        'category': getEncodingNameForCategory(category)
+      };
 
   String get thumbnailAssetName => 'assets/thumbnails/$id.jpg';
   String get fullAssetName => 'assets/full/$id.jpg';
@@ -192,6 +199,67 @@ class Collectible {
         break;
       case "treasure":
         return Category.treasure;
+        break;
+      default:
+        return null;
+        break;
+    }
+  }
+
+  static String getEncodingNameForCategory(Category category) {
+    switch (category) {
+      case Category.toad:
+        return "toad";
+        break;
+      case Category.box:
+        return "box";
+        break;
+      case Category.hole:
+        return "hole";
+        break;
+      case Category.treasure:
+        return "treasure";
+        break;
+      default:
+        return null;
+        break;
+    }
+  }
+
+  static String getEncodingNameForLevel(Level level) {
+    switch (level) {
+      case Level.toadTown:
+        return "toadTown";
+        break;
+      case Level.whisperingWoods:
+        return "whisperingWoods";
+        break;
+      case Level.graffitiUnderground:
+        return "graffitiUnderground";
+        break;
+      case Level.picnicRoad:
+        return "picnicRoad";
+        break;
+      case Level.overlookMountain:
+        return "overlookMountain";
+        break;
+      case Level.earthVellumental:
+        return "earthVellumental";
+        break;
+      case Level.overlookTower:
+        return "overlookTower";
+        break;
+      case Level.autumnMountain:
+        return "autumnMountain";
+        break;
+      case Level.chestnutValley:
+        return "chestnutValley";
+        break;
+      case Level.waterVellumental:
+        return "waterVellumental";
+        break;
+      case Level.eddyRiver:
+        return "eddyRiver";
         break;
       default:
         return null;
