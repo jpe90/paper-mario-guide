@@ -50,7 +50,8 @@ class Collectible {
   Map<String, dynamic> toJson() => {
         'id': id,
         'level': getEncodingNameForLevel(level),
-        'category': getEncodingNameForCategory(category)
+        'category': getEncodingNameForCategory(category),
+        if (notes != null) 'notes': notes
       };
 
   String get thumbnailAssetName => 'assets/thumbnails/$id.jpg';
