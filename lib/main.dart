@@ -39,6 +39,7 @@ class _MyAppState extends State<MyApp> {
   Level _currentLevel;
   CompletionStatus _currentCompletionStatus;
   SharedPreferences prefs;
+  String errorMessage;
 
   @override
   void initState() {
@@ -49,11 +50,12 @@ class _MyAppState extends State<MyApp> {
     _currentLevel = Level.all;
     _currentCompletionStatus = CompletionStatus.all;
     status = LoadStatus.loading;
-    _doAsyncStuff();
+    errorMessage = "";
+    _loadCollectiblesFromPrefs();
     repository = CollectiblesRepository();
   }
 
-  Future<void> _doAsyncStuff() async {
+  Future<void> _loadCollectiblesFromPrefs() async {
     try {
       await loadCompletionFromSharedPrefs();
       collectibles = await repository.loadCollectiblesFromJson();
@@ -68,6 +70,7 @@ class _MyAppState extends State<MyApp> {
       });
     } catch (err) {
       logger.e(err.toString());
+      errorMessage = err.toString();
       setState(() => status = LoadStatus.error);
     }
   }
@@ -77,8 +80,11 @@ class _MyAppState extends State<MyApp> {
     prefs = await SharedPreferences.getInstance();
     if (prefs == null) {
       status = LoadStatus.error;
+      errorMessage = "Shared prefs not found.";
     }
   }
+
+  // callbacks
 
   List<Collectible> getFilteredCollectibles(
       Category category, Level level, CompletionStatus completionStatus) {
@@ -86,7 +92,8 @@ class _MyAppState extends State<MyApp> {
       return (category == Category.all || category == element.category) &&
           (level == Level.all || level == element.level) &&
           (completionStatus == CompletionStatus.all ||
-              completionStatus == element.completionStatus);
+              prefs.getBool(element.id.toString()) ==
+                  Collectible.getBoolFromCompletionStatus(completionStatus));
     }).toList();
   }
 
@@ -108,6 +115,12 @@ class _MyAppState extends State<MyApp> {
     });
   }
 
+  void onCategoryTap(Category category) =>
+      setState(() => _currentCategory = category);
+  void onLevelTap(Level level) => setState(() => _currentLevel = level);
+  void onCompletionStatusTap(CompletionStatus status) =>
+      setState(() => _currentCompletionStatus = status);
+
   Widget getFrontLayerForLoadStatus(LoadStatus status) {
     if (status == LoadStatus.loading) {
       return Text('loading');
@@ -118,14 +131,9 @@ class _MyAppState extends State<MyApp> {
           collectibles: getFilteredCollectibles(
               _currentCategory, _currentLevel, _currentCompletionStatus));
     } else
-      return ErrorPage(errorInfo: "no message code written");
+      return ErrorPage(
+          errorInfo: errorMessage ?? "No error message specified.");
   }
-
-  void onCategoryTap(Category category) =>
-      setState(() => _currentCategory = category);
-  void onLevelTap(Level level) => setState(() => _currentLevel = level);
-  void onCompletionStatusTap(CompletionStatus status) =>
-      setState(() => _currentCompletionStatus = status);
 
   @override
   Widget build(BuildContext context) {
@@ -139,8 +147,6 @@ class _MyAppState extends State<MyApp> {
           dividerColor: Colors.black,
           canvasColor: Colors.white,
           splashColor: Colors.white,
-          // cardColor: Colors.cyan[50],
-          //brightness: Brightness.dark,
           visualDensity: VisualDensity.adaptivePlatformDensity,
           fontFamily: 'mario'),
       home: Backdrop(
