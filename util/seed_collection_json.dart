@@ -17,6 +17,7 @@ Map<int, String> notesMap = {
   76: "Found through a hidden tunnel to the left of a house with a red mushroom roof.",
   77: "Found by walking through a house with green origami.",
   78: "Defeat the giant Goomba on the roof of the large building.",
+  79: "After defeating the colored pencils, walk behind the red building to get to a pier. Hit the barrel with your hammer and purchase the treasure from the mole.",
   89: "Hidden passage to the right of the green warp pipe.",
   90: "Hit the crate to reveal a toad.",
   95: "Hidden passage to the right of the green warp pipe.",
@@ -164,6 +165,10 @@ Map<int, String> notesMap = {
       "Talk to the Chef after getting rid of the Goombas in the kitchen and restaraunt.",
   304: "Hit the yellow colored pencil.",
   305: "After defeating the colored pencils, hit the telescope.",
+  307:
+      "After defeating the colored pencils, talk to the toad at the Overlook Mountain tram, and then speak to the chef in the Overlook Tower kitchen.",
+  308:
+      "After defeating the colored pencils, talk to the toad at the Overlook Mountain tram, and then speak to the toad at the Overlook Tower coffee shop."
 };
 
 writeCollectiblesJsonToFile(String path) {

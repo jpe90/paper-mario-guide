@@ -33,17 +33,21 @@ class CollectiblesCollection {}
 class _MyAppState extends State<MyApp> {
   LoadStatus status;
   CollectiblesRepository repository;
-  List<Collectible> collectibles = [];
-  List<Collectible> filteredCollectibles = [];
-  Category _currentCategory = Category.all;
-  Level _currentLevel = Level.all;
-  CompletionStatus _currentCompletionStatus = CompletionStatus.all;
+  List<Collectible> collectibles;
+  List<Collectible> filteredCollectibles;
+  Category _currentCategory;
+  Level _currentLevel;
+  CompletionStatus _currentCompletionStatus;
   SharedPreferences prefs;
-  String ohGodWhy;
 
   @override
   void initState() {
     super.initState();
+    collectibles = [];
+    filteredCollectibles = [];
+    _currentCategory = Category.all;
+    _currentLevel = Level.all;
+    _currentCompletionStatus = CompletionStatus.all;
     status = LoadStatus.loading;
     _doAsyncStuff();
     repository = CollectiblesRepository();
@@ -64,7 +68,6 @@ class _MyAppState extends State<MyApp> {
       });
     } catch (err) {
       logger.e(err.toString());
-      ohGodWhy = err.toString();
       setState(() => status = LoadStatus.error);
     }
   }
@@ -74,7 +77,6 @@ class _MyAppState extends State<MyApp> {
     prefs = await SharedPreferences.getInstance();
     if (prefs == null) {
       status = LoadStatus.error;
-      ohGodWhy = "SHIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIT";
     }
   }
 
@@ -116,7 +118,7 @@ class _MyAppState extends State<MyApp> {
           collectibles: getFilteredCollectibles(
               _currentCategory, _currentLevel, _currentCompletionStatus));
     } else
-      return ErrorPage(errorInfo: ohGodWhy);
+      return ErrorPage(errorInfo: "no message code written");
   }
 
   void onCategoryTap(Category category) =>
