@@ -28,7 +28,9 @@ class MyApp extends StatefulWidget {
   createState() => _MyAppState();
 }
 
-class CollectiblesCollection {}
+// maintains state for whether completion statuses & json were successfully loaded (LoadStatus), which
+// category, level, and completion status are currently filtered, and the shared prefs containing completion
+// bools
 
 class _MyAppState extends State<MyApp> {
   LoadStatus status;
@@ -51,23 +53,16 @@ class _MyAppState extends State<MyApp> {
     _currentCompletionStatus = CompletionStatus.all;
     status = LoadStatus.loading;
     errorMessage = "";
-    _loadCollectiblesFromPrefs();
     repository = CollectiblesRepository();
+    _loadCollectiblesFromPrefs();
+    setState(() {});
   }
 
   Future<void> _loadCollectiblesFromPrefs() async {
     try {
       await loadCompletionFromSharedPrefs();
       collectibles = await repository.loadCollectiblesFromJson();
-      setState(() {
-        collectibles.forEach((element) {
-          bool toSet = prefs.getBool(element.id.toString()) ?? false;
-          element.completionStatus = toSet
-              ? CompletionStatus.completed
-              : CompletionStatus.notCompleted;
-        });
-        status = LoadStatus.completed;
-      });
+      status = LoadStatus.completed;
     } catch (err) {
       logger.e(err.toString());
       errorMessage = err.toString();
@@ -86,6 +81,10 @@ class _MyAppState extends State<MyApp> {
 
   // callbacks
 
+  bool getCompletionStatusForId(int id) {
+    return prefs.getBool(id.toString());
+  }
+
   List<Collectible> getFilteredCollectibles(
       Category category, Level level, CompletionStatus completionStatus) {
     return collectibles.where((element) {
@@ -97,19 +96,8 @@ class _MyAppState extends State<MyApp> {
     }).toList();
   }
 
-  void changeCompletionStatus(int id) {
-    var toSet = collectibles.singleWhere((element) => element.id == id);
-    if (toSet != null) {
-      toSet.completionStatus =
-          toSet.completionStatus == CompletionStatus.completed
-              ? CompletionStatus.notCompleted
-              : CompletionStatus.completed;
-    }
-  }
-
   void onCheckboxChanged(Collectible collectible, CompletionStatus status) {
     setState(() {
-      collectible.completionStatus = status;
       bool toSet = status == CompletionStatus.completed ? true : false;
       prefs.setBool(collectible.id.toString(), toSet);
     });
@@ -128,6 +116,7 @@ class _MyAppState extends State<MyApp> {
       //logger.d('well its trying to draw something at least');
       return CollectiblesView(
           onCheckboxChanged: onCheckboxChanged,
+          getCompletionStatus: getCompletionStatusForId,
           collectibles: getFilteredCollectibles(
               _currentCategory, _currentLevel, _currentCompletionStatus));
     } else

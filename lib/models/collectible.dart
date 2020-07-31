@@ -21,7 +21,7 @@ enum Category { all, toad, box, hole, treasure }
 enum CompletionStatus { all, completed, notCompleted }
 
 class Collectible {
-  Collectible({
+  const Collectible({
     @required this.id,
     @required this.level,
     @required this.category,
@@ -34,7 +34,6 @@ class Collectible {
   final int id;
   final Level level;
   final Category category;
-  CompletionStatus completionStatus = CompletionStatus.notCompleted;
   final String notes;
   final int order;
 
@@ -59,7 +58,7 @@ class Collectible {
   bool get hasNotes => notes != null;
 
   String toString() =>
-      'id: $id, level: $level, category: $category, notes: $notes, order: $order completion status: $completionStatus';
+      'id: $id, level: $level, category: $category, notes: $notes, order: $order ';
 
   //overly verbose horseshit
 

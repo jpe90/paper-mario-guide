@@ -9,12 +9,16 @@ import 'package:logger/logger.dart' as l;
 
 class CollectiblesView extends StatelessWidget {
   final List<Collectible> collectibles;
+  final bool Function(int id) getCompletionStatus;
   final void Function(Collectible collectible, CompletionStatus status)
       onCheckboxChanged;
 
   const CollectiblesView(
-      {@required this.collectibles, @required this.onCheckboxChanged})
-      : assert(onCheckboxChanged != null);
+      {@required this.collectibles,
+      @required this.onCheckboxChanged,
+      @required this.getCompletionStatus})
+      : assert(onCheckboxChanged != null),
+        assert(getCompletionStatus != null);
 
 // on tap for lil' hero
   Widget collectibleDetailsPage(Collectible collectible, BuildContext context) {
@@ -43,8 +47,7 @@ class CollectiblesView extends StatelessWidget {
                 categoryName:
                     Collectible.getDisplayNameForCategory(collectible.category),
                 padding: const EdgeInsets.symmetric(horizontal: 10),
-                value: Collectible.getBoolFromCompletionStatus(
-                    collectible.completionStatus),
+                value: getCompletionStatus(collectible.id),
                 onChanged: (complete) {
                   onCheckboxChanged(
                       collectible, Collectible.getStatusFromBool(complete));
@@ -77,8 +80,7 @@ class CollectiblesView extends StatelessWidget {
             categoryName:
                 Collectible.getDisplayNameForCategory(collectible.category),
             padding: const EdgeInsets.symmetric(horizontal: 10),
-            value: Collectible.getBoolFromCompletionStatus(
-                collectible.completionStatus),
+            value: getCompletionStatus(collectible.id),
             onChanged: (complete) {
               onCheckboxChanged(
                   collectible, Collectible.getStatusFromBool(complete));
