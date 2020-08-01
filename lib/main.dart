@@ -55,14 +55,13 @@ class _MyAppState extends State<MyApp> {
     errorMessage = "";
     repository = CollectiblesRepository();
     _loadCollectiblesFromPrefs();
-    setState(() {});
   }
 
   Future<void> _loadCollectiblesFromPrefs() async {
     try {
       await loadCompletionFromSharedPrefs();
       collectibles = await repository.loadCollectiblesFromJson();
-      status = LoadStatus.completed;
+      setState(() => status = LoadStatus.completed);
     } catch (err) {
       logger.e(err.toString());
       errorMessage = err.toString();
