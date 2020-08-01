@@ -9,7 +9,11 @@ class CardBottom extends StatelessWidget {
     @required this.onChanged,
     this.descr,
     this.height = 55,
-  });
+  })  : assert(id != null),
+        assert(categoryName != null),
+        assert(padding != null),
+        assert(value != null),
+        assert(onChanged != null);
 
   final int id;
   final String categoryName;

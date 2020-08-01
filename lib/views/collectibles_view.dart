@@ -49,6 +49,7 @@ class CollectiblesView extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 value: getCompletionStatus(collectible.id),
                 onChanged: (complete) {
+                  logger.d("complete: $complete");
                   onCheckboxChanged(
                       collectible, Collectible.getStatusFromBool(complete));
                 },

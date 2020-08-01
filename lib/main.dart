@@ -61,6 +61,7 @@ class _MyAppState extends State<MyApp> {
     try {
       await loadCompletionFromSharedPrefs();
       collectibles = await repository.loadCollectiblesFromJson();
+      // if you want to test the infinite loading screen just remove this setstate
       setState(() => status = LoadStatus.completed);
     } catch (err) {
       logger.e(err.toString());
@@ -81,7 +82,9 @@ class _MyAppState extends State<MyApp> {
   // callbacks
 
   bool getCompletionStatusForId(int id) {
-    return prefs.getBool(id.toString());
+    bool muhBool = prefs.getBool(id.toString()) ?? false;
+    logger.d("in getCompletionStatus callback returning $muhBool");
+    return muhBool;
   }
 
   List<Collectible> getFilteredCollectibles(
