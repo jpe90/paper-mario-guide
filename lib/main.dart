@@ -10,6 +10,7 @@ import 'models/collectibles_repository.dart';
 import 'views/error_page.dart';
 import 'package:logger/logger.dart' as l;
 import 'views/filter_page.dart';
+import 'services/completion_service.dart';
 
 var logger = l.Logger(printer: l.PrettyPrinter());
 
@@ -40,27 +41,28 @@ class _MyAppState extends State<MyApp> {
   Category _currentCategory;
   Level _currentLevel;
   CompletionStatus _currentCompletionStatus;
+  CollectiblesCompletionService ccs;
   SharedPreferences prefs;
   String errorMessage;
 
   @override
   void initState() {
     super.initState();
-    collectibles = [];
-    filteredCollectibles = [];
     _currentCategory = Category.all;
     _currentLevel = Level.all;
     _currentCompletionStatus = CompletionStatus.all;
     status = LoadStatus.loading;
     errorMessage = "";
+    ccs = CollectiblesCompletionService();
     repository = CollectiblesRepository();
-    _loadCollectiblesFromPrefs();
+    _loadApplicationData();
   }
 
-  Future<void> _loadCollectiblesFromPrefs() async {
+  Future<void> _loadApplicationData() async {
     try {
-      await loadCompletionFromSharedPrefs();
+      await ccs.loadCompletionFromSharedPrefs();
       collectibles = await repository.loadCollectiblesFromJson();
+      ccs.createMap(collectibles);
       // if you want to test the infinite loading screen just remove this setstate
       setState(() => status = LoadStatus.completed);
     } catch (err) {
@@ -70,22 +72,7 @@ class _MyAppState extends State<MyApp> {
     }
   }
 
-  // this needs to be in a separate method because initState can't be marked async
-  loadCompletionFromSharedPrefs() async {
-    prefs = await SharedPreferences.getInstance();
-    if (prefs == null) {
-      status = LoadStatus.error;
-      errorMessage = "Shared prefs not found.";
-    }
-  }
-
   // callbacks
-
-  bool getCompletionStatusForId(int id) {
-    bool muhBool = prefs.getBool(id.toString()) ?? false;
-    logger.d("in getCompletionStatus callback returning $muhBool");
-    return muhBool;
-  }
 
   List<Collectible> getFilteredCollectibles(
       Category category, Level level, CompletionStatus completionStatus) {
@@ -93,15 +80,14 @@ class _MyAppState extends State<MyApp> {
       return (category == Category.all || category == element.category) &&
           (level == Level.all || level == element.level) &&
           (completionStatus == CompletionStatus.all ||
-              prefs.getBool(element.id.toString()) ==
+              ccs.getCompletionStatusForId(element.id) ==
                   Collectible.getBoolFromCompletionStatus(completionStatus));
     }).toList();
   }
 
-  void onCheckboxChanged(Collectible collectible, CompletionStatus status) {
+  void onCheckboxChanged(int id, bool status) {
     setState(() {
-      bool toSet = status == CompletionStatus.completed ? true : false;
-      prefs.setBool(collectible.id.toString(), toSet);
+      ccs.updateCompletionStatusForId(id, status);
     });
   }
 
@@ -118,7 +104,7 @@ class _MyAppState extends State<MyApp> {
       //logger.d('well its trying to draw something at least');
       return CollectiblesView(
           onCheckboxChanged: onCheckboxChanged,
-          getCompletionStatus: getCompletionStatusForId,
+          getCompletionStatus: ccs.getCompletionStatusForId,
           collectibles: getFilteredCollectibles(
               _currentCategory, _currentLevel, _currentCompletionStatus));
     } else

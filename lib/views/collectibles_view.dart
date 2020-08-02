@@ -10,8 +10,7 @@ import 'package:logger/logger.dart' as l;
 class CollectiblesView extends StatelessWidget {
   final List<Collectible> collectibles;
   final bool Function(int id) getCompletionStatus;
-  final void Function(Collectible collectible, CompletionStatus status)
-      onCheckboxChanged;
+  final void Function(int id, bool status) onCheckboxChanged;
 
   const CollectiblesView(
       {@required this.collectibles,
@@ -50,8 +49,7 @@ class CollectiblesView extends StatelessWidget {
                 value: getCompletionStatus(collectible.id),
                 onChanged: (complete) {
                   logger.d("complete: $complete");
-                  onCheckboxChanged(
-                      collectible, Collectible.getStatusFromBool(complete));
+                  onCheckboxChanged(collectible.id, complete);
                 },
                 descr: collectible.notes,
                 height: 0,
@@ -83,8 +81,7 @@ class CollectiblesView extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 10),
             value: getCompletionStatus(collectible.id),
             onChanged: (complete) {
-              onCheckboxChanged(
-                  collectible, Collectible.getStatusFromBool(complete));
+              onCheckboxChanged(collectible.id, complete);
             },
           ),
         ],
