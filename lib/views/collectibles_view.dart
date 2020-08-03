@@ -1,4 +1,3 @@
-import 'package:admob_flutter/admob_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:origami_king_guide/services/admob_service.dart';
 
@@ -12,10 +11,7 @@ class CollectiblesView extends StatelessWidget {
   final bool Function(int id) getCompletionStatus;
   final void Function(int id, bool status) onCheckboxChanged;
 
-  final admobBanner = AdmobBanner(
-      adUnitId: AdmobService.getBannerAdId(),
-      adSize: AdmobBannerSize.FULL_BANNER);
-  CollectiblesView(
+  const CollectiblesView(
       {@required this.collectibles,
       @required this.onCheckboxChanged,
       @required this.getCompletionStatus})
@@ -120,7 +116,7 @@ class CollectiblesView extends StatelessWidget {
               ? Center(child: emptyMessage(context))
               : collectiblesGrid(context),
         ),
-        admobBanner
+        AdmobService.admobBanner,
       ],
     );
   }

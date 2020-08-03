@@ -114,7 +114,6 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    Widget frontLayer = getFrontLayerForLoadStatus(status);
     return MaterialApp(
       title: 'Paper Mario: The Oragami King Collectible Guide',
       theme: ThemeData(
@@ -127,7 +126,7 @@ class _MyAppState extends State<MyApp> {
           visualDensity: VisualDensity.adaptivePlatformDensity,
           fontFamily: 'mario'),
       home: Backdrop(
-        frontLayer: frontLayer,
+        frontLayer: getFrontLayerForLoadStatus(status),
         backLayer: FilterPage(
             onCategoryTap: onCategoryTap,
             onLevelTap: onLevelTap,
