@@ -65,6 +65,7 @@ class CollectiblesView extends StatelessWidget {
       elevation: 8.0,
       child: Column(
         children: [
+          Text(Collectible.getDisplayNameForLevel(collectible.level)),
           CollectibleImageHero(
             collectible: collectible,
             onTap: () {
