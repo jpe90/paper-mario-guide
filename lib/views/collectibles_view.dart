@@ -12,7 +12,10 @@ class CollectiblesView extends StatelessWidget {
   final bool Function(int id) getCompletionStatus;
   final void Function(int id, bool status) onCheckboxChanged;
 
-  const CollectiblesView(
+  final admobBanner = AdmobBanner(
+      adUnitId: AdmobService.getBannerAdId(),
+      adSize: AdmobBannerSize.FULL_BANNER);
+  CollectiblesView(
       {@required this.collectibles,
       @required this.onCheckboxChanged,
       @required this.getCompletionStatus})
@@ -110,9 +113,6 @@ class CollectiblesView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var admobBanner = AdmobBanner(
-        adUnitId: AdmobService.getBannerAdId(),
-        adSize: AdmobBannerSize.FULL_BANNER);
     return Column(
       children: <Widget>[
         Expanded(
@@ -123,9 +123,6 @@ class CollectiblesView extends StatelessWidget {
         admobBanner
       ],
     );
-    // return collectibles.isEmpty
-    //     ? emptyMessage(context)
-    //     : collectiblesGrid(context);
   }
 }
 
