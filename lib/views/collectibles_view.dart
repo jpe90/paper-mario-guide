@@ -41,7 +41,7 @@ class CollectiblesView extends StatelessWidget {
               flex: 1,
               fit: hasNotes ? FlexFit.tight : FlexFit.loose,
               child: CardBottom(
-                id: collectible.id,
+                order: collectible.order,
                 categoryName:
                     Collectible.getDisplayNameForCategory(collectible.category),
                 padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -74,7 +74,7 @@ class CollectiblesView extends StatelessWidget {
             },
           ),
           CardBottom(
-            id: collectible.id,
+            order: collectible.order,
             categoryName:
                 Collectible.getDisplayNameForCategory(collectible.category),
             padding: const EdgeInsets.symmetric(horizontal: 10),

@@ -2,7 +2,49 @@ import 'dart:convert';
 import 'dart:io';
 import '../lib/models/collectible.dart';
 
-Map<int, String> notesMap = {
+const List<int> blacklist = [
+  49,
+  80,
+  81,
+  82,
+  83,
+  84,
+  85,
+  86,
+  137,
+  138,
+  139,
+  140,
+  141,
+  145,
+  146,
+  147,
+  155,
+  156,
+  157,
+  158,
+  159,
+  160,
+  161,
+  162,
+  163,
+  167,
+  168,
+  169,
+  185,
+  194,
+  219,
+  220,
+  221,
+  222,
+  223,
+  224,
+  225,
+  226,
+  227,
+  309
+];
+const Map<int, String> notesMap = {
   27: "Hit the bug to reveal a toad.",
   29: "Hit the bug to reveal a toad.",
   31: "Hit the eggs on the plate  to reveal a toad.",
@@ -281,15 +323,20 @@ List<Collectible> createCollectibleList(
   List<Collectible> retList = [];
   // TODO enhancement 1: should bookkeep for order field inside this loop
   for (var i = startingId; i < startingId + numEntries; i++) {
-    retList.add(notesMap[i] == null
-        ? Collectible(
-            id: i, order: i - startingId, level: level, category: category)
-        : Collectible(
-            id: i,
-            order: i - startingId,
-            level: level,
-            category: category,
-            notes: notesMap[i]));
+    if (!blacklist.contains(i)) {
+      retList.add(notesMap[i] == null
+          ? Collectible(
+              id: i,
+              order: i - startingId + 1,
+              level: level,
+              category: category)
+          : Collectible(
+              id: i,
+              order: i - startingId + 1,
+              level: level,
+              category: category,
+              notes: notesMap[i]));
+    }
   }
   //retList.forEach(print);
   return retList;

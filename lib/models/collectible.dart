@@ -50,6 +50,7 @@ class Collectible {
         'id': id,
         'level': getEncodingNameForLevel(level),
         'category': getEncodingNameForCategory(category),
+        'order': order,
         if (notes != null) 'notes': notes
       };
 
