@@ -47,7 +47,6 @@ class CollectiblesView extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 value: getCompletionStatus(collectible.id),
                 onChanged: (complete) {
-                  logger.d("complete: $complete");
                   onCheckboxChanged(collectible.id, complete);
                 },
                 descr: collectible.notes,
@@ -65,7 +64,6 @@ class CollectiblesView extends StatelessWidget {
       elevation: 8.0,
       child: Column(
         children: [
-          Text(Collectible.getDisplayNameForLevel(collectible.level)),
           CollectibleImageHero(
             collectible: collectible,
             onTap: () {
