@@ -19,7 +19,8 @@ class CollectiblesView extends StatelessWidget {
         assert(getCompletionStatus != null);
 
 // on tap for lil' hero
-  Widget collectibleDetailsPage(Collectible collectible, BuildContext context) {
+  Scaffold collectibleDetailsPage(
+      Collectible collectible, BuildContext context) {
     bool hasNotes = collectible.notes != null;
     return Scaffold(
       appBar: AppBar(title: Text('Testing Hero')),
@@ -59,7 +60,7 @@ class CollectiblesView extends StatelessWidget {
     );
   }
 
-  Widget _gridElement(Collectible collectible, BuildContext context) {
+  Card _gridElement(Collectible collectible, BuildContext context) {
     return Card(
       elevation: 8.0,
       child: Column(
@@ -88,7 +89,7 @@ class CollectiblesView extends StatelessWidget {
     );
   }
 
-  Widget collectiblesGrid(BuildContext context) {
+  GridView collectiblesGrid(BuildContext context) {
     return GridView.count(
         crossAxisCount: 2,
         mainAxisSpacing: 10,
@@ -100,7 +101,25 @@ class CollectiblesView extends StatelessWidget {
             .toList());
   }
 
-  Widget emptyMessage(BuildContext context) {
+  //TODO: build new custom scroll view
+  CustomScrollView _getScrollView() {
+  }
+  //TODO: build method to take in a list if collectibles and return a list of slivers
+  Widget _getGridSlivers(List<Collectible> collectiblesList) {}
+  //TODO: method to build a header sliver with given text
+  SliverPersistentHeader _getSliverHeader(String headerText) {
+    return SliverPersistentHeader(
+        pinned: true,
+        delegate: (
+          child: Container(
+            color: Colors.lightGreen,
+              ),
+        ),
+    );
+  }
+  //TODO: method to build a sliver grid given a list of collectibles for a category
+
+  Center emptyMessage(BuildContext context) {
     return Center(
       child: Text('No items match your selected filter criteria.'),
     );
@@ -113,6 +132,7 @@ class CollectiblesView extends StatelessWidget {
         Expanded(
           child: collectibles.isEmpty
               ? Center(child: emptyMessage(context))
+              //TODO: swap with our new custom scroll view
               : collectiblesGrid(context),
         ),
         AdmobService.admobBanner,
