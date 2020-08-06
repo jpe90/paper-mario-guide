@@ -28,7 +28,7 @@ dependencies:
   shared_preferences: '>=0.5.8 <2.0.0'
   admob_flutter: ^0.3.4
   flutter_sticky_header: ^0.4.5
-  collection: ^1.14.13
+  collection: ^1.14.12
   #  meta: ^1.2.2
 
   # The following adds the Cupertino Icons font to your application.

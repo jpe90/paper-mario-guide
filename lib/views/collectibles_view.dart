@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:origami_king_guide/services/admob_service.dart';
 import 'package:flutter_sticky_header/flutter_sticky_header.dart';
+import 'package:collection/collection.dart';
 import '../widgets/card_bottom.dart';
 import '../models/collectible.dart';
 
@@ -103,11 +104,16 @@ class CollectiblesView extends StatelessWidget {
   }
 
   //TODO: build new custom scroll view
-  CustomScrollView _getScrollView(
-      BuildContext context, List<Collectible> cols) {
-    return CustomScrollView(
-      slivers: _getGridSlivers(context, cols),
-    );
+  //CustomScrollView _getScrollView(
+  Widget _getScrollView(BuildContext context, List<Collectible> cols) {
+    Map<Level, List<Collectible>> muhMap =
+        groupBy(cols, (collectible) => collectible.level);
+    muhMap.forEach(
+        (lvl, lst) => logger.d("level: $lvl, list size: ${lst.length}"));
+    return Text("HOOAH!");
+    //return CustomScrollView(
+    //  slivers: _getGridSlivers(context, cols),
+    //);
   }
 
   //TODO: build method to take in a list if collectibles and return a list of slivers
