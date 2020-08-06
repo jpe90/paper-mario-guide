@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:origami_king_guide/services/admob_service.dart';
-
+import 'package:flutter_sticky_header/flutter_sticky_header.dart';
 import '../widgets/card_bottom.dart';
 import '../models/collectible.dart';
 
@@ -89,34 +89,32 @@ class CollectiblesView extends StatelessWidget {
     );
   }
 
-  GridView collectiblesGrid(BuildContext context) {
+  GridView collectiblesGrid(
+      BuildContext context, List<Collectible> gridCollectibles) {
     return GridView.count(
         crossAxisCount: 2,
         mainAxisSpacing: 10,
         crossAxisSpacing: 10,
         padding: EdgeInsets.all(16.0),
         childAspectRatio: 2.0 / 1.8,
-        children: collectibles
+        children: gridCollectibles
             .map((collectible) => _gridElement(collectible, context))
             .toList());
   }
 
   //TODO: build new custom scroll view
-  CustomScrollView _getScrollView() {
-  }
-  //TODO: build method to take in a list if collectibles and return a list of slivers
-  Widget _getGridSlivers(List<Collectible> collectiblesList) {}
-  //TODO: method to build a header sliver with given text
-  SliverPersistentHeader _getSliverHeader(String headerText) {
-    return SliverPersistentHeader(
-        pinned: true,
-        delegate: (
-          child: Container(
-            color: Colors.lightGreen,
-              ),
-        ),
+  CustomScrollView _getScrollView(
+      BuildContext context, List<Collectible> cols) {
+    return CustomScrollView(
+      slivers: _getGridSlivers(context, cols),
     );
   }
+
+  //TODO: build method to take in a list if collectibles and return a list of slivers
+  Widget _getGridSlivers(
+      BuildContext context, List<Collectible> collectiblesList) {}
+  //TODO: method to build a header sliver with given text
+  SliverPersistentHeader _getSliverHeader(String headerText) {}
   //TODO: method to build a sliver grid given a list of collectibles for a category
 
   Center emptyMessage(BuildContext context) {
@@ -133,7 +131,7 @@ class CollectiblesView extends StatelessWidget {
           child: collectibles.isEmpty
               ? Center(child: emptyMessage(context))
               //TODO: swap with our new custom scroll view
-              : collectiblesGrid(context),
+              : _getScrollView(context, collectibles),
         ),
         AdmobService.admobBanner,
       ],
