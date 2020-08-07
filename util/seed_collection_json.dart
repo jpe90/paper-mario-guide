@@ -3,6 +3,7 @@ import 'dart:io';
 import '../lib/models/collectible.dart';
 
 const List<int> blacklist = [
+  36,
   49,
   80,
   81,

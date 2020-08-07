@@ -90,13 +90,13 @@ class CollectiblesView extends StatelessWidget {
     );
   }
 
-  GridView collectiblesGrid(
+  //GridView collectiblesGrid(
+  SliverGrid collectiblesGrid(
       BuildContext context, List<Collectible> gridCollectibles) {
-    return GridView.count(
+    return SliverGrid.count(
         crossAxisCount: 2,
         mainAxisSpacing: 10,
         crossAxisSpacing: 10,
-        padding: EdgeInsets.all(16.0),
         childAspectRatio: 2.0 / 1.8,
         children: gridCollectibles
             .map((collectible) => _gridElement(collectible, context))
@@ -105,22 +105,36 @@ class CollectiblesView extends StatelessWidget {
 
   //TODO: build new custom scroll view
   //CustomScrollView _getScrollView(
-  Widget _getScrollView(BuildContext context, List<Collectible> cols) {
+  Widget _getScrollView(BuildContext context, List<Collectible> _collectibles) {
+    List<Widget> slivers = [];
     Map<Level, List<Collectible>> muhMap =
-        groupBy(cols, (collectible) => collectible.level);
+        groupBy(_collectibles, (collectible) => collectible.level);
     muhMap.forEach(
-        (lvl, lst) => logger.d("level: $lvl, list size: ${lst.length}"));
-    return Text("HOOAH!");
-    //return CustomScrollView(
-    //  slivers: _getGridSlivers(context, cols),
-    //);
+        (lvl, lst) => slivers.add(_getSliversForLevel(context, lvl, lst)));
+    return CustomScrollView(
+      slivers: slivers,
+    );
   }
 
   //TODO: build method to take in a list if collectibles and return a list of slivers
   Widget _getGridSlivers(
       BuildContext context, List<Collectible> collectiblesList) {}
   //TODO: method to build a header sliver with given text
-  SliverPersistentHeader _getSliverHeader(String headerText) {}
+  SliverStickyHeader _getSliversForLevel(
+      BuildContext context, Level level, List<Collectible> _collectibles) {
+    return SliverStickyHeader(
+      header: Container(
+        height: 25.0,
+        color: Theme.of(context).accentColor,
+        child: Container(
+          padding: EdgeInsets.only(left: 15),
+          child: Text(Collectible.getDisplayNameForLevel(level),
+              style: TextStyle(fontSize: 12)),
+        ),
+      ),
+      sliver: collectiblesGrid(context, _collectibles),
+    );
+  }
   //TODO: method to build a sliver grid given a list of collectibles for a category
 
   Center emptyMessage(BuildContext context) {
