@@ -23,12 +23,6 @@ class CardBottom extends StatelessWidget {
   final String descr;
   final int height;
 
-  void onCheckboxChanged(int id) {
-    // setState(() {
-    //   repository.setCompletionStatus(id);
-    // });
-  }
-
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -39,22 +33,24 @@ class CardBottom extends StatelessWidget {
         padding: padding,
         child: Container(
           height: 55,
-          child: ListView(
-            children: <Widget>[
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  Text('$categoryName #$order'),
-                  Checkbox(
-                    value: value,
-                    onChanged: (bool newValue) {
-                      onChanged(newValue);
-                    },
-                  ),
-                ],
-              ),
-              if (descr != null) Text(descr)
-            ],
+          child: Expanded(
+            child: Column(
+              children: <Widget>[
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    Text('$categoryName #$order'),
+                    Checkbox(
+                      value: value,
+                      onChanged: (bool newValue) {
+                        onChanged(newValue);
+                      },
+                    ),
+                  ],
+                ),
+                if (descr != null) Text(descr)
+              ],
+            ),
           ),
         ),
       ),

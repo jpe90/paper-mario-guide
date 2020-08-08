@@ -64,7 +64,7 @@ class _MyAppState extends State<MyApp> {
       collectibles = await repository.loadCollectiblesFromJson();
       ccs.createMap(collectibles);
       // if you want to test the infinite loading screen just remove this setstate
-      //setState(() => status = LoadStatus.completed);
+      setState(() => status = LoadStatus.completed);
     } catch (err) {
       logger.e(err.toString());
       errorMessage = err.toString();
