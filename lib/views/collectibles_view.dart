@@ -24,6 +24,7 @@ class CollectiblesView extends StatelessWidget {
       Collectible collectible, BuildContext context) {
     bool hasNotes = collectible.notes != null;
     return Scaffold(
+      //TODO: change this app bar text
       appBar: AppBar(title: Text('Testing Hero')),
       body: Material(
         elevation: 8.0,
@@ -90,7 +91,6 @@ class CollectiblesView extends StatelessWidget {
     );
   }
 
-  //GridView collectiblesGrid(
   SliverGrid collectiblesGrid(
       BuildContext context, List<Collectible> gridCollectibles) {
     return SliverGrid.count(
@@ -103,8 +103,6 @@ class CollectiblesView extends StatelessWidget {
             .toList());
   }
 
-  //TODO: build new custom scroll view
-  //CustomScrollView _getScrollView(
   Widget _getScrollView(BuildContext context, List<Collectible> _collectibles) {
     List<Widget> slivers = [];
     Map<Level, List<Collectible>> muhMap =
@@ -116,26 +114,34 @@ class CollectiblesView extends StatelessWidget {
     );
   }
 
-  //TODO: build method to take in a list if collectibles and return a list of slivers
   Widget _getGridSlivers(
       BuildContext context, List<Collectible> collectiblesList) {}
-  //TODO: method to build a header sliver with given text
   SliverStickyHeader _getSliversForLevel(
       BuildContext context, Level level, List<Collectible> _collectibles) {
     return SliverStickyHeader(
-      header: Container(
-        height: 25.0,
+      //header: Container(
+      //  alignment: Alignment.centerLeft,
+      //  height: 35.0,
+      //  color: Theme.of(context).accentColor,
+      //  child: Container(
+      //    padding: EdgeInsets.only(left: 15),
+      //    child: Text(Collectible.getDisplayNameForLevel(level),
+      //        style: TextStyle(fontSize: 14)),
+      //  ),
+      //),
+      header: Card(
         color: Theme.of(context).accentColor,
+        elevation: 20.0,
         child: Container(
           padding: EdgeInsets.only(left: 15),
+          alignment: Alignment.center,
           child: Text(Collectible.getDisplayNameForLevel(level),
-              style: TextStyle(fontSize: 12)),
+              style: TextStyle(fontSize: 14)),
         ),
       ),
       sliver: collectiblesGrid(context, _collectibles),
     );
   }
-  //TODO: method to build a sliver grid given a list of collectibles for a category
 
   Center emptyMessage(BuildContext context) {
     return Center(
@@ -150,7 +156,6 @@ class CollectiblesView extends StatelessWidget {
         Expanded(
           child: collectibles.isEmpty
               ? Center(child: emptyMessage(context))
-              //TODO: swap with our new custom scroll view
               : _getScrollView(context, collectibles),
         ),
         AdmobService.admobBanner,
@@ -159,6 +164,7 @@ class CollectiblesView extends StatelessWidget {
   }
 }
 
+// TODO: this should be in a different file
 class CollectibleImageHero extends StatelessWidget {
   const CollectibleImageHero({
     this.collectible,

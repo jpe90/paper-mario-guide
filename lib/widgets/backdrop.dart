@@ -90,7 +90,7 @@ class _BackdropState extends State<Backdrop>
   Widget build(BuildContext context) {
     var appBar = AppBar(
       elevation: 0,
-      title: Text('Paper Mario'),
+      //title: Text('Paper Mario'),
       actions: <Widget>[
         IconButton(
             icon: const Icon(Icons.menu),

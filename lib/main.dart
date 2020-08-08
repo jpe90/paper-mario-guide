@@ -64,7 +64,7 @@ class _MyAppState extends State<MyApp> {
       collectibles = await repository.loadCollectiblesFromJson();
       ccs.createMap(collectibles);
       // if you want to test the infinite loading screen just remove this setstate
-      setState(() => status = LoadStatus.completed);
+      //setState(() => status = LoadStatus.completed);
     } catch (err) {
       logger.e(err.toString());
       errorMessage = err.toString();
@@ -99,7 +99,17 @@ class _MyAppState extends State<MyApp> {
 
   Widget getFrontLayerForLoadStatus(LoadStatus status) {
     if (status == LoadStatus.loading) {
-      return Text('loading');
+      //return Text('loading');
+      return Center(
+          child: Column(children: [
+        Text('Loading...'),
+        SizedBox(height: 20),
+        SizedBox(
+          child: CircularProgressIndicator(),
+          width: 50,
+          height: 50,
+        ),
+      ], mainAxisAlignment: MainAxisAlignment.center));
     } else if (status == LoadStatus.completed) {
       //logger.d('well its trying to draw something at least');
       return CollectiblesView(
