@@ -130,9 +130,13 @@ class CollectiblesView extends StatelessWidget {
       //  ),
       //),
       header: Card(
-        color: Theme.of(context).accentColor,
         elevation: 20.0,
         child: Container(
+          decoration: BoxDecoration(
+            color: Theme.of(context).accentColor,
+            border: Border.all(color: Colors.black, width: 3),
+            borderRadius: BorderRadius.circular(10),
+          ),
           padding: EdgeInsets.only(left: 15),
           alignment: Alignment.center,
           child: Text(Collectible.getDisplayNameForLevel(level),
