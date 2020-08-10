@@ -67,6 +67,7 @@ class CollectiblesView extends StatelessWidget {
       elevation: 8.0,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
+        //mainAxisSize: MainAxisSize.min,
         children: [
           CollectibleImageHero(
             collectible: collectible,
@@ -110,13 +111,17 @@ class CollectiblesView extends StatelessWidget {
         groupBy(_collectibles, (collectible) => collectible.level);
     muhMap.forEach(
         (lvl, lst) => slivers.add(_getSliversForLevel(context, lvl, lst)));
+    //(lvl, lst) => slivers.addAll(_getSliversForLevel(context, lvl, lst)));
     return CustomScrollView(
       slivers: slivers,
     );
   }
 
   SliverStickyHeader _getSliversForLevel(
-      BuildContext context, Level level, List<Collectible> _collectibles) {
+      //List<Widget> _getSliversForLevel(
+      BuildContext context,
+      Level level,
+      List<Collectible> _collectibles) {
     return SliverStickyHeader(
       header: Container(
         alignment: Alignment.center,
@@ -130,6 +135,14 @@ class CollectiblesView extends StatelessWidget {
       ),
       sliver: collectiblesGrid(context, _collectibles),
     );
+
+    //List<Widget> slivers = [];
+    //slivers.add(SliverAppBar(
+    //  expandedHeight: 35.0,
+    //  title: Text(Collectible.getDisplayNameForLevel(level)),
+    //));
+    //slivers.add(collectiblesGrid(context, _collectibles));
+    //return slivers;
   }
 
   Center emptyMessage(BuildContext context) {

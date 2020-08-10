@@ -50,7 +50,12 @@ class _BackdropState extends State<Backdrop>
     ).animate(_controller.view);
 
     return Stack(children: <Widget>[
-      widget.backLayer,
+      Container(),
+      LayoutBuilder(builder: (context, constraints) {
+        return Container(
+            height: constraints.maxHeight - layerTitleHeight,
+            child: widget.backLayer);
+      }),
       PositionedTransition(
           rect: layerAnimation, child: _FrontLayer(child: widget.frontLayer))
     ]);

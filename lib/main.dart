@@ -111,7 +111,6 @@ class _MyAppState extends State<MyApp> {
         ),
       ], mainAxisAlignment: MainAxisAlignment.center));
     } else if (status == LoadStatus.completed) {
-      //logger.d('well its trying to draw something at least');
       return CollectiblesView(
           onCheckboxChanged: onCheckboxChanged,
           getCompletionStatus: ccs.getCompletionStatusForId,
