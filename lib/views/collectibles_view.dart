@@ -114,31 +114,15 @@ class CollectiblesView extends StatelessWidget {
     );
   }
 
-  Widget _getGridSlivers(
-      BuildContext context, List<Collectible> collectiblesList) {}
   SliverStickyHeader _getSliversForLevel(
       BuildContext context, Level level, List<Collectible> _collectibles) {
     return SliverStickyHeader(
-      //header: Container(
-      //  alignment: Alignment.centerLeft,
-      //  height: 35.0,
-      //  color: Theme.of(context).accentColor,
-      //  child: Container(
-      //    padding: EdgeInsets.only(left: 15),
-      //    child: Text(Collectible.getDisplayNameForLevel(level),
-      //        style: TextStyle(fontSize: 14)),
-      //  ),
-      //),
-      header: Card(
-        elevation: 20.0,
+      header: Container(
+        alignment: Alignment.center,
+        height: 35.0,
+        color: Theme.of(context).accentColor,
         child: Container(
-          decoration: BoxDecoration(
-            color: Theme.of(context).accentColor,
-            border: Border.all(color: Colors.black, width: 3),
-            borderRadius: BorderRadius.circular(10),
-          ),
           padding: EdgeInsets.only(left: 15),
-          alignment: Alignment.center,
           child: Text(Collectible.getDisplayNameForLevel(level),
               style: TextStyle(fontSize: 14)),
         ),

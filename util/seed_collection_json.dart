@@ -318,11 +318,9 @@ List<Collectible> createCollectibleListForLevel(
           numEntries: numTreasures);
 }
 
-// TODO Enhancement 1: take in order here
 List<Collectible> createCollectibleList(
     {Level level, Category category, int startingId, int numEntries}) {
   List<Collectible> retList = [];
-  // TODO enhancement 1: should bookkeep for order field inside this loop
   for (var i = startingId; i < startingId + numEntries; i++) {
     if (!blacklist.contains(i)) {
       retList.add(notesMap[i] == null
