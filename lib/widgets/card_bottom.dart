@@ -31,27 +31,23 @@ class CardBottom extends StatelessWidget {
       },
       child: Padding(
         padding: padding,
-        child: Container(
-          height: 55,
-          child: Expanded(
-            child: Column(
+        child: Column(
+          children: <Widget>[
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: <Widget>[
-                    Text('$categoryName #$order'),
-                    Checkbox(
-                      value: value,
-                      onChanged: (bool newValue) {
-                        onChanged(newValue);
-                      },
-                    ),
-                  ],
+                Text('$categoryName #$order'),
+                Checkbox(
+                  value: value,
+                  onChanged: (bool newValue) {
+                    onChanged(newValue);
+                  },
                 ),
-                if (descr != null) Text(descr)
               ],
             ),
-          ),
+            if (descr != null) Text(descr)
+          ],
         ),
       ),
     );

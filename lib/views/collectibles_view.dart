@@ -66,6 +66,7 @@ class CollectiblesView extends StatelessWidget {
     return Card(
       elevation: 8.0,
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           CollectibleImageHero(
             collectible: collectible,
@@ -97,7 +98,7 @@ class CollectiblesView extends StatelessWidget {
         crossAxisCount: 2,
         mainAxisSpacing: 10,
         crossAxisSpacing: 10,
-        childAspectRatio: 2.0 / 1.8,
+        //childAspectRatio: 2.0 / 1.8,
         children: gridCollectibles
             .map((collectible) => _gridElement(collectible, context))
             .toList());
