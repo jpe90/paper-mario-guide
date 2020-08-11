@@ -28,9 +28,7 @@ class CollectiblesView extends StatelessWidget {
       appBar: AppBar(title: Text('Testing Hero')),
       body: Material(
         elevation: 8.0,
-        child: Column(
-          mainAxisAlignment:
-              hasNotes ? MainAxisAlignment.start : MainAxisAlignment.center,
+        child: ListView(
           children: [
             Flexible(
               fit: FlexFit.loose,
