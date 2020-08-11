@@ -8,8 +8,8 @@ class CardBottom extends StatelessWidget {
     @required this.padding,
     @required this.value,
     @required this.onChanged,
+    this.numItems = 1,
     this.descr,
-    this.height = 55,
   })  : assert(order != null),
         assert(categoryName != null),
         assert(padding != null),
@@ -23,7 +23,7 @@ class CardBottom extends StatelessWidget {
   final bool value;
   final Function onChanged;
   final String descr;
-  final int height;
+  final int numItems;
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +40,11 @@ class CardBottom extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 //TODO: if the numItems field of this item isn't 1, display a different text
-                Flexible(child: Text('$categoryName #$order')),
+                Flexible(
+                    child: numItems == 1
+                        ? Text('$categoryName #$order')
+                        : Text(
+                            '${categoryName}s #$order - ${order + numItems - 1}')),
                 Checkbox(
                   value: value,
                   onChanged: (bool newValue) {

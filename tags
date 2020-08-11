@@ -1,153 +1,165 @@
 !_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
 !_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
-../lib/models/collectible.dart	util/seed_collection_json.dart	/^;"	i	line:4	type:
+../lib/models/collectible.dart	util/seed_collection_json.dart	/^;"	i	line:3	type:
 ../models/collectible.dart	lib/models/collectibles_repository.dart	/^;"	i	line:7	type:
 ../models/collectible.dart	lib/views/collectibles_view.dart	/^;"	i	line:6	type:
 ../models/collectible.dart	lib/views/filter_page.dart	/^;"	i	line:3	type:
 ../widgets/card_bottom.dart	lib/views/collectibles_view.dart	/^;"	i	line:5	type:
-AdmobService	lib/services/admob_service.dart	/class AdmobService {/;"	c	access:public	line:3	type: class
+AdmobService	lib/services/admob_service.dart	/class AdmobService {/;"	c	access:public	line:4	type: class
 Backdrop	lib/widgets/backdrop.dart	/class Backdrop extends StatefulWidget {/;"	c	access:public	line:25	type: class
 Backdrop	lib/widgets/backdrop.dart	/const Backdrop({/;"	r	access:public	line:25	class:Backdrop	signature:({@required this.frontLayer, @required this.backLayer})
 CardBottom	lib/widgets/card_bottom.dart	/class CardBottom extends StatelessWidget {/;"	c	access:public	line:3	type: class
-CardBottom	lib/widgets/card_bottom.dart	/const CardBottom({/;"	r	access:public	line:3	class:CardBottom	signature:({@required this.id, @required this.categoryName, @required this.padding, @required this.value, @required this.onChanged, this.descr, this.height = 55})
-Collectible	lib/models/collectible.dart	/Collectible({/;"	r	access:public	line:23	class:Collectible	signature:({@required this.id, @required this.level, @required this.category, this.order, this.notes})
+CardBottom	lib/widgets/card_bottom.dart	/const CardBottom({/;"	r	access:public	line:3	class:CardBottom	signature:({@required this.order, @required this.categoryName, @required this.padding, @required this.value, @required this.onChanged, this.numItems = 1, this.descr})
 Collectible	lib/models/collectible.dart	/class Collectible {/;"	c	access:public	line:23	type: class
-CollectibleImageHero	lib/views/collectibles_view.dart	/class CollectibleImageHero extends StatelessWidget {/;"	c	access:public	line:132	type: class
-CollectibleImageHero	lib/views/collectibles_view.dart	/const CollectibleImageHero({/;"	r	access:public	line:132	class:CollectibleImageHero	signature:({this.collectible, this.onTap, this.fit, Key key})
-CollectiblesCollection	lib/main.dart	/class CollectiblesCollection {/;"	c	access:public	line:31	type: class
+Collectible	lib/models/collectible.dart	/const Collectible({/;"	r	access:public	line:23	class:Collectible	signature:({@required this.id, @required this.level, @required this.category, this.order, this.notes})
+CollectibleImageHero	lib/views/collectibles_view.dart	/class CollectibleImageHero extends StatelessWidget {/;"	c	access:public	line:167	type: class
+CollectibleImageHero	lib/views/collectibles_view.dart	/const CollectibleImageHero({/;"	r	access:public	line:167	class:CollectibleImageHero	signature:({this.collectible, this.onTap, this.fit, Key key})
+CollectiblesCompletionService	lib/services/completion_service.dart	/class CollectiblesCompletionService {/;"	c	access:public	line:9	type: class
 CollectiblesRepository	lib/models/collectibles_repository.dart	/CollectiblesRepository();/;"	r	access:public	line:9	class:CollectiblesRepository	signature:()
 CollectiblesRepository	lib/models/collectibles_repository.dart	/class CollectiblesRepository {/;"	c	access:public	line:9	type: class
 CollectiblesView	lib/views/collectibles_view.dart	/class CollectiblesView extends StatelessWidget {/;"	c	access:public	line:10	type: class
-CollectiblesView	lib/views/collectibles_view.dart	/const CollectiblesView({/;"	r	access:public	line:10	class:CollectiblesView	signature:({@required this.collectibles, @required this.onCheckboxChanged})
+CollectiblesView	lib/views/collectibles_view.dart	/const CollectiblesView({/;"	r	access:public	line:10	class:CollectiblesView	signature:({@required this.collectibles, @required this.onCheckboxChanged, @required this.getCompletionStatus})
 ErrorPage	lib/views/error_page.dart	/class ErrorPage extends StatelessWidget {/;"	c	access:public	line:4	type: class
 ErrorPage	lib/views/error_page.dart	/const ErrorPage({/;"	r	access:public	line:4	class:ErrorPage	signature:({@required this.errorInfo})
 FilterPage	lib/views/filter_page.dart	/class FilterPage extends StatefulWidget {/;"	c	access:public	line:11	type: class
 FilterPage	lib/views/filter_page.dart	/const FilterPage({/;"	r	access:public	line:11	class:FilterPage	signature:({@required this.initialCategory, @required this.initialLevel, @required this.initialCompletionStatus, @required this.onCategoryTap, @required this.onLevelTap, @required this.onCompletionStatusTap})
-MyApp	lib/main.dart	/class MyApp extends StatefulWidget {/;"	c	access:public	line:24	type: class
-MyApp	lib/main.dart	/const MyApp({/;"	r	access:public	line:24	class:MyApp	signature:({Key key})
+MyApp	lib/main.dart	/class MyApp extends StatefulWidget {/;"	c	access:public	line:25	type: class
+MyApp	lib/main.dart	/const MyApp({/;"	r	access:public	line:25	class:MyApp	signature:({Key key})
 _BackdropState	lib/widgets/backdrop.dart	/class _BackdropState extends State<Backdrop> with SingleTickerProviderStateMixin {/;"	c	access:private	line:39	type: class
 _FilterPageState	lib/views/filter_page.dart	/class _FilterPageState extends State<FilterPage> {/;"	c	access:private	line:37	type: class
 _FrontLayer	lib/widgets/backdrop.dart	/class _FrontLayer extends StatelessWidget {/;"	c	access:private	line:11	type: class
 _FrontLayer	lib/widgets/backdrop.dart	/const _FrontLayer({/;"	r	access:private	line:11	class:_FrontLayer	signature:({this.child, this.onTap})
-_MyAppState	lib/main.dart	/class _MyAppState extends State<MyApp> {/;"	c	access:private	line:33	type: class
+_MyAppState	lib/main.dart	/class _MyAppState extends State<MyApp> {/;"	c	access:private	line:36	type: class
+_androidBannerAdId	lib/services/admob_service.dart	/static const _androidBannerAdId = 'ca-app-pub-3940256099942544/6300978111';/;"	f	access:private	line:18	class:AdmobService	type:
+_androidBannerAppId	lib/services/admob_service.dart	/static const _androidBannerAppId = 'ca-app-pub-5741020440631678~6845475412';/;"	f	access:private	line:17	class:AdmobService	type:
 _buildFilterColumn	lib/views/filter_page.dart	/Widget _buildFilterColumn(BuildContext context, List<Widget> selectionList, String title) {/;"	m	access:private	line:114	class:_FilterPageState	signature:(BuildContext context, List<Widget> selectionList, String title)	type:Widget
 _buildRowOfFilters	lib/views/filter_page.dart	/Widget _buildRowOfFilters(BuildContext context) {/;"	m	access:private	line:67	class:_FilterPageState	signature:(BuildContext context)	type:Widget
 _buildSelectableItem	lib/views/filter_page.dart	/Widget _buildSelectableItem(BuildContext context, String titleText, VoidCallback onTap, bool selected) {/;"	m	access:private	line:135	class:_FilterPageState	signature:(BuildContext context, String titleText, VoidCallback onTap, bool selected)	type:Widget
 _buildStack	lib/widgets/backdrop.dart	/Widget _buildStack(BuildContext context, BoxConstraints constraints) {/;"	m	access:private	line:41	class:_BackdropState	signature:(BuildContext context, BoxConstraints constraints)	type:Widget
 _categories	lib/views/filter_page.dart	/final List<Category> _categories = Category.values;/;"	f	access:private	line:38	class:_FilterPageState	type:List<Category>
+_completionMap	lib/services/completion_service.dart	/Map<int, bool> _completionMap = {};/;"	f	access:private	line:11	class:CollectiblesCompletionService	type:Map<int, bool>
 _completionStatuses	lib/views/filter_page.dart	/final List<CompletionStatus> _completionStatuses = CompletionStatus.values;/;"	f	access:private	line:40	class:_FilterPageState	type:List<CompletionStatus>
-_controller	lib/widgets/backdrop.dart	/AnimationController _controller;/;"	f	access:private	line:59	class:_BackdropState	type:AnimationController
-_currentCategory	lib/main.dart	/Category _currentCategory = Category.all;/;"	f	access:private	line:38	class:_MyAppState	type:Category
-_currentCompletionStatus	lib/main.dart	/CompletionStatus _currentCompletionStatus = CompletionStatus.all;/;"	f	access:private	line:40	class:_MyAppState	type:CompletionStatus
-_currentLevel	lib/main.dart	/Level _currentLevel = Level.all;/;"	f	access:private	line:39	class:_MyAppState	type:Level
-_doAsyncStuff	lib/main.dart	/Future<void> _doAsyncStuff() async {/;"	m	access:private	line:52	class:_MyAppState	signature:()	type:Future<void>
-_gridElement	lib/views/collectibles_view.dart	/Widget _gridElement(Collectible collectible, BuildContext context) {/;"	m	access:private	line:62	class:CollectiblesView	signature:(Collectible collectible, BuildContext context)	type:Widget
-_isFrontLayerVisibile	lib/widgets/backdrop.dart	/bool get _isFrontLayerVisibile {/;"	g	access:private	line:61	class:_BackdropState	signature:null	type:bool
+_controller	lib/widgets/backdrop.dart	/AnimationController _controller;/;"	f	access:private	line:64	class:_BackdropState	type:AnimationController
+_currentCategory	lib/main.dart	/Category _currentCategory;/;"	f	access:private	line:41	class:_MyAppState	type:Category
+_currentCompletionStatus	lib/main.dart	/CompletionStatus _currentCompletionStatus;/;"	f	access:private	line:43	class:_MyAppState	type:CompletionStatus
+_currentLevel	lib/main.dart	/Level _currentLevel;/;"	f	access:private	line:42	class:_MyAppState	type:Level
+_getScrollView	lib/views/collectibles_view.dart	/Widget _getScrollView(BuildContext context, List<Collectible> _collectibles) {/;"	m	access:private	line:105	class:CollectiblesView	signature:(BuildContext context, List<Collectible> _collectibles)	type:Widget
+_getSliversForLevel	lib/views/collectibles_view.dart	/SliverStickyHeader _getSliversForLevel(BuildContext context, Level level, List<Collectible> _collectibles) {/;"	m	access:private	line:117	class:CollectiblesView	signature:(BuildContext context, Level level, List<Collectible> _collectibles)	type:SliverStickyHeader
+_gridElement	lib/views/collectibles_view.dart	/Card _gridElement(Collectible collectible, BuildContext context) {/;"	m	access:private	line:62	class:CollectiblesView	signature:(Collectible collectible, BuildContext context)	type:Card
+_isFrontLayerVisibile	lib/widgets/backdrop.dart	/bool get _isFrontLayerVisibile {/;"	g	access:private	line:66	class:_BackdropState	signature:null	type:bool
 _levels	lib/views/filter_page.dart	/final List<Level> _levels = Level.values;/;"	f	access:private	line:39	class:_FilterPageState	type:List<Level>
-_toggleBackdropLayerVisibility	lib/widgets/backdrop.dart	/void _toggleBackdropLayerVisibility() {/;"	m	access:private	line:67	class:_BackdropState	signature:()	type:void
+_loadApplicationData	lib/main.dart	/Future<void> _loadApplicationData() async {/;"	m	access:private	line:61	class:_MyAppState	signature:()	type:Future<void>
+_toggleBackdropLayerVisibility	lib/widgets/backdrop.dart	/void _toggleBackdropLayerVisibility() {/;"	m	access:private	line:72	class:_BackdropState	signature:()	type:void
+admobBanner	lib/services/admob_service.dart	/static final admobBanner = AdmobBanner(adUnitId: getBannerAdId(), adSize: AdmobBannerSize.FULL_BANNER);/;"	f	access:public	line:5	class:AdmobService	type:
 backLayer	lib/widgets/backdrop.dart	/final Widget backLayer;/;"	f	access:public	line:29	class:Backdrop	type:Widget
-build	lib/main.dart	/@override Widget build(BuildContext context) {/;"	m	access:public	line:128	class:_MyAppState	signature:(BuildContext context)	type:Widget
-build	lib/views/collectibles_view.dart	/@override Widget build(BuildContext context) {/;"	m	access:public	line:111	class:CollectiblesView	signature:(BuildContext context)	type:Widget
-build	lib/views/collectibles_view.dart	/@override Widget build(BuildContext context) {/;"	m	access:public	line:144	class:CollectibleImageHero	signature:(BuildContext context)	type:Widget
+blacklist	util/seed_collection_json.dart	/^;"	C	line:5	type:List<int>
+build	lib/main.dart	/@override Widget build(BuildContext context) {/;"	m	access:public	line:124	class:_MyAppState	signature:(BuildContext context)	type:Widget
+build	lib/views/collectibles_view.dart	/@override Widget build(BuildContext context) {/;"	m	access:public	line:151	class:CollectiblesView	signature:(BuildContext context)	type:Widget
+build	lib/views/collectibles_view.dart	/@override Widget build(BuildContext context) {/;"	m	access:public	line:179	class:CollectibleImageHero	signature:(BuildContext context)	type:Widget
 build	lib/views/error_page.dart	/@override Widget build(BuildContext context) {/;"	m	access:public	line:8	class:ErrorPage	signature:(BuildContext context)	type:Widget
 build	lib/views/filter_page.dart	/@override Widget build(BuildContext context) {/;"	m	access:public	line:59	class:_FilterPageState	signature:(BuildContext context)	type:Widget
 build	lib/widgets/backdrop.dart	/@override Widget build(BuildContext context) {/;"	m	access:public	line:16	class:_FrontLayer	signature:(BuildContext context)	type:Widget
-build	lib/widgets/backdrop.dart	/@override Widget build(BuildContext context) {/;"	m	access:public	line:89	class:_BackdropState	signature:(BuildContext context)	type:Widget
+build	lib/widgets/backdrop.dart	/@override Widget build(BuildContext context) {/;"	m	access:public	line:94	class:_BackdropState	signature:(BuildContext context)	type:Widget
 build	lib/widgets/card_bottom.dart	/@override Widget build(BuildContext context) {/;"	m	access:public	line:28	class:CardBottom	signature:(BuildContext context)	type:Widget
 category	lib/models/collectible.dart	/final Category category;/;"	f	access:public	line:36	class:Collectible	type:Category
-categoryName	lib/widgets/card_bottom.dart	/final String categoryName;/;"	f	access:public	line:15	class:CardBottom	type:String
-changeCompletionStatus	lib/main.dart	/void changeCompletionStatus(int id) {/;"	m	access:public	line:91	class:_MyAppState	signature:(int id)	type:void
+categoryName	lib/widgets/card_bottom.dart	/final String categoryName;/;"	f	access:public	line:21	class:CardBottom	type:String
+ccs	lib/main.dart	/CollectiblesCompletionService ccs;/;"	f	access:public	line:44	class:_MyAppState	type:CollectiblesCompletionService
 child	lib/widgets/backdrop.dart	/final Widget child;/;"	f	access:public	line:12	class:_FrontLayer	type:Widget
-collectible	lib/views/collectibles_view.dart	/final Collectible collectible;/;"	f	access:public	line:140	class:CollectibleImageHero	type:Collectible
-collectibleDetailsPage	lib/views/collectibles_view.dart	/Widget collectibleDetailsPage(Collectible collectible, BuildContext context) {/;"	m	access:public	line:20	class:CollectiblesView	signature:(Collectible collectible, BuildContext context)	type:Widget
-collectibles	lib/main.dart	/List<Collectible> collectibles = [];/;"	f	access:public	line:36	class:_MyAppState	type:List<Collectible>
+collectible	lib/views/collectibles_view.dart	/final Collectible collectible;/;"	f	access:public	line:175	class:CollectibleImageHero	type:Collectible
+collectibleDetailsPage	lib/views/collectibles_view.dart	/Scaffold collectibleDetailsPage(Collectible collectible, BuildContext context) {/;"	m	access:public	line:23	class:CollectiblesView	signature:(Collectible collectible, BuildContext context)	type:Scaffold
+collectibles	lib/main.dart	/List<Collectible> collectibles;/;"	f	access:public	line:39	class:_MyAppState	type:List<Collectible>
 collectibles	lib/views/collectibles_view.dart	/final List<Collectible> collectibles;/;"	f	access:public	line:11	class:CollectiblesView	type:List<Collectible>
-collectiblesGrid	lib/views/collectibles_view.dart	/Widget collectiblesGrid(BuildContext context) {/;"	m	access:public	line:93	class:CollectiblesView	signature:(BuildContext context)	type:Widget
-completionStatus	lib/models/collectible.dart	/CompletionStatus completionStatus = CompletionStatus.notCompleted;/;"	f	access:public	line:37	class:Collectible	type:CompletionStatus
-createCollectibleList	util/seed_collection_json.dart	/^;"	F	line:14	signature:(Level level, Category category, int startingId, int numEntries)	type:List<Collectible>
-createState	lib/main.dart	/@override createState() =>/;"	m	access:public	line:27	class:MyApp	signature:()	type:null
+collectiblesGrid	lib/views/collectibles_view.dart	/SliverGrid collectiblesGrid(BuildContext context, List<Collectible> gridCollectibles) {/;"	m	access:public	line:93	class:CollectiblesView	signature:(BuildContext context, List<Collectible> gridCollectibles)	type:SliverGrid
+createCollectibleList	util/seed_collection_json.dart	/^;"	F	line:321	signature:({Level level, Category category, int startingId, int numEntries})	type:List<Collectible>
+createCollectibleListForLevel	util/seed_collection_json.dart	/^;"	F	line:292	signature:({Level level, int startingId, int numHoles, int numToads, int numBoxes, int numTreasures})	type:List<Collectible>
+createCollectiblesJson	util/seed_collection_json.dart	/^;"	F	line:226	signature:()	type:List<Collectible>
+createMap	lib/services/completion_service.dart	/createMap(List<Collectible> collectibles) {/;"	m	access:public	line:13	class:CollectiblesCompletionService	signature:(List<Collectible> collectibles)	type:null
+createState	lib/main.dart	/@override createState() =>/;"	m	access:public	line:28	class:MyApp	signature:()	type:null
 createState	lib/views/filter_page.dart	/@override _FilterPageState createState() =>/;"	m	access:public	line:33	class:FilterPage	signature:()	type:_FilterPageState
 createState	lib/widgets/backdrop.dart	/@override createState() =>/;"	m	access:public	line:26	class:Backdrop	signature:()	type:null
 dart:async	lib/models/collectibles_repository.dart	/^;"	i	line:1	type:
-dart:async	util/seed_collection_json.dart	/^;"	i	line:2	type:
 dart:convert	lib/models/collectibles_repository.dart	/^;"	i	line:2	type:
 dart:convert	util/seed_collection_json.dart	/^;"	i	line:1	type:
 dart:io	lib/services/admob_service.dart	/^;"	i	line:1	type:
-dart:io	util/seed_collection_json.dart	/^;"	i	line:3	type:
-descr	lib/widgets/card_bottom.dart	/final String descr;/;"	f	access:public	line:19	class:CardBottom	type:String
-dispose	lib/widgets/backdrop.dart	/@override void dispose() {/;"	m	access:public	line:83	class:_BackdropState	signature:()	type:void
-emptyMessage	lib/views/collectibles_view.dart	/Widget emptyMessage(BuildContext context) {/;"	m	access:public	line:105	class:CollectiblesView	signature:(BuildContext context)	type:Widget
+dart:io	util/seed_collection_json.dart	/^;"	i	line:2	type:
+descr	lib/widgets/card_bottom.dart	/final String descr;/;"	f	access:public	line:25	class:CardBottom	type:String
+dispose	lib/widgets/backdrop.dart	/@override void dispose() {/;"	m	access:public	line:88	class:_BackdropState	signature:()	type:void
+emptyMessage	lib/views/collectibles_view.dart	/Center emptyMessage(BuildContext context) {/;"	m	access:public	line:145	class:CollectiblesView	signature:(BuildContext context)	type:Center
 errorInfo	lib/views/error_page.dart	/final String errorInfo;/;"	f	access:public	line:5	class:ErrorPage	type:String
-filteredCollectibles	lib/main.dart	/List<Collectible> filteredCollectibles = [];/;"	f	access:public	line:37	class:_MyAppState	type:List<Collectible>
-fit	lib/views/collectibles_view.dart	/final BoxFit fit;/;"	f	access:public	line:142	class:CollectibleImageHero	type:BoxFit
+errorMessage	lib/main.dart	/String errorMessage;/;"	f	access:public	line:46	class:_MyAppState	type:String
+filteredCollectibles	lib/main.dart	/List<Collectible> filteredCollectibles;/;"	f	access:public	line:40	class:_MyAppState	type:List<Collectible>
+fit	lib/views/collectibles_view.dart	/final BoxFit fit;/;"	f	access:public	line:177	class:CollectibleImageHero	type:BoxFit
 flingVelocity	lib/widgets/backdrop.dart	/^;"	C	line:9	type:
-fromJson	lib/models/collectible.dart	/factory Collectible.fromJson(Map<String, dynamic> json) {/;"	r	access:public	line:41	class:Collectible	signature:(Map<String, dynamic> json)
+fromJson	lib/models/collectible.dart	/factory Collectible.fromJson(Map<String, dynamic> json) {/;"	r	access:public	line:40	class:Collectible	signature:(Map<String, dynamic> json)
 frontLayer	lib/widgets/backdrop.dart	/final Widget frontLayer;/;"	f	access:public	line:30	class:Backdrop	type:Widget
-fullAssetName	lib/models/collectible.dart	/String get fullAssetName =>/;"	g	access:public	line:57	class:Collectible	signature:null	type:String
-getAdMobAppId	lib/services/admob_service.dart	/static String getAdMobAppId() {/;"	M	access:public	line:4	class:AdmobService	signature:()	type:String
-getBannerAdId	lib/services/admob_service.dart	/static String getBannerAdId() {/;"	M	access:public	line:14	class:AdmobService	signature:()	type:String
-getBoolFromCompletionStatus	lib/models/collectible.dart	/static getBoolFromCompletionStatus(CompletionStatus status) {/;"	M	access:public	line:130	class:Collectible	signature:(CompletionStatus status)	type:null
-getCategoryFromString	lib/models/collectible.dart	/static Category getCategoryFromString(String categoryAsString) {/;"	M	access:public	line:189	class:Collectible	signature:(String categoryAsString)	type:Category
-getDisplayNameForCategory	lib/models/collectible.dart	/static String getDisplayNameForCategory(Category category) {/;"	M	access:public	line:106	class:Collectible	signature:(Category category)	type:String
-getDisplayNameForCompletionStatus	lib/models/collectible.dart	/static String getDisplayNameForCompletionStatus(CompletionStatus status) {/;"	M	access:public	line:134	class:Collectible	signature:(CompletionStatus status)	type:String
-getDisplayNameForLevel	lib/models/collectible.dart	/static String getDisplayNameForLevel(Level level) {/;"	M	access:public	line:65	class:Collectible	signature:(Level level)	type:String
-getEncodingNameForCategory	lib/models/collectible.dart	/static String getEncodingNameForCategory(Category category) {/;"	M	access:public	line:209	class:Collectible	signature:(Category category)	type:String
-getEncodingNameForLevel	lib/models/collectible.dart	/static String getEncodingNameForLevel(Level level) {/;"	M	access:public	line:229	class:Collectible	signature:(Level level)	type:String
-getFilteredCollectibles	lib/main.dart	/List<Collectible> getFilteredCollectibles(Category category, Level level, CompletionStatus completionStatus) {/;"	m	access:public	line:81	class:_MyAppState	signature:(Category category, Level level, CompletionStatus completionStatus)	type:List<Collectible>
-getFrontLayerForLoadStatus	lib/main.dart	/Widget getFrontLayerForLoadStatus(LoadStatus status) {/;"	m	access:public	line:109	class:_MyAppState	signature:(LoadStatus status)	type:Widget
-getLevelFromString	lib/models/collectible.dart	/static Level getLevelFromString(String levelAsString) {/;"	M	access:public	line:148	class:Collectible	signature:(String levelAsString)	type:Level
-getStatusFromBool	lib/models/collectible.dart	/static getStatusFromBool(bool muhBool) {/;"	M	access:public	line:126	class:Collectible	signature:(bool muhBool)	type:null
-hasNotes	lib/models/collectible.dart	/bool get hasNotes =>/;"	g	access:public	line:58	class:Collectible	signature:null	type:bool
-height	lib/widgets/card_bottom.dart	/final int height;/;"	f	access:public	line:20	class:CardBottom	type:int
+fullAssetName	lib/models/collectible.dart	/String get fullAssetName =>/;"	g	access:public	line:58	class:Collectible	signature:null	type:String
+getAdMobAppId	lib/services/admob_service.dart	/static String getAdMobAppId() {/;"	M	access:public	line:7	class:AdmobService	signature:()	type:String
+getBannerAdId	lib/services/admob_service.dart	/static String getBannerAdId() {/;"	M	access:public	line:19	class:AdmobService	signature:()	type:String
+getBoolFromCompletionStatus	lib/models/collectible.dart	/static getBoolFromCompletionStatus(CompletionStatus status) {/;"	M	access:public	line:131	class:Collectible	signature:(CompletionStatus status)	type:null
+getCategoryFromString	lib/models/collectible.dart	/static Category getCategoryFromString(String categoryAsString) {/;"	M	access:public	line:190	class:Collectible	signature:(String categoryAsString)	type:Category
+getCompletionStatus	lib/views/collectibles_view.dart	/final bool Function(int id) getCompletionStatus;/;"	f	access:public	line:12	class:CollectiblesView	type:bool Function(int id)
+getCompletionStatusForId	lib/services/completion_service.dart	/bool getCompletionStatusForId(int id) {/;"	m	access:public	line:32	class:CollectiblesCompletionService	signature:(int id)	type:bool
+getDisplayNameForCategory	lib/models/collectible.dart	/static String getDisplayNameForCategory(Category category) {/;"	M	access:public	line:107	class:Collectible	signature:(Category category)	type:String
+getDisplayNameForCompletionStatus	lib/models/collectible.dart	/static String getDisplayNameForCompletionStatus(CompletionStatus status) {/;"	M	access:public	line:135	class:Collectible	signature:(CompletionStatus status)	type:String
+getDisplayNameForLevel	lib/models/collectible.dart	/static String getDisplayNameForLevel(Level level) {/;"	M	access:public	line:66	class:Collectible	signature:(Level level)	type:String
+getEncodingNameForCategory	lib/models/collectible.dart	/static String getEncodingNameForCategory(Category category) {/;"	M	access:public	line:210	class:Collectible	signature:(Category category)	type:String
+getEncodingNameForLevel	lib/models/collectible.dart	/static String getEncodingNameForLevel(Level level) {/;"	M	access:public	line:230	class:Collectible	signature:(Level level)	type:String
+getFilteredCollectibles	lib/main.dart	/List<Collectible> getFilteredCollectibles(Category category, Level level, CompletionStatus completionStatus) {/;"	m	access:public	line:77	class:_MyAppState	signature:(Category category, Level level, CompletionStatus completionStatus)	type:List<Collectible>
+getFrontLayerForLoadStatus	lib/main.dart	/Widget getFrontLayerForLoadStatus(LoadStatus status) {/;"	m	access:public	line:100	class:_MyAppState	signature:(LoadStatus status)	type:Widget
+getLevelFromString	lib/models/collectible.dart	/static Level getLevelFromString(String levelAsString) {/;"	M	access:public	line:149	class:Collectible	signature:(String levelAsString)	type:Level
+getStatusFromBool	lib/models/collectible.dart	/static getStatusFromBool(bool muhBool) {/;"	M	access:public	line:127	class:Collectible	signature:(bool muhBool)	type:null
+hasNotes	lib/models/collectible.dart	/bool get hasNotes =>/;"	g	access:public	line:59	class:Collectible	signature:null	type:bool
 id	lib/models/collectible.dart	/final int id;/;"	f	access:public	line:34	class:Collectible	type:int
-id	lib/widgets/card_bottom.dart	/final int id;/;"	f	access:public	line:14	class:CardBottom	type:int
-initState	lib/main.dart	/@override void initState() {/;"	m	access:public	line:44	class:_MyAppState	signature:()	type:void
+initState	lib/main.dart	/@override void initState() {/;"	m	access:public	line:48	class:_MyAppState	signature:()	type:void
 initState	lib/views/filter_page.dart	/@override initState() {/;"	m	access:public	line:51	class:_FilterPageState	signature:()	type:null
-initState	lib/widgets/backdrop.dart	/@override void initState() {/;"	m	access:public	line:73	class:_BackdropState	signature:()	type:void
+initState	lib/widgets/backdrop.dart	/@override void initState() {/;"	m	access:public	line:78	class:_BackdropState	signature:()	type:void
 initialCategory	lib/views/filter_page.dart	/final Category initialCategory;/;"	f	access:public	line:12	class:FilterPage	type:Category
 initialCompletionStatus	lib/views/filter_page.dart	/final CompletionStatus initialCompletionStatus;/;"	f	access:public	line:14	class:FilterPage	type:CompletionStatus
 initialLevel	lib/views/filter_page.dart	/final Level initialLevel;/;"	f	access:public	line:13	class:FilterPage	type:Level
 jsonDataFile	lib/models/collectibles_repository.dart	/static const jsonDataFile = 'data/muhJson.json';/;"	f	access:public	line:13	class:CollectiblesRepository	type:
 level	lib/models/collectible.dart	/final Level level;/;"	f	access:public	line:35	class:Collectible	type:Level
 loadCollectiblesFromJson	lib/models/collectibles_repository.dart	/Future<List<Collectible>> loadCollectiblesFromJson() async {/;"	m	access:public	line:24	class:CollectiblesRepository	signature:()	type:Future<List<Collectible>>
-loadCompletionFromSharedPrefs	lib/main.dart	/loadCompletionFromSharedPrefs() async {/;"	m	access:public	line:73	class:_MyAppState	signature:()	type:null
-logger	lib/main.dart	/^;"	v	line:14	type:var
+loadCompletionFromSharedPrefs	lib/services/completion_service.dart	/Future<void> loadCompletionFromSharedPrefs() async {/;"	m	access:public	line:25	class:CollectiblesCompletionService	signature:()	type:Future<void>
+logger	lib/main.dart	/^;"	v	line:15	type:var
 logger	lib/models/collectible.dart	/^;"	v	line:5	type:final
 logger	lib/views/filter_page.dart	/^;"	v	line:7	type:var
 logger	lib/widgets/backdrop.dart	/^;"	v	line:7	type:var
-main	lib/main.dart	/^;"	F	line:16	signature:()	type:void
-main	util/seed_collection_json.dart	/^;"	F	line:25	signature:()	type:void
+main	lib/main.dart	/^;"	F	line:17	signature:()	type:void
+main	util/seed_collection_json.dart	/^;"	F	line:344	signature:()	type:void
 models/collectible.dart	lib/main.dart	/^;"	i	line:7	type:
 models/collectibles_repository.dart	lib/main.dart	/^;"	i	line:9	type:
-notes	lib/models/collectible.dart	/final String notes;/;"	f	access:public	line:38	class:Collectible	type:String
-ohGodWhy	lib/main.dart	/String ohGodWhy;/;"	f	access:public	line:42	class:_MyAppState	type:String
-onCategoryTap	lib/main.dart	/void onCategoryTap(Category category) =>/;"	m	access:public	line:122	class:_MyAppState	signature:(Category category)	type:void
+notes	lib/models/collectible.dart	/final String notes;/;"	f	access:public	line:37	class:Collectible	type:String
+notesMap	util/seed_collection_json.dart	/^;"	C	line:48	type:Map<int, String>
+numItems	lib/widgets/card_bottom.dart	/final int numItems;/;"	f	access:public	line:26	class:CardBottom	type:int
+onCategoryTap	lib/main.dart	/void onCategoryTap(Category category) =>/;"	m	access:public	line:94	class:_MyAppState	signature:(Category category)	type:void
 onCategoryTap	lib/views/filter_page.dart	/final ValueChanged<Category> onCategoryTap;/;"	f	access:public	line:15	class:FilterPage	type:ValueChanged<Category>
 onCategoryTap	lib/views/filter_page.dart	/void onCategoryTap(Category category) =>/;"	m	access:public	line:46	class:_FilterPageState	signature:(Category category)	type:void
-onChanged	lib/widgets/card_bottom.dart	/final Function onChanged;/;"	f	access:public	line:18	class:CardBottom	type:Function
-onCheckboxChanged	lib/main.dart	/void onCheckboxChanged(Collectible collectible, CompletionStatus status) {/;"	m	access:public	line:101	class:_MyAppState	signature:(Collectible collectible, CompletionStatus status)	type:void
-onCheckboxChanged	lib/views/collectibles_view.dart	/final void Function(Collectible collectible, CompletionStatus status) onCheckboxChanged;/;"	f	access:public	line:12	class:CollectiblesView	type:void Function(Collectible collectible, CompletionStatus status)
-onCheckboxChanged	lib/widgets/card_bottom.dart	/void onCheckboxChanged(int id) {/;"	m	access:public	line:22	class:CardBottom	signature:(int id)	type:void
-onCompletionStatusTap	lib/main.dart	/void onCompletionStatusTap(CompletionStatus status) =>/;"	m	access:public	line:125	class:_MyAppState	signature:(CompletionStatus status)	type:void
+onChanged	lib/widgets/card_bottom.dart	/final Function onChanged;/;"	f	access:public	line:24	class:CardBottom	type:Function
+onCheckboxChanged	lib/main.dart	/void onCheckboxChanged(int id, bool status) {/;"	m	access:public	line:88	class:_MyAppState	signature:(int id, bool status)	type:void
+onCheckboxChanged	lib/views/collectibles_view.dart	/final void Function(int id, bool status) onCheckboxChanged;/;"	f	access:public	line:13	class:CollectiblesView	type:void Function(int id, bool status)
+onCompletionStatusTap	lib/main.dart	/void onCompletionStatusTap(CompletionStatus status) =>/;"	m	access:public	line:97	class:_MyAppState	signature:(CompletionStatus status)	type:void
 onCompletionStatusTap	lib/views/filter_page.dart	/final ValueChanged<CompletionStatus> onCompletionStatusTap;/;"	f	access:public	line:17	class:FilterPage	type:ValueChanged<CompletionStatus>
 onCompletionStatusTap	lib/views/filter_page.dart	/void onCompletionStatusTap(CompletionStatus status) =>/;"	m	access:public	line:48	class:_FilterPageState	signature:(CompletionStatus status)	type:void
-onLevelTap	lib/main.dart	/void onLevelTap(Level level) =>/;"	m	access:public	line:124	class:_MyAppState	signature:(Level level)	type:void
+onLevelTap	lib/main.dart	/void onLevelTap(Level level) =>/;"	m	access:public	line:96	class:_MyAppState	signature:(Level level)	type:void
 onLevelTap	lib/views/filter_page.dart	/final ValueChanged<Level> onLevelTap;/;"	f	access:public	line:16	class:FilterPage	type:ValueChanged<Level>
 onLevelTap	lib/views/filter_page.dart	/void onLevelTap(Level level) =>/;"	m	access:public	line:47	class:_FilterPageState	signature:(Level level)	type:void
-onTap	lib/views/collectibles_view.dart	/final VoidCallback onTap;/;"	f	access:public	line:141	class:CollectibleImageHero	type:VoidCallback
+onTap	lib/views/collectibles_view.dart	/final VoidCallback onTap;/;"	f	access:public	line:176	class:CollectibleImageHero	type:VoidCallback
 onTap	lib/widgets/backdrop.dart	/final VoidCallback onTap;/;"	f	access:public	line:13	class:_FrontLayer	type:VoidCallback
-order	lib/models/collectible.dart	/final int order;/;"	f	access:public	line:39	class:Collectible	type:int
+order	lib/models/collectible.dart	/final int order;/;"	f	access:public	line:38	class:Collectible	type:int
+order	lib/widgets/card_bottom.dart	/final int order;/;"	f	access:public	line:20	class:CardBottom	type:int
 package:admob_flutter/admob_flutter.dart	lib/main.dart	/^;"	i	line:1	type:
-package:admob_flutter/admob_flutter.dart	lib/views/collectibles_view.dart	/^;"	i	line:1	type:
+package:admob_flutter/admob_flutter.dart	lib/services/admob_service.dart	/^;"	i	line:2	type:
 package:admob_flutter/admob_flutter.dart	lib/widgets/backdrop.dart	/^;"	i	line:1	type:
+package:collection/collection.dart	lib/views/collectibles_view.dart	/^;"	i	line:4	type:
 package:flutter/foundation.dart	lib/views/error_page.dart	/^;"	i	line:2	type:
 package:flutter/material.dart	lib/main.dart	/^;"	i	line:2	type:
-package:flutter/material.dart	lib/views/collectibles_view.dart	/^;"	i	line:2	type:
+package:flutter/material.dart	lib/views/collectibles_view.dart	/^;"	i	line:1	type:
 package:flutter/material.dart	lib/views/error_page.dart	/^;"	i	line:1	type:
 package:flutter/material.dart	lib/views/filter_page.dart	/^;"	i	line:1	type:
 package:flutter/material.dart	lib/widgets/backdrop.dart	/^;"	i	line:3	type:
 package:flutter/material.dart	lib/widgets/card_bottom.dart	/^;"	i	line:1	type:
 package:flutter/services.dart	lib/models/collectibles_repository.dart	/^;"	i	line:4	type:
+package:flutter_sticky_header/flutter_sticky_header.dart	lib/views/collectibles_view.dart	/^;"	i	line:3	type:
 package:logger/logger.dart	lib/main.dart	/^;"	i	line:11	type:as l
 package:logger/logger.dart	lib/models/collectible.dart	/^;"	i	line:3	type:
 package:logger/logger.dart	lib/models/collectibles_repository.dart	/^;"	i	line:5	type:as l
@@ -157,26 +169,31 @@ package:logger/logger.dart	lib/widgets/backdrop.dart	/^;"	i	line:5	type:
 package:meta/meta.dart	lib/models/collectible.dart	/^;"	i	line:1	type:
 package:meta/meta.dart	lib/views/filter_page.dart	/^;"	i	line:2	type:
 package:meta/meta.dart	lib/widgets/backdrop.dart	/^;"	i	line:4	type:
+package:origami_king_guide/models/collectible.dart	lib/services/completion_service.dart	/^;"	i	line:1	type:
 package:origami_king_guide/services/admob_service.dart	lib/main.dart	/^;"	i	line:4	type:
-package:origami_king_guide/services/admob_service.dart	lib/views/collectibles_view.dart	/^;"	i	line:3	type:
+package:origami_king_guide/services/admob_service.dart	lib/views/collectibles_view.dart	/^;"	i	line:2	type:
 package:origami_king_guide/services/admob_service.dart	lib/widgets/backdrop.dart	/^;"	i	line:2	type:
 package:origami_king_guide/views/collectibles_view.dart	lib/main.dart	/^;"	i	line:3	type:
 package:shared_preferences/shared_preferences.dart	lib/main.dart	/^;"	i	line:5	type:
-padding	lib/widgets/card_bottom.dart	/final EdgeInsets padding;/;"	f	access:public	line:16	class:CardBottom	type:EdgeInsets
-prefs	lib/main.dart	/SharedPreferences prefs;/;"	f	access:public	line:41	class:_MyAppState	type:SharedPreferences
+package:shared_preferences/shared_preferences.dart	lib/services/completion_service.dart	/^;"	i	line:2	type:
+padding	lib/widgets/card_bottom.dart	/final EdgeInsets padding;/;"	f	access:public	line:22	class:CardBottom	type:EdgeInsets
+prefs	lib/main.dart	/SharedPreferences prefs;/;"	f	access:public	line:45	class:_MyAppState	type:SharedPreferences
+prefs	lib/services/completion_service.dart	/SharedPreferences prefs;/;"	f	access:public	line:10	class:CollectiblesCompletionService	type:SharedPreferences
 readJsonData	lib/models/collectibles_repository.dart	/Future<String> readJsonData() async {/;"	m	access:public	line:16	class:CollectiblesRepository	signature:()	type:Future<String>
-repository	lib/main.dart	/CollectiblesRepository repository;/;"	f	access:public	line:35	class:_MyAppState	type:CollectiblesRepository
+repository	lib/main.dart	/CollectiblesRepository repository;/;"	f	access:public	line:38	class:_MyAppState	type:CollectiblesRepository
 selectedCategory	lib/views/filter_page.dart	/Category selectedCategory;/;"	f	access:public	line:42	class:_FilterPageState	type:Category
 selectedCompletionStatus	lib/views/filter_page.dart	/CompletionStatus selectedCompletionStatus;/;"	f	access:public	line:44	class:_FilterPageState	type:CompletionStatus
 selectedLevel	lib/views/filter_page.dart	/Level selectedLevel;/;"	f	access:public	line:43	class:_FilterPageState	type:Level
-status	lib/main.dart	/LoadStatus status;/;"	f	access:public	line:34	class:_MyAppState	type:LoadStatus
-thumbnailAssetName	lib/models/collectible.dart	/String get thumbnailAssetName =>/;"	g	access:public	line:56	class:Collectible	signature:null	type:String
-toJson	lib/models/collectible.dart	/Map<String, dynamic> toJson() =>/;"	m	access:public	line:50	class:Collectible	signature:()	type:Map<String, dynamic>
-toString	lib/models/collectible.dart	/String toString() =>/;"	m	access:public	line:60	class:Collectible	signature:()	type:String
-value	lib/widgets/card_bottom.dart	/final bool value;/;"	f	access:public	line:17	class:CardBottom	type:bool
+services/completion_service.dart	lib/main.dart	/^;"	i	line:13	type:
+status	lib/main.dart	/LoadStatus status;/;"	f	access:public	line:37	class:_MyAppState	type:LoadStatus
+thumbnailAssetName	lib/models/collectible.dart	/String get thumbnailAssetName =>/;"	g	access:public	line:57	class:Collectible	signature:null	type:String
+toJson	lib/models/collectible.dart	/Map<String, dynamic> toJson() =>/;"	m	access:public	line:49	class:Collectible	signature:()	type:Map<String, dynamic>
+toString	lib/models/collectible.dart	/String toString() =>/;"	m	access:public	line:61	class:Collectible	signature:()	type:String
+updateCompletionStatusForId	lib/services/completion_service.dart	/void updateCompletionStatusForId(int id, bool newStatus) {/;"	m	access:public	line:42	class:CollectiblesCompletionService	signature:(int id, bool newStatus)	type:void
+value	lib/widgets/card_bottom.dart	/final bool value;/;"	f	access:public	line:23	class:CardBottom	type:bool
 views/collectibles_view.dart	lib/main.dart	/^;"	i	line:8	type:
 views/error_page.dart	lib/main.dart	/^;"	i	line:10	type:
 views/filter_page.dart	lib/main.dart	/^;"	i	line:12	type:
 widgets/backdrop.dart	lib/main.dart	/^;"	i	line:6	type:
 writeCollectiblesJsonToFile	lib/models/collectibles_repository.dart	/writeCollectiblesJsonToFile(String path) {/;"	m	access:public	line:36	class:CollectiblesRepository	signature:(String path)	type:null
-writeCollectiblesJsonToFile	util/seed_collection_json.dart	/^;"	F	line:6	signature:(String path)	type:null
+writeCollectiblesJsonToFile	util/seed_collection_json.dart	/^;"	F	line:217	signature:(String path)	type:null

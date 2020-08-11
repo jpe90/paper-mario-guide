@@ -51,7 +51,6 @@ class CollectiblesView extends StatelessWidget {
                   onCheckboxChanged(collectible.id, complete);
                 },
                 descr: collectible.notes,
-                height: 0,
               ),
             ),
           ],
