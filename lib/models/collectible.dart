@@ -25,17 +25,20 @@ class Collectible {
     @required this.id,
     @required this.level,
     @required this.category,
+    this.numItems = 1,
     this.order,
     this.notes,
   })  : assert(id != null),
         assert(level != null),
-        assert(category != null);
+        assert(category != null),
+        assert(numItems != null);
 
   final int id;
   final Level level;
   final Category category;
   final String notes;
   final int order;
+  final numItems;
 
   factory Collectible.fromJson(Map<String, dynamic> json) {
     return Collectible(
@@ -43,7 +46,8 @@ class Collectible {
         level: getLevelFromString(json["level"]),
         category: getCategoryFromString(json["category"]),
         notes: json["notes"],
-        order: json["order"]);
+        order: json["order"],
+        numItems: json["numItems"]);
   }
 
   Map<String, dynamic> toJson() => {
@@ -51,6 +55,7 @@ class Collectible {
         'level': getEncodingNameForLevel(level),
         'category': getEncodingNameForCategory(category),
         'order': order,
+        'numItems': numItems,
         if (notes != null) 'notes': notes
       };
 

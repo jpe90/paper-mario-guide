@@ -12,6 +12,7 @@ const List<int> blacklist = [
   84,
   85,
   86,
+  136,
   137,
   138,
   139,
@@ -43,8 +44,21 @@ const List<int> blacklist = [
   225,
   226,
   227,
+  291,
+  292,
+  294,
+  295,
   309
 ];
+
+const Map<int, int> numItemsMap = {
+  135: 7,
+  144: 4,
+  154: 10,
+  218: 10,
+  290: 3,
+  293: 3,
+};
 const Map<int, String> notesMap = {
   27: "Hit the bug to reveal a toad.",
   29: "Hit the bug to reveal a toad.",
@@ -83,25 +97,10 @@ const Map<int, String> notesMap = {
   134: "Hit the hole to reveal a toad",
   135:
       "Hit the green blocks by the flagpoe to raise a staircase, then jump on the flag to reveal 7 toads.",
-  136:
-      "Hit the green blocks by the flagpoe to raise a staircase, then jump on the flag to reveal 7 toads.",
-  137:
-      "Hit the green blocks by the flagpoe to raise a staircase, then jump on the flag to reveal 7 toads.",
-  138:
-      "Hit the green blocks by the flagpoe to raise a staircase, then jump on the flag to reveal 7 toads.",
-  139:
-      "Hit the green blocks by the flagpoe to raise a staircase, then jump on the flag to reveal 7 toads.",
-  140:
-      "Hit the green blocks by the flagpoe to raise a staircase, then jump on the flag to reveal 7 toads.",
-  141:
-      "Hit the green blocks by the flagpoe to raise a staircase, then jump on the flag to reveal 7 toads.",
   142:
       "Jump on the flag again to lower it to the ground, and then hit it with your hammer to reveal a toad.",
   143: "Hit the hole to reveal a toad",
   144: "Hit the wall below the hole until four toads pop out.",
-  145: "Hit the wall below the hole until four toads pop out.",
-  146: "Hit the wall below the hole until four toads pop out.",
-  147: "Hit the wall below the hole until four toads pop out.",
   148: "Hit the tree to reveal a toad.",
   149:
       "Drop down to the right after toad 35. Hit all but the two bottom holes and then hit the origami gopher to reveal a toad.",
@@ -111,24 +110,6 @@ const Map<int, String> notesMap = {
   153:
       "Drop down the steps in front of the temple and hit the cracked box to access a hidden pathway. Go right to reach the toad.",
   154:
-      "Hit the broken block to reveal a magic circle. Use the magic circle to free 10 toads.",
-  155:
-      "Hit the broken block to reveal a magic circle. Use the magic circle to free 10 toads.",
-  156:
-      "Hit the broken block to reveal a magic circle. Use the magic circle to free 10 toads.",
-  157:
-      "Hit the broken block to reveal a magic circle. Use the magic circle to free 10 toads.",
-  158:
-      "Hit the broken block to reveal a magic circle. Use the magic circle to free 10 toads.",
-  159:
-      "Hit the broken block to reveal a magic circle. Use the magic circle to free 10 toads.",
-  160:
-      "Hit the broken block to reveal a magic circle. Use the magic circle to free 10 toads.",
-  161:
-      "Hit the broken block to reveal a magic circle. Use the magic circle to free 10 toads.",
-  162:
-      "Hit the broken block to reveal a magic circle. Use the magic circle to free 10 toads.",
-  163:
       "Hit the broken block to reveal a magic circle. Use the magic circle to free 10 toads.",
   164: "Hit a hidden toad to the right of the window with your hammer.",
   165:
@@ -323,18 +304,25 @@ List<Collectible> createCollectibleList(
   List<Collectible> retList = [];
   for (var i = startingId; i < startingId + numEntries; i++) {
     if (!blacklist.contains(i)) {
-      retList.add(notesMap[i] == null
-          ? Collectible(
-              id: i,
-              order: i - startingId + 1,
-              level: level,
-              category: category)
-          : Collectible(
-              id: i,
-              order: i - startingId + 1,
-              level: level,
-              category: category,
-              notes: notesMap[i]));
+      //retList.add(notesMap[i] == null
+      //    ? Collectible(
+      //        id: i,
+      //        order: i - startingId + 1,
+      //        level: level,
+      //        category: category)
+      //    : Collectible(
+      //        id: i,
+      //        order: i - startingId + 1,
+      //        level: level,
+      //        category: category,
+      //        notes: notesMap[i]));
+      retList.add(Collectible(
+          id: i,
+          order: i - startingId + 1,
+          level: level,
+          category: category,
+          notes: notesMap[i] ?? null,
+          numItems: numItemsMap[i] ?? 1));
     }
   }
   //retList.forEach(print);

@@ -51,6 +51,7 @@ class CollectiblesView extends StatelessWidget {
                   onCheckboxChanged(collectible.id, complete);
                 },
                 descr: collectible.notes,
+                numItems: collectible.numItems,
               ),
             ),
           ],
@@ -83,6 +84,7 @@ class CollectiblesView extends StatelessWidget {
             onChanged: (complete) {
               onCheckboxChanged(collectible.id, complete);
             },
+            numItems: collectible.numItems,
           ),
         ],
         crossAxisAlignment: CrossAxisAlignment.start,
