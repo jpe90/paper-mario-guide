@@ -3,27 +3,22 @@ import 'package:flutter/material.dart';
 class CardBottom extends StatelessWidget {
   //TODO: add numItems
   const CardBottom({
-    @required this.order,
-    @required this.categoryName,
+    @required this.title,
     @required this.padding,
     @required this.value,
     @required this.onChanged,
-    this.numItems = 1,
     this.descr,
-  })  : assert(order != null),
-        assert(categoryName != null),
+  })  : assert(title != null),
         assert(padding != null),
         assert(value != null),
         assert(onChanged != null);
 
   //TODO: add numItems
-  final int order;
-  final String categoryName;
+  final String title;
   final EdgeInsets padding;
   final bool value;
   final Function onChanged;
   final String descr;
-  final int numItems;
 
   @override
   Widget build(BuildContext context) {
@@ -40,11 +35,7 @@ class CardBottom extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 //TODO: if the numItems field of this item isn't 1, display a different text
-                Flexible(
-                    child: numItems == 1
-                        ? Text('$categoryName #$order')
-                        : Text(
-                            '${categoryName}s #$order - ${order + numItems - 1}')),
+                Flexible(child: Text(title)),
                 Checkbox(
                   value: value,
                   onChanged: (bool newValue) {

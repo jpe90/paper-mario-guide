@@ -21,11 +21,11 @@ class CollectiblesView extends StatelessWidget {
 
 // on tap for lil' hero
   Scaffold collectibleDetailsPage(
-      Collectible collectible, BuildContext context) {
+      Collectible collectible, BuildContext context, String title) {
     bool hasNotes = collectible.notes != null;
     return Scaffold(
       //TODO: change this app bar text
-      appBar: AppBar(title: Text('Testing Hero')),
+      appBar: AppBar(title: Text('')),
       body: Material(
         elevation: 8.0,
         child: ListView(
@@ -42,16 +42,13 @@ class CollectiblesView extends StatelessWidget {
               flex: 1,
               fit: hasNotes ? FlexFit.tight : FlexFit.loose,
               child: CardBottom(
-                order: collectible.order,
-                categoryName:
-                    Collectible.getDisplayNameForCategory(collectible.category),
+                title: title,
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 value: getCompletionStatus(collectible.id),
                 onChanged: (complete) {
                   onCheckboxChanged(collectible.id, complete);
                 },
                 descr: collectible.notes,
-                numItems: collectible.numItems,
               ),
             ),
           ],
@@ -61,6 +58,9 @@ class CollectiblesView extends StatelessWidget {
   }
 
   Card _gridElement(Collectible collectible, BuildContext context) {
+    String title = collectible.numItems == 1
+        ? '${Collectible.getDisplayNameForCategory(collectible.category)} #${collectible.order}'
+        : '${Collectible.getDisplayNameForCategory(collectible.category)}s #${collectible.order} - ${collectible.order + collectible.numItems - 1}';
     return Card(
       elevation: 8.0,
       child: Column(
@@ -72,19 +72,16 @@ class CollectiblesView extends StatelessWidget {
             onTap: () {
               Navigator.of(context).push(MaterialPageRoute<void>(
                   builder: (BuildContext context) =>
-                      collectibleDetailsPage(collectible, context)));
+                      collectibleDetailsPage(collectible, context, title)));
             },
           ),
           CardBottom(
-            order: collectible.order,
-            categoryName:
-                Collectible.getDisplayNameForCategory(collectible.category),
+            title: title,
             padding: const EdgeInsets.symmetric(horizontal: 10),
             value: getCompletionStatus(collectible.id),
             onChanged: (complete) {
               onCheckboxChanged(collectible.id, complete);
             },
-            numItems: collectible.numItems,
           ),
         ],
         crossAxisAlignment: CrossAxisAlignment.start,
