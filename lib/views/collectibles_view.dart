@@ -30,26 +30,19 @@ class CollectiblesView extends StatelessWidget {
         elevation: 8.0,
         child: ListView(
           children: [
-            Flexible(
-              fit: FlexFit.loose,
-              child: CollectibleImageHero(
-                collectible: collectible,
-                onTap: () => Navigator.of(context).pop(),
-                fit: BoxFit.fitHeight,
-              ),
+            CollectibleImageHero(
+              collectible: collectible,
+              onTap: () => Navigator.of(context).pop(),
+              fit: BoxFit.fitHeight,
             ),
-            Flexible(
-              flex: 1,
-              fit: hasNotes ? FlexFit.tight : FlexFit.loose,
-              child: CardBottom(
-                title: title,
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                value: getCompletionStatus(collectible.id),
-                onChanged: (complete) {
-                  onCheckboxChanged(collectible.id, complete);
-                },
-                descr: collectible.notes,
-              ),
+            CardBottom(
+              title: title,
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              value: getCompletionStatus(collectible.id),
+              onChanged: (complete) {
+                onCheckboxChanged(collectible.id, complete);
+              },
+              descr: collectible.notes,
             ),
           ],
         ),
@@ -107,7 +100,6 @@ class CollectiblesView extends StatelessWidget {
         groupBy(_collectibles, (collectible) => collectible.level);
     muhMap.forEach(
         (lvl, lst) => slivers.add(_getSliversForLevel(context, lvl, lst)));
-    //(lvl, lst) => slivers.addAll(_getSliversForLevel(context, lvl, lst)));
     return CustomScrollView(
       slivers: slivers,
     );
@@ -131,14 +123,6 @@ class CollectiblesView extends StatelessWidget {
       ),
       sliver: collectiblesGrid(context, _collectibles),
     );
-
-    //List<Widget> slivers = [];
-    //slivers.add(SliverAppBar(
-    //  expandedHeight: 35.0,
-    //  title: Text(Collectible.getDisplayNameForLevel(level)),
-    //));
-    //slivers.add(collectiblesGrid(context, _collectibles));
-    //return slivers;
   }
 
   Center emptyMessage(BuildContext context) {
