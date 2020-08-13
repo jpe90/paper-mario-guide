@@ -12,10 +12,10 @@ enum Level {
   overlookMountain,
   earthVellumental,
   overlookTower,
-  autumnMountain,
-  chestnutValley,
-  waterVellumental,
-  eddyRiver
+  //autumnMountain,
+  //chestnutValley,
+  //waterVellumental,
+  //eddyRiver
 }
 enum Category { all, toad, box, hole, treasure }
 enum CompletionStatus { all, completed, notCompleted }
@@ -59,8 +59,7 @@ class Collectible {
         if (notes != null) 'notes': notes
       };
 
-  String get thumbnailAssetName => 'assets/thumbnails/$id.jpg';
-  String get fullAssetName => 'assets/full/$id.jpg';
+  String get fullAssetName => 'assets/images/$id.jpg';
   bool get hasNotes => notes != null;
 
   String toString() =>
@@ -91,18 +90,18 @@ class Collectible {
       case Level.overlookTower:
         return "Overlook Tower";
         break;
-      case Level.autumnMountain:
-        return "Autumn Mountain";
-        break;
-      case Level.chestnutValley:
-        return "Chestnut Valley";
-        break;
-      case Level.waterVellumental:
-        return "Water Vellumental Shrine";
-        break;
-      case Level.eddyRiver:
-        return "Eddy River";
-        break;
+      //case Level.autumnMountain:
+      //  return "Autumn Mountain";
+      //  break;
+      //case Level.chestnutValley:
+      //  return "Chestnut Valley";
+      //  break;
+      //case Level.waterVellumental:
+      //  return "Water Vellumental Shrine";
+      //  break;
+      //case Level.eddyRiver:
+      //  return "Eddy River";
+      //  break;
       default:
         return "All";
         break;
@@ -174,18 +173,18 @@ class Collectible {
       case "overlookTower":
         return Level.overlookTower;
         break;
-      case "autumnMountain":
-        return Level.autumnMountain;
-        break;
-      case "chestnutValley":
-        return Level.chestnutValley;
-        break;
-      case "waterVellumental":
-        return Level.waterVellumental;
-        break;
-      case "eddyRiver":
-        return Level.eddyRiver;
-        break;
+      //case "autumnMountain":
+      //  return Level.autumnMountain;
+      //  break;
+      //case "chestnutValley":
+      //  return Level.chestnutValley;
+      //  break;
+      //case "waterVellumental":
+      //  return Level.waterVellumental;
+      //  break;
+      //case "eddyRiver":
+      //  return Level.eddyRiver;
+      //  break;
       default:
         return null;
         break;
@@ -255,18 +254,18 @@ class Collectible {
       case Level.overlookTower:
         return "overlookTower";
         break;
-      case Level.autumnMountain:
-        return "autumnMountain";
-        break;
-      case Level.chestnutValley:
-        return "chestnutValley";
-        break;
-      case Level.waterVellumental:
-        return "waterVellumental";
-        break;
-      case Level.eddyRiver:
-        return "eddyRiver";
-        break;
+      //case Level.autumnMountain:
+      //  return "autumnMountain";
+      //  break;
+      //case Level.chestnutValley:
+      //  return "chestnutValley";
+      //  break;
+      //case Level.waterVellumental:
+      //  return "waterVellumental";
+      //  break;
+      //case Level.eddyRiver:
+      //  return "eddyRiver";
+      //  break;
       default:
         return null;
         break;

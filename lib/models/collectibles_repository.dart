@@ -2,15 +2,13 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/services.dart' show rootBundle;
-import 'package:logger/logger.dart' as l;
+//import 'package:logger/logger.dart' as l;
 
 import '../models/collectible.dart';
 
 class CollectiblesRepository {
-  //GridModelService() : _logger = Logger(printer: PrettyPrinter());
   //var _logger;
-  //static const jsonDataFile = 'data/collectibles.json';
-  static const jsonDataFile = 'data/muhJson.json';
+  static const jsonDataFile = 'data/collectibles.json';
   CollectiblesRepository();
 
   Future<String> readJsonData() async {

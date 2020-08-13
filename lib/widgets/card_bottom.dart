@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 class CardBottom extends StatelessWidget {
-  //TODO: add numItems
   const CardBottom({
     @required this.title,
     @required this.padding,
@@ -13,7 +12,6 @@ class CardBottom extends StatelessWidget {
         assert(value != null),
         assert(onChanged != null);
 
-  //TODO: add numItems
   final String title;
   final EdgeInsets padding;
   final bool value;
@@ -34,7 +32,6 @@ class CardBottom extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                //TODO: if the numItems field of this item isn't 1, display a different text
                 Flexible(child: Text(title)),
                 Checkbox(
                   value: value,

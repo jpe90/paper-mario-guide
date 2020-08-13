@@ -1,5 +1,3 @@
-import 'package:admob_flutter/admob_flutter.dart';
-import 'package:origami_king_guide/services/admob_service.dart';
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 import 'package:logger/logger.dart';
@@ -93,9 +91,19 @@ class _BackdropState extends State<Backdrop>
 
   @override
   Widget build(BuildContext context) {
+    const _diameter = 35.0;
     var appBar = AppBar(
       elevation: 0,
       //title: Text('Paper Mario'),
+      title: Row(
+        children: [
+          Image.asset(
+            'assets/images/icon.png',
+            width: _diameter,
+            height: _diameter,
+          ),
+        ],
+      ),
       actions: <Widget>[
         IconButton(
             icon: const Icon(Icons.menu),
