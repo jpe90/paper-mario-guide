@@ -14,7 +14,9 @@ class AdmobService {
     return null;
   }
 
+  //TODO: update this to the correct app ID
   static const _androidBannerAppId = 'ca-app-pub-5741020440631678~6845475412';
+  //TODO: update this to the correct banner ad ID
   static const _androidBannerAdId = 'ca-app-pub-3940256099942544/6300978111';
   static String getBannerAdId() {
     if (Platform.isIOS) {
