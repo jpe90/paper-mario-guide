@@ -5,7 +5,7 @@ import 'package:collection/collection.dart';
 import '../widgets/card_bottom.dart';
 import '../models/collectible.dart';
 
-import 'package:logger/logger.dart' as l;
+//import 'package:logger/logger.dart' as l;
 
 class CollectiblesView extends StatelessWidget {
   final List<Collectible> collectibles;
@@ -22,7 +22,6 @@ class CollectiblesView extends StatelessWidget {
 // on tap for lil' hero
   Scaffold collectibleDetailsPage(
       Collectible collectible, BuildContext context, String title) {
-    bool hasNotes = collectible.notes != null;
     return Scaffold(
       //TODO: change this app bar text
       appBar: AppBar(title: Text('')),
