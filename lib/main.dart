@@ -112,6 +112,7 @@ class _MyAppState extends State<MyApp> {
       ], mainAxisAlignment: MainAxisAlignment.center));
     } else if (status == LoadStatus.completed) {
       return CollectiblesView(
+          adsEnabled: false,
           onCheckboxChanged: onCheckboxChanged,
           getCompletionStatus: ccs.getCompletionStatusForId,
           collectibles: getFilteredCollectibles(

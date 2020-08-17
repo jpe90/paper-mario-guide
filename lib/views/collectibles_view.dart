@@ -11,13 +11,16 @@ class CollectiblesView extends StatelessWidget {
   final List<Collectible> collectibles;
   final bool Function(int id) getCompletionStatus;
   final void Function(int id, bool status) onCheckboxChanged;
+  final bool adsEnabled;
 
   const CollectiblesView(
       {@required this.collectibles,
       @required this.onCheckboxChanged,
-      @required this.getCompletionStatus})
+      @required this.getCompletionStatus,
+      @required this.adsEnabled})
       : assert(onCheckboxChanged != null),
-        assert(getCompletionStatus != null);
+        assert(getCompletionStatus != null),
+        assert(adsEnabled != null);
 
 // on tap for lil' hero
   Scaffold collectibleDetailsPage(
@@ -132,16 +135,14 @@ class CollectiblesView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        Expanded(
-          child: collectibles.isEmpty
-              ? Center(child: emptyMessage(context))
-              : _getScrollView(context, collectibles),
-        ),
-        AdmobService.admobBanner,
-      ],
-    );
+    List<Widget> children = [];
+    children.add(Expanded(
+      child: collectibles.isEmpty
+          ? Center(child: emptyMessage(context))
+          : _getScrollView(context, collectibles),
+    ));
+    if (adsEnabled) children.add(AdmobService.admobBanner);
+    return Column(children: children);
   }
 }
 

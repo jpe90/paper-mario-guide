@@ -151,7 +151,7 @@ class _FilterPageState extends State<FilterPage> {
             child: Text(
               titleText,
               textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 10),
+              style: TextStyle(fontSize: 12),
             )),
       ),
     );
